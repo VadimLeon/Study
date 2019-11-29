@@ -1,0 +1,12 @@
+﻿  MyForm.cpp
+e:\pasha\vs_projects\num_met_6s_2_01\num_met_6s_2_01\myform.h(785): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+e:\pasha\vs_projects\num_met_6s_2_01\num_met_6s_2_01\myform.h(786): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+e:\pasha\vs_projects\num_met_6s_2_01\num_met_6s_2_01\myform.h(796): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+e:\pasha\vs_projects\num_met_6s_2_01\num_met_6s_2_01\myform.h(797): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+e:\pasha\vs_projects\num_met_6s_2_01\num_met_6s_2_01\myform.h(879): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+e:\pasha\vs_projects\num_met_6s_2_01\num_met_6s_2_01\myform.h(880): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+e:\pasha\vs_projects\num_met_6s_2_01\num_met_6s_2_01\myform.h(887): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+e:\pasha\vs_projects\num_met_6s_2_01\num_met_6s_2_01\myform.h(888): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+e:\pasha\vs_projects\num_met_6s_2_01\num_met_6s_2_01\myform.cpp(7): warning C4829: Возможно, неправильные параметры функции main. Рекомендуемый вариант - "int main(Platform::Array<Platform::String^>^ argv)"
+  DirichletTask.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  Num_met_6s_2_01.vcxproj -> E:\PASHA\VS_Projects\Num_met_6s_2_01\Debug\Num_met_6s_2_01.exe

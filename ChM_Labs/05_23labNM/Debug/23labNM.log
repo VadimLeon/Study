@@ -1,0 +1,20 @@
+﻿  MyForm.cpp
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1464): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1465): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1473): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1474): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1552): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1553): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1563): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1564): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1642): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1643): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1653): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1654): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1735): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1736): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1746): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.h(1747): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
+c:\users\macbookbro\source\repos\23labnm\23labnm\myform.cpp(7): warning C4829: Возможно, неправильные параметры функции main. Рекомендуемый вариант - "int main(Platform::Array<Platform::String^>^ argv)"
+  DirTask.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  23labNM.vcxproj -> C:\Users\macbookbro\source\repos\23labNM\Debug\23labNM.exe
