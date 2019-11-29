@@ -1,0 +1,32 @@
+﻿  CppCLR_WinformsProjekt.cpp
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\cppclr_winformsprojekt.cpp(11): warning C4005: '__CLR_VER': macro redefinition
+  c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\stdafx.cpp: note: see previous definition of '__CLR_VER'
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\cppclr_winformsprojekt.cpp(11): warning C4651: '/D__CLR_VER=40703362' specified for precompiled header but not for current compile
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\header.h(80): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\header.h(108): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\header.h(113): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\header.h(119): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1023): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1026): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1170): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1172): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1174): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1176): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1178): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1180): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1182): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1184): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1186): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1188): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1190): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1192): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1194): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1196): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1198): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1200): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1202): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1204): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1206): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\itikhano\desktop\unik\тер вер\cppclr_winformsprojekt3\cppclr_winformsprojekt3\form1.h(1216): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+  AssemblyInfo.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  CppCLR_WinformsProjekt3.vcxproj -> C:\Users\itikhano\Desktop\Unik\тер вер\CppCLR_WinformsProjekt3\x64\Debug\CppCLR_WinformsProjekt3.exe
