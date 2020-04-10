@@ -5,11 +5,13 @@ using namespace System::Windows::Forms;
 
 
 [STAThread]
-void main(array<String^>^ args)
+int main(array<String^>^ arg)
 {
   Application::EnableVisualStyles();
   Application::SetCompatibleTextRenderingDefault(false);
 
   overRelaxation::MyForm form;
   Application::Run(%form);
+
+  return 0;
 }
