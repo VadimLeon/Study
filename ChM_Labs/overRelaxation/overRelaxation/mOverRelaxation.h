@@ -30,4 +30,5 @@ std::vector<std::vector<double>> solveDifferenceScheme(std::function<double(doub
   int countStep,
   std::vector<double>& ans,
   double omega,
-  bool isTest);
+  bool isTest,
+  std::vector<std::vector<double>>& _u);
