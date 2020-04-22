@@ -1,4 +1,5 @@
 #include "mOverRelaxation.h"
+#include "Methods.h"
 
 double ft(double x, double y)
 {

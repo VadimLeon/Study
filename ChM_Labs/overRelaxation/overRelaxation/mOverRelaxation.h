@@ -7,11 +7,6 @@
 
 #define PI 3.141592653589793
 
-template<typename T>
-T sqr(T x) {
-  return x * x;
-}
-
 double muu(double _x, double _y);
 double mut(double _x, double _y);
 double ft(double _x, double _y);

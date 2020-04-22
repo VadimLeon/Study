@@ -164,13 +164,16 @@
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Async</ExceptionHandling>
     </ClCompile>
     <ClCompile Include="mOverRelaxation.cpp" />
+    <ClCompile Include="NumericalMethodsBase.cpp" />
     <ClCompile Include="overRelaxa.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Methods.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="mOverRelaxation.h" />
+    <ClInclude Include="NumericalMethodsBase.h" />
     <ClInclude Include="overRelaxa.h" />
   </ItemGroup>
   <ItemGroup>
