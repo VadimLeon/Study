@@ -1,4 +1,5 @@
 #include "NumericalMethodsBase.h"
+#include "Methods.h"
 
 void NumericalMethodsBase::setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega)
 {
@@ -21,6 +22,17 @@ void NumericalMethodsBase::updateSteps()
   h = static_cast<double>(xRight - xLeft) / static_cast<double>(xNumberStep);
   k = static_cast<double>(yRight - yLeft) / static_cast<double>(yNumberStep);
 }
+
+int NumericalMethodsBase::getN() const
+{
+  return countIteration;
+}
+
+double NumericalMethodsBase::getEps() const
+{
+  return maxEps;
+}
+
 
 NumericalMethodsBase::NumericalMethodsBase() : xNumberStep(-1), yNumberStep(-1),
 xRight(-1.), xLeft(-1.), yRight(-1.), yLeft(-1.),
@@ -52,3 +64,4 @@ NumericalMethodsBase::NumericalMethodsBase(const NumericalMethodsBase& _instance
 NumericalMethodsBase::~NumericalMethodsBase()
 {
 }
+

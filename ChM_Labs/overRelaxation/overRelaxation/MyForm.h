@@ -1,10 +1,14 @@
 ﻿#pragma once
 #include "mOverRelaxation.h"
+#include "overRelaxa.h"
 
 namespace overRelaxation {
 
-  double omega = 1.;
-  double n, m, h, k;
+  overRelaxa test;
+  overRelaxa main1;
+  overRelaxa main2;
+  int n, m;
+  double omega = 1., h, k;
   bool isTests;
 
   using namespace System;
@@ -116,6 +120,23 @@ namespace overRelaxation {
     void InitializeComponent(void)
     {
       this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+      this->tabControl2 = (gcnew System::Windows::Forms::TabControl());
+      this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
+      this->tabControl3 = (gcnew System::Windows::Forms::TabControl());
+      this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
+      this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
+      this->tabPage5 = (gcnew System::Windows::Forms::TabPage());
+      this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+      this->tabPage6 = (gcnew System::Windows::Forms::TabPage());
+      this->dataGridView3 = (gcnew System::Windows::Forms::DataGridView());
+      this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
+      this->tabControl4 = (gcnew System::Windows::Forms::TabControl());
+      this->tabPage7 = (gcnew System::Windows::Forms::TabPage());
+      this->dataGridView4 = (gcnew System::Windows::Forms::DataGridView());
+      this->tabPage8 = (gcnew System::Windows::Forms::TabPage());
+      this->dataGridView5 = (gcnew System::Windows::Forms::DataGridView());
+      this->tabPage9 = (gcnew System::Windows::Forms::TabPage());
+      this->dataGridView6 = (gcnew System::Windows::Forms::DataGridView());
       this->label8 = (gcnew System::Windows::Forms::Label());
       this->label7 = (gcnew System::Windows::Forms::Label());
       this->textBox6 = (gcnew System::Windows::Forms::TextBox());
@@ -149,44 +170,27 @@ namespace overRelaxation {
       this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
       this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
       this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
-      this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
-      this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
-      this->tabControl2 = (gcnew System::Windows::Forms::TabControl());
-      this->tabControl3 = (gcnew System::Windows::Forms::TabControl());
-      this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
-      this->tabPage5 = (gcnew System::Windows::Forms::TabPage());
-      this->tabPage6 = (gcnew System::Windows::Forms::TabPage());
-      this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
-      this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-      this->dataGridView3 = (gcnew System::Windows::Forms::DataGridView());
-      this->tabControl4 = (gcnew System::Windows::Forms::TabControl());
-      this->tabPage7 = (gcnew System::Windows::Forms::TabPage());
-      this->tabPage8 = (gcnew System::Windows::Forms::TabPage());
-      this->tabPage9 = (gcnew System::Windows::Forms::TabPage());
-      this->dataGridView4 = (gcnew System::Windows::Forms::DataGridView());
-      this->dataGridView5 = (gcnew System::Windows::Forms::DataGridView());
-      this->dataGridView6 = (gcnew System::Windows::Forms::DataGridView());
       this->tabPage2->SuspendLayout();
+      this->tabControl2->SuspendLayout();
+      this->tabPage1->SuspendLayout();
+      this->tabControl3->SuspendLayout();
+      this->tabPage4->SuspendLayout();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
+      this->tabPage5->SuspendLayout();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+      this->tabPage6->SuspendLayout();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->BeginInit();
+      this->tabPage3->SuspendLayout();
+      this->tabControl4->SuspendLayout();
+      this->tabPage7->SuspendLayout();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->BeginInit();
+      this->tabPage8->SuspendLayout();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView5))->BeginInit();
+      this->tabPage9->SuspendLayout();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->BeginInit();
       this->groupBox5->SuspendLayout();
       this->groupBox7->SuspendLayout();
       this->tabControl1->SuspendLayout();
-      this->tabPage3->SuspendLayout();
-      this->tabPage1->SuspendLayout();
-      this->tabControl2->SuspendLayout();
-      this->tabControl3->SuspendLayout();
-      this->tabPage4->SuspendLayout();
-      this->tabPage5->SuspendLayout();
-      this->tabPage6->SuspendLayout();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->BeginInit();
-      this->tabControl4->SuspendLayout();
-      this->tabPage7->SuspendLayout();
-      this->tabPage8->SuspendLayout();
-      this->tabPage9->SuspendLayout();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->BeginInit();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView5))->BeginInit();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->BeginInit();
       this->SuspendLayout();
       // 
       // tabPage2
@@ -213,6 +217,185 @@ namespace overRelaxation {
       this->tabPage2->Text = L"Метод верхней релаксации";
       this->tabPage2->UseVisualStyleBackColor = true;
       // 
+      // tabControl2
+      // 
+      this->tabControl2->Controls->Add(this->tabPage1);
+      this->tabControl2->Controls->Add(this->tabPage3);
+      this->tabControl2->Location = System::Drawing::Point(9, 106);
+      this->tabControl2->Name = L"tabControl2";
+      this->tabControl2->SelectedIndex = 0;
+      this->tabControl2->Size = System::Drawing::Size(953, 331);
+      this->tabControl2->TabIndex = 33;
+      // 
+      // tabPage1
+      // 
+      this->tabPage1->Controls->Add(this->tabControl3);
+      this->tabPage1->Location = System::Drawing::Point(4, 22);
+      this->tabPage1->Name = L"tabPage1";
+      this->tabPage1->Padding = System::Windows::Forms::Padding(3);
+      this->tabPage1->Size = System::Drawing::Size(945, 305);
+      this->tabPage1->TabIndex = 0;
+      this->tabPage1->Text = L"Test";
+      this->tabPage1->UseVisualStyleBackColor = true;
+      // 
+      // tabControl3
+      // 
+      this->tabControl3->Controls->Add(this->tabPage4);
+      this->tabControl3->Controls->Add(this->tabPage5);
+      this->tabControl3->Controls->Add(this->tabPage6);
+      this->tabControl3->Location = System::Drawing::Point(0, 0);
+      this->tabControl3->Name = L"tabControl3";
+      this->tabControl3->SelectedIndex = 0;
+      this->tabControl3->Size = System::Drawing::Size(949, 309);
+      this->tabControl3->TabIndex = 0;
+      // 
+      // tabPage4
+      // 
+      this->tabPage4->Controls->Add(this->dataGridView2);
+      this->tabPage4->Location = System::Drawing::Point(4, 22);
+      this->tabPage4->Name = L"tabPage4";
+      this->tabPage4->Padding = System::Windows::Forms::Padding(3);
+      this->tabPage4->Size = System::Drawing::Size(941, 283);
+      this->tabPage4->TabIndex = 0;
+      this->tabPage4->Text = L"v(x, y)";
+      this->tabPage4->UseVisualStyleBackColor = true;
+      // 
+      // dataGridView2
+      // 
+      this->dataGridView2->AllowUserToAddRows = false;
+      this->dataGridView2->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+      this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+      this->dataGridView2->Location = System::Drawing::Point(0, 0);
+      this->dataGridView2->Name = L"dataGridView2";
+      this->dataGridView2->RowHeadersWidth = 51;
+      this->dataGridView2->Size = System::Drawing::Size(941, 283);
+      this->dataGridView2->TabIndex = 3;
+      // 
+      // tabPage5
+      // 
+      this->tabPage5->Controls->Add(this->dataGridView1);
+      this->tabPage5->Location = System::Drawing::Point(4, 22);
+      this->tabPage5->Name = L"tabPage5";
+      this->tabPage5->Padding = System::Windows::Forms::Padding(3);
+      this->tabPage5->Size = System::Drawing::Size(941, 283);
+      this->tabPage5->TabIndex = 1;
+      this->tabPage5->Text = L"u(x, y)";
+      this->tabPage5->UseVisualStyleBackColor = true;
+      // 
+      // dataGridView1
+      // 
+      this->dataGridView1->AllowUserToAddRows = false;
+      this->dataGridView1->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+      this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+      this->dataGridView1->Location = System::Drawing::Point(0, 0);
+      this->dataGridView1->Name = L"dataGridView1";
+      this->dataGridView1->Size = System::Drawing::Size(941, 283);
+      this->dataGridView1->TabIndex = 0;
+      // 
+      // tabPage6
+      // 
+      this->tabPage6->Controls->Add(this->dataGridView3);
+      this->tabPage6->Location = System::Drawing::Point(4, 22);
+      this->tabPage6->Name = L"tabPage6";
+      this->tabPage6->Size = System::Drawing::Size(941, 283);
+      this->tabPage6->TabIndex = 2;
+      this->tabPage6->Text = L"R";
+      this->tabPage6->UseVisualStyleBackColor = true;
+      // 
+      // dataGridView3
+      // 
+      this->dataGridView3->AllowUserToAddRows = false;
+      this->dataGridView3->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+      this->dataGridView3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+      this->dataGridView3->Location = System::Drawing::Point(0, 0);
+      this->dataGridView3->Name = L"dataGridView3";
+      this->dataGridView3->Size = System::Drawing::Size(941, 283);
+      this->dataGridView3->TabIndex = 0;
+      // 
+      // tabPage3
+      // 
+      this->tabPage3->Controls->Add(this->tabControl4);
+      this->tabPage3->Location = System::Drawing::Point(4, 22);
+      this->tabPage3->Name = L"tabPage3";
+      this->tabPage3->Padding = System::Windows::Forms::Padding(3);
+      this->tabPage3->Size = System::Drawing::Size(945, 305);
+      this->tabPage3->TabIndex = 1;
+      this->tabPage3->Text = L"Main";
+      this->tabPage3->UseVisualStyleBackColor = true;
+      // 
+      // tabControl4
+      // 
+      this->tabControl4->Controls->Add(this->tabPage7);
+      this->tabControl4->Controls->Add(this->tabPage8);
+      this->tabControl4->Controls->Add(this->tabPage9);
+      this->tabControl4->Location = System::Drawing::Point(0, 0);
+      this->tabControl4->Name = L"tabControl4";
+      this->tabControl4->SelectedIndex = 0;
+      this->tabControl4->Size = System::Drawing::Size(953, 309);
+      this->tabControl4->TabIndex = 0;
+      // 
+      // tabPage7
+      // 
+      this->tabPage7->Controls->Add(this->dataGridView4);
+      this->tabPage7->Location = System::Drawing::Point(4, 22);
+      this->tabPage7->Name = L"tabPage7";
+      this->tabPage7->Padding = System::Windows::Forms::Padding(3);
+      this->tabPage7->Size = System::Drawing::Size(945, 283);
+      this->tabPage7->TabIndex = 0;
+      this->tabPage7->Text = L"v(x, y)";
+      this->tabPage7->UseVisualStyleBackColor = true;
+      // 
+      // dataGridView4
+      // 
+      this->dataGridView4->AllowUserToAddRows = false;
+      this->dataGridView4->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+      this->dataGridView4->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+      this->dataGridView4->Location = System::Drawing::Point(0, 0);
+      this->dataGridView4->Name = L"dataGridView4";
+      this->dataGridView4->Size = System::Drawing::Size(941, 283);
+      this->dataGridView4->TabIndex = 0;
+      // 
+      // tabPage8
+      // 
+      this->tabPage8->Controls->Add(this->dataGridView5);
+      this->tabPage8->Location = System::Drawing::Point(4, 22);
+      this->tabPage8->Name = L"tabPage8";
+      this->tabPage8->Padding = System::Windows::Forms::Padding(3);
+      this->tabPage8->Size = System::Drawing::Size(945, 283);
+      this->tabPage8->TabIndex = 1;
+      this->tabPage8->Text = L"v2(x, y)";
+      this->tabPage8->UseVisualStyleBackColor = true;
+      // 
+      // dataGridView5
+      // 
+      this->dataGridView5->AllowUserToAddRows = false;
+      this->dataGridView5->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+      this->dataGridView5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+      this->dataGridView5->Location = System::Drawing::Point(0, 0);
+      this->dataGridView5->Name = L"dataGridView5";
+      this->dataGridView5->Size = System::Drawing::Size(941, 283);
+      this->dataGridView5->TabIndex = 0;
+      // 
+      // tabPage9
+      // 
+      this->tabPage9->Controls->Add(this->dataGridView6);
+      this->tabPage9->Location = System::Drawing::Point(4, 22);
+      this->tabPage9->Name = L"tabPage9";
+      this->tabPage9->Size = System::Drawing::Size(945, 283);
+      this->tabPage9->TabIndex = 2;
+      this->tabPage9->Text = L"R";
+      this->tabPage9->UseVisualStyleBackColor = true;
+      // 
+      // dataGridView6
+      // 
+      this->dataGridView6->AllowUserToAddRows = false;
+      this->dataGridView6->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+      this->dataGridView6->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+      this->dataGridView6->Location = System::Drawing::Point(0, 0);
+      this->dataGridView6->Name = L"dataGridView6";
+      this->dataGridView6->Size = System::Drawing::Size(941, 283);
+      this->dataGridView6->TabIndex = 0;
+      // 
       // label8
       // 
       this->label8->AutoSize = true;
@@ -227,7 +410,7 @@ namespace overRelaxation {
       // label7
       // 
       this->label7->AutoSize = true;
-      this->label7->Location = System::Drawing::Point(978, 314);
+      this->label7->Location = System::Drawing::Point(978, 278);
       this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
       this->label7->Name = L"label7";
       this->label7->Size = System::Drawing::Size(114, 13);
@@ -236,7 +419,7 @@ namespace overRelaxation {
       // 
       // textBox6
       // 
-      this->textBox6->Location = System::Drawing::Point(979, 329);
+      this->textBox6->Location = System::Drawing::Point(979, 293);
       this->textBox6->Margin = System::Windows::Forms::Padding(2);
       this->textBox6->Name = L"textBox6";
       this->textBox6->Size = System::Drawing::Size(133, 20);
@@ -244,21 +427,23 @@ namespace overRelaxation {
       // 
       // textBox5
       // 
-      this->textBox5->Location = System::Drawing::Point(979, 292);
+      this->textBox5->Location = System::Drawing::Point(976, 330);
       this->textBox5->Margin = System::Windows::Forms::Padding(2);
       this->textBox5->Name = L"textBox5";
       this->textBox5->Size = System::Drawing::Size(133, 20);
       this->textBox5->TabIndex = 29;
+      this->textBox5->Visible = false;
       // 
       // label6
       // 
       this->label6->AutoSize = true;
-      this->label6->Location = System::Drawing::Point(979, 277);
+      this->label6->Location = System::Drawing::Point(976, 315);
       this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
       this->label6->Name = L"label6";
       this->label6->Size = System::Drawing::Size(54, 13);
       this->label6->TabIndex = 28;
       this->label6->Text = L"Невязка:";
+      this->label6->Visible = false;
       // 
       // textBox4
       // 
@@ -559,185 +744,6 @@ namespace overRelaxation {
       this->radioButton3->UseVisualStyleBackColor = true;
       this->radioButton3->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton3_CheckedChanged);
       // 
-      // tabPage3
-      // 
-      this->tabPage3->Controls->Add(this->tabControl4);
-      this->tabPage3->Location = System::Drawing::Point(4, 22);
-      this->tabPage3->Name = L"tabPage3";
-      this->tabPage3->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage3->Size = System::Drawing::Size(945, 305);
-      this->tabPage3->TabIndex = 1;
-      this->tabPage3->Text = L"Main";
-      this->tabPage3->UseVisualStyleBackColor = true;
-      // 
-      // tabPage1
-      // 
-      this->tabPage1->Controls->Add(this->tabControl3);
-      this->tabPage1->Location = System::Drawing::Point(4, 22);
-      this->tabPage1->Name = L"tabPage1";
-      this->tabPage1->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage1->Size = System::Drawing::Size(945, 305);
-      this->tabPage1->TabIndex = 0;
-      this->tabPage1->Text = L"Test";
-      this->tabPage1->UseVisualStyleBackColor = true;
-      // 
-      // tabControl2
-      // 
-      this->tabControl2->Controls->Add(this->tabPage1);
-      this->tabControl2->Controls->Add(this->tabPage3);
-      this->tabControl2->Location = System::Drawing::Point(9, 106);
-      this->tabControl2->Name = L"tabControl2";
-      this->tabControl2->SelectedIndex = 0;
-      this->tabControl2->Size = System::Drawing::Size(953, 331);
-      this->tabControl2->TabIndex = 33;
-      // 
-      // tabControl3
-      // 
-      this->tabControl3->Controls->Add(this->tabPage4);
-      this->tabControl3->Controls->Add(this->tabPage5);
-      this->tabControl3->Controls->Add(this->tabPage6);
-      this->tabControl3->Location = System::Drawing::Point(0, 0);
-      this->tabControl3->Name = L"tabControl3";
-      this->tabControl3->SelectedIndex = 0;
-      this->tabControl3->Size = System::Drawing::Size(949, 309);
-      this->tabControl3->TabIndex = 0;
-      // 
-      // tabPage4
-      // 
-      this->tabPage4->Controls->Add(this->dataGridView2);
-      this->tabPage4->Location = System::Drawing::Point(4, 22);
-      this->tabPage4->Name = L"tabPage4";
-      this->tabPage4->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage4->Size = System::Drawing::Size(941, 283);
-      this->tabPage4->TabIndex = 0;
-      this->tabPage4->Text = L"v(x, y)";
-      this->tabPage4->UseVisualStyleBackColor = true;
-      // 
-      // tabPage5
-      // 
-      this->tabPage5->Controls->Add(this->dataGridView1);
-      this->tabPage5->Location = System::Drawing::Point(4, 22);
-      this->tabPage5->Name = L"tabPage5";
-      this->tabPage5->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage5->Size = System::Drawing::Size(941, 283);
-      this->tabPage5->TabIndex = 1;
-      this->tabPage5->Text = L"u(x, y)";
-      this->tabPage5->UseVisualStyleBackColor = true;
-      // 
-      // tabPage6
-      // 
-      this->tabPage6->Controls->Add(this->dataGridView3);
-      this->tabPage6->Location = System::Drawing::Point(4, 22);
-      this->tabPage6->Name = L"tabPage6";
-      this->tabPage6->Size = System::Drawing::Size(941, 283);
-      this->tabPage6->TabIndex = 2;
-      this->tabPage6->Text = L"R";
-      this->tabPage6->UseVisualStyleBackColor = true;
-      // 
-      // dataGridView2
-      // 
-      this->dataGridView2->AllowUserToAddRows = false;
-      this->dataGridView2->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-      this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView2->Location = System::Drawing::Point(0, 0);
-      this->dataGridView2->Name = L"dataGridView2";
-      this->dataGridView2->RowHeadersWidth = 51;
-      this->dataGridView2->Size = System::Drawing::Size(941, 287);
-      this->dataGridView2->TabIndex = 3;
-      // 
-      // dataGridView1
-      // 
-      this->dataGridView1->AllowUserToAddRows = false;
-      this->dataGridView1->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-      this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView1->Location = System::Drawing::Point(0, 0);
-      this->dataGridView1->Name = L"dataGridView1";
-      this->dataGridView1->Size = System::Drawing::Size(941, 283);
-      this->dataGridView1->TabIndex = 0;
-      // 
-      // dataGridView3
-      // 
-      this->dataGridView3->AllowUserToAddRows = false;
-      this->dataGridView3->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-      this->dataGridView3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView3->Location = System::Drawing::Point(0, 0);
-      this->dataGridView3->Name = L"dataGridView3";
-      this->dataGridView3->Size = System::Drawing::Size(941, 283);
-      this->dataGridView3->TabIndex = 0;
-      // 
-      // tabControl4
-      // 
-      this->tabControl4->Controls->Add(this->tabPage7);
-      this->tabControl4->Controls->Add(this->tabPage8);
-      this->tabControl4->Controls->Add(this->tabPage9);
-      this->tabControl4->Location = System::Drawing::Point(0, 0);
-      this->tabControl4->Name = L"tabControl4";
-      this->tabControl4->SelectedIndex = 0;
-      this->tabControl4->Size = System::Drawing::Size(953, 309);
-      this->tabControl4->TabIndex = 0;
-      // 
-      // tabPage7
-      // 
-      this->tabPage7->Controls->Add(this->dataGridView4);
-      this->tabPage7->Location = System::Drawing::Point(4, 22);
-      this->tabPage7->Name = L"tabPage7";
-      this->tabPage7->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage7->Size = System::Drawing::Size(945, 283);
-      this->tabPage7->TabIndex = 0;
-      this->tabPage7->Text = L"v(x, y)";
-      this->tabPage7->UseVisualStyleBackColor = true;
-      // 
-      // tabPage8
-      // 
-      this->tabPage8->Controls->Add(this->dataGridView5);
-      this->tabPage8->Location = System::Drawing::Point(4, 22);
-      this->tabPage8->Name = L"tabPage8";
-      this->tabPage8->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage8->Size = System::Drawing::Size(945, 283);
-      this->tabPage8->TabIndex = 1;
-      this->tabPage8->Text = L"v2(x, y)";
-      this->tabPage8->UseVisualStyleBackColor = true;
-      // 
-      // tabPage9
-      // 
-      this->tabPage9->Controls->Add(this->dataGridView6);
-      this->tabPage9->Location = System::Drawing::Point(4, 22);
-      this->tabPage9->Name = L"tabPage9";
-      this->tabPage9->Size = System::Drawing::Size(945, 283);
-      this->tabPage9->TabIndex = 2;
-      this->tabPage9->Text = L"R";
-      this->tabPage9->UseVisualStyleBackColor = true;
-      // 
-      // dataGridView4
-      // 
-      this->dataGridView4->AllowUserToAddRows = false;
-      this->dataGridView4->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-      this->dataGridView4->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView4->Location = System::Drawing::Point(0, 0);
-      this->dataGridView4->Name = L"dataGridView4";
-      this->dataGridView4->Size = System::Drawing::Size(941, 283);
-      this->dataGridView4->TabIndex = 0;
-      // 
-      // dataGridView5
-      // 
-      this->dataGridView5->AllowUserToAddRows = false;
-      this->dataGridView5->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-      this->dataGridView5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView5->Location = System::Drawing::Point(0, 0);
-      this->dataGridView5->Name = L"dataGridView5";
-      this->dataGridView5->Size = System::Drawing::Size(941, 283);
-      this->dataGridView5->TabIndex = 0;
-      // 
-      // dataGridView6
-      // 
-      this->dataGridView6->AllowUserToAddRows = false;
-      this->dataGridView6->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-      this->dataGridView6->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView6->Location = System::Drawing::Point(0, 0);
-      this->dataGridView6->Name = L"dataGridView6";
-      this->dataGridView6->Size = System::Drawing::Size(941, 283);
-      this->dataGridView6->TabIndex = 0;
-      // 
       // MyForm
       // 
       this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -751,28 +757,28 @@ namespace overRelaxation {
       this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
       this->tabPage2->ResumeLayout(false);
       this->tabPage2->PerformLayout();
+      this->tabControl2->ResumeLayout(false);
+      this->tabPage1->ResumeLayout(false);
+      this->tabControl3->ResumeLayout(false);
+      this->tabPage4->ResumeLayout(false);
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
+      this->tabPage5->ResumeLayout(false);
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+      this->tabPage6->ResumeLayout(false);
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->EndInit();
+      this->tabPage3->ResumeLayout(false);
+      this->tabControl4->ResumeLayout(false);
+      this->tabPage7->ResumeLayout(false);
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->EndInit();
+      this->tabPage8->ResumeLayout(false);
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView5))->EndInit();
+      this->tabPage9->ResumeLayout(false);
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->EndInit();
       this->groupBox5->ResumeLayout(false);
       this->groupBox5->PerformLayout();
       this->groupBox7->ResumeLayout(false);
       this->groupBox7->PerformLayout();
       this->tabControl1->ResumeLayout(false);
-      this->tabPage3->ResumeLayout(false);
-      this->tabPage1->ResumeLayout(false);
-      this->tabControl2->ResumeLayout(false);
-      this->tabControl3->ResumeLayout(false);
-      this->tabPage4->ResumeLayout(false);
-      this->tabPage5->ResumeLayout(false);
-      this->tabPage6->ResumeLayout(false);
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->EndInit();
-      this->tabControl4->ResumeLayout(false);
-      this->tabPage7->ResumeLayout(false);
-      this->tabPage8->ResumeLayout(false);
-      this->tabPage9->ResumeLayout(false);
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->EndInit();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView5))->EndInit();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->EndInit();
       this->ResumeLayout(false);
 
     }
@@ -782,14 +788,14 @@ namespace overRelaxation {
   {
     textBox1->Text = "1e-8";
     textBox2->Text = "500";
-    resetomega();
-    textBox7->Text = omega.ToString();
     textBox11->Text = "10";
     textBox10->Text = "10";
+    resetomega();
     textBox3->ReadOnly = true;
     textBox4->ReadOnly = true;
     textBox5->ReadOnly = true;
     textBox6->ReadOnly = true;
+    textBox7->ReadOnly = true;
     dataGridView1->ReadOnly = true;
     dataGridView1->RowHeadersVisible = false;
     dataGridView1->ColumnHeadersVisible = false;
@@ -808,7 +814,6 @@ namespace overRelaxation {
     dataGridView6->ReadOnly = true;
     dataGridView6->RowHeadersVisible = false;
     dataGridView6->ColumnHeadersVisible = false;
-    textBox7->ReadOnly = true;
     checkBox1->Checked = true;
     radioButton1->Checked = true;
   }
@@ -817,7 +822,6 @@ namespace overRelaxation {
     if (checkBox1->Checked)
     {
       resetomega();
-      textBox7->Text = omega.ToString();
       textBox7->ReadOnly = true;
     }
     else
@@ -841,73 +845,45 @@ namespace overRelaxation {
     double d = 1.;
     n = Convert::ToInt32(textBox10->Text);
     m = Convert::ToInt32(textBox11->Text);
-    double n2 = n * 2;
-    double m2 = m * 2;
+    //double n2 = n * 2;
+    //double m2 = m * 2;
     h = static_cast<double>(b - a) / static_cast<double>(n);
     k = static_cast<double>(d - c) / static_cast<double>(m);
-    omega = Convert::ToDouble(textBox7->Text);
+    checkBox1->Checked ? resetomega() : omega = Convert::ToDouble(textBox7->Text);
     double eps = Convert::ToDouble(textBox1->Text);
     int countStep = Convert::ToInt32(textBox2->Text);
-    std::vector<double> ans;
-    std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > > vt;
-    std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > > vu;
-    std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > > v2;
-    std::vector<std::vector<double>> ut(n + 1, std::vector<double>(m + 1));
+    //std::vector<double> ans;
+    //std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > > vt;
+    //std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > > vu;
+    //std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > > v2;
+    //std::vector<std::vector<double>> ut(n + 1, std::vector<double>(m + 1));
 
     isTests = radioButton1->Checked;
     if (isTests)
     {
-      vt = solveDifferenceScheme(ft, mut, a, b, c, d, n, m, eps, countStep, ans, omega, radioButton1->Checked, ut);
+      test.setParameters(n, m, eps, countStep, a, b, c, d, omega);
+      test.solveDifferenceScheme(true);
+      //vt = solveDifferenceScheme(ft, mut, a, b, c, d, n, m, eps, countStep, ans, omega, radioButton1->Checked, ut);
+      resetHedarsTableT();
+      updateTable_t();
     }
     else
     {
-      vu = solveDifferenceScheme(ft, muu, a, b, c, d, n, m, eps, countStep, ans, omega, radioButton1->Checked, ut);
-      v2 = solveDifferenceScheme(ft, muu, a, b, c, d, n2, m2, eps, countStep, ans, omega, radioButton1->Checked, ut);
+      main1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
+      main2.setParameters(2*n, 2*m, eps, countStep, a, b, c, d, omega);
+      main1.solveDifferenceScheme(false);
+      main2.solveDifferenceScheme(false);
+      //vu = solveDifferenceScheme(ft, muu, a, b, c, d, n, m, eps, countStep, ans, omega, radioButton1->Checked, ut);
+      //v2 = solveDifferenceScheme(ft, muu, a, b, c, d, n2, m2, eps, countStep, ans, omega, radioButton1->Checked, ut);
+      resetHedarsTableM();
+      updateTable_m();
     }
 
-    resetHedarsTable();
-
-    if (isTests)
-    {
-      for (int i = 2; i < vt.size() + 2; i++)
-      {
-        for (int j = 2; j < vt[i - 2].size() + 2; j++)
-        {
-          dataGridView2->Rows[vt[i - 2].size() - j + 3]->Cells[i]->Value = vt[i - 2][j - 2].ToString("E");
-          dataGridView1->Rows[ut[i - 2].size() - j + 3]->Cells[i]->Value = ut[i - 2][j - 2].ToString("E");
-        }
-      }
-      for (int i = 2; i < vt.size() + 2; i++)
-      {
-        for (int j = 2; j < vt[i - 2].size() + 2; j++)
-        {
-          dataGridView3->Rows[vt[i - 2].size() - j + 3]->Cells[i]->Value = (ut[i - 2][j - 2] - vt[i - 2][j - 2]).ToString("E");
-        }
-      }
-    }
-    else
-    {
-      for (int i = 2; i < vu.size() + 2; i++)
-      {
-        for (int j = 2; j < vu[i - 2].size() + 2; j++)
-        {
-          dataGridView4->Rows[vu[i - 2].size() - j + 3]->Cells[i]->Value = vu[i - 2][j - 2].ToString("E");
-        }
-      }
-      for (int i = 2; i < v2.size() + 2; i++)
-      {
-        for (int j = 2; j < v2[i - 2].size() + 2; j++)
-        {
-          dataGridView2->Rows[v2[i - 2].size() - j + 3]->Cells[i]->Value = v2[i - 2][j - 2].ToString("E");
-        }
-      }
-
-    }
-
-    textBox3->Text = ans[0].ToString();
-    textBox4->Text = ans[1].ToString("E");
-    textBox5->Text = ans[2].ToString("E");
-    textBox6->Text = ans[3].ToString("E");
+    textBox3->Text = isTests ? test.getCountIt().ToString() : main1.getCountIt().ToString();
+    textBox4->Text = isTests ? test.getEps().ToString("E") : main1.getEps().ToString("E");
+    //textBox5->Text = ans[2].ToString("E");
+    int rMaxX, rMaxY;
+    textBox6->Text = isTests ? (test.getMaxR(rMaxX, rMaxY)).ToString("E") : main1.getMaxR(main2, rMaxX, rMaxY).ToString("E");
   }
   private: System::Void textBox11_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
   {
@@ -949,14 +925,71 @@ namespace overRelaxation {
       e->Handled = true;
     }
   }
-  public: System::Void resetomega()
+  private: System::Void resetomega()
   {
-    omega = 1.43866195273655;
+    //double h = 1. / (Convert::ToDouble(textBox11->Text));
+    //double k = 1. / (Convert::ToDouble(textBox10->Text));
+
+    //omega = (4 / (sqr(h) + sqr(k)) * (sqr(k) * sqr(sin(M_PI * h / 2)) + sqr(h) * sqr(sin(M_PI * k / 2))));
+    double N = Convert::ToDouble(textBox11->Text);
+    double tmp = 1 + sin(M_PI / N);
+    omega = 2. / tmp;
+
+    test.setOmega(omega);
+    main1.setOmega(omega);
+    main2.setOmega(omega);
+    
+    textBox7->Text = omega.ToString();
   }
-  public: System::Void resetHedarsTable()
+  private: System::Void resetHedarsTableM()
   {
-    if (isTests)
-    {
+    dataGridView4->Rows->Clear();
+    dataGridView4->ColumnCount = (int)n + 3;
+    dataGridView5->Rows->Clear();
+    dataGridView5->ColumnCount = (int)n * 2 + 3;
+    dataGridView6->Rows->Clear();
+    dataGridView6->ColumnCount = (int)n + 3;
+
+    for (int i = 0; i <= m + 2; i++) {
+      dataGridView4->Rows->Add();
+      dataGridView5->Rows->Add();
+      dataGridView5->Rows->Add();
+      dataGridView6->Rows->Add();
+    }
+
+    dataGridView4->Rows[0]->Cells[1]->Value = "i";
+    dataGridView5->Rows[0]->Cells[1]->Value = "i";
+    dataGridView6->Rows[0]->Cells[1]->Value = "i";
+    dataGridView4->Rows[1]->Cells[0]->Value = "j";
+    dataGridView5->Rows[1]->Cells[0]->Value = "j";
+    dataGridView6->Rows[1]->Cells[0]->Value = "j";
+    dataGridView4->Rows[1]->Cells[1]->Value = "Y\\X";
+    dataGridView5->Rows[1]->Cells[1]->Value = "Y\\X";
+    dataGridView6->Rows[1]->Cells[1]->Value = "Y\\X";
+
+    for (int i = 2; i <= n + 2; i++) {
+      dataGridView4->Rows[0]->Cells[i]->Value = i - 2;
+      dataGridView6->Rows[0]->Cells[i]->Value = i - 2;
+      dataGridView4->Rows[1]->Cells[i]->Value = h * (i - 2);
+      dataGridView6->Rows[1]->Cells[i]->Value = h * (i - 2);
+    }
+    for (int i = 2; i <= n * 2 + 2; i++) {
+      dataGridView5->Rows[0]->Cells[i]->Value = i - 2;
+      dataGridView5->Rows[1]->Cells[i]->Value = (h / 2) * (i - 2);
+    }
+    for (int i = (int)n + 2; i > 1; i--) {
+      dataGridView4->Rows[i]->Cells[1]->Value = k * (n - i + 2);
+      dataGridView6->Rows[i]->Cells[1]->Value = k * (n - i + 2);
+      dataGridView4->Rows[i]->Cells[0]->Value = n - i + 2;
+      dataGridView6->Rows[i]->Cells[0]->Value = n - i + 2;
+    }
+    for (int i = (int)n * 2 + 2; i > 1; i--) {
+      dataGridView5->Rows[i]->Cells[1]->Value = k / 2 * (n - i + 2);
+      dataGridView5->Rows[i]->Cells[0]->Value = n * 2 - i + 2;
+    }
+  }
+  private: System::Void resetHedarsTableT()
+  {
       dataGridView2->Rows->Clear();
       dataGridView2->ColumnCount = (int)n + 3;
       dataGridView1->Rows->Clear();
@@ -964,7 +997,8 @@ namespace overRelaxation {
       dataGridView3->Rows->Clear();
       dataGridView3->ColumnCount = (int)n + 3;
 
-      for (int i = 0; i <= m + 2; i++) {
+      for (int i = 0; i <= m + 2; i++)
+      {
         dataGridView2->Rows->Add();
         dataGridView1->Rows->Add();
         dataGridView3->Rows->Add();
@@ -980,7 +1014,8 @@ namespace overRelaxation {
       dataGridView1->Rows[1]->Cells[1]->Value = "Y\\X";
       dataGridView3->Rows[1]->Cells[1]->Value = "Y\\X";
 
-      for (int i = 2; i <= n + 2; i++) {
+      for (int i = 2; i <= n + 2; i++)
+      {
         dataGridView2->Rows[0]->Cells[i]->Value = i - 2;
         dataGridView1->Rows[0]->Cells[i]->Value = i - 2;
         dataGridView3->Rows[0]->Cells[i]->Value = i - 2;
@@ -988,86 +1023,45 @@ namespace overRelaxation {
         dataGridView1->Rows[1]->Cells[i]->Value = h * (i - 2);
         dataGridView3->Rows[1]->Cells[i]->Value = h * (i - 2);
       }
-      for (int i = (int)n + 2; i > 1; i--) {
-        dataGridView2->Rows[i]->Cells[1]->Value = k * (n - i + 2);
-        dataGridView1->Rows[i]->Cells[1]->Value = k * (n - i + 2);
-        dataGridView3->Rows[i]->Cells[1]->Value = k * (n - i + 2);
+      for (int i = (int)n + 2; i > 1; i--)
+      {
         dataGridView2->Rows[i]->Cells[0]->Value = n - i + 2;
         dataGridView1->Rows[i]->Cells[0]->Value = n - i + 2;
         dataGridView3->Rows[i]->Cells[0]->Value = n - i + 2;
+        dataGridView2->Rows[i]->Cells[1]->Value = k * (n - i + 2);
+        dataGridView1->Rows[i]->Cells[1]->Value = k * (n - i + 2);
+        dataGridView3->Rows[i]->Cells[1]->Value = k * (n - i + 2);
       }
-    }
-    else
+  }
+  private: System::Void updateTable_m()
+  {
+    for (int i = 2; i < main1.getW() + 2; i++)
     {
-      dataGridView4->Rows->Clear();
-      dataGridView4->ColumnCount = (int)n + 3;
-      dataGridView5->Rows->Clear();
-      dataGridView5->ColumnCount = (int)n*2 + 3;
-      dataGridView6->Rows->Clear();
-      dataGridView6->ColumnCount = (int)n + 3;
-
-      for (int i = 0; i <= m + 2; i++) {
-        dataGridView4->Rows->Add();
-        dataGridView5->Rows->Add();
-        dataGridView5->Rows->Add();
-        dataGridView6->Rows->Add();
+      for (int j = 2; j < main1.getH() + 2; j++)
+      {
+        dataGridView4->Rows[main1.getH() - j + 3]->Cells[i]->Value = main1.getV(i - 2, j - 2).ToString("E");
+        dataGridView6->Rows[main1.getH() - j + 3]->Cells[i]->Value = (main2.getV(2*i - 4, 2*j - 4) - main1.getV(i - 2, j - 2)).ToString("E");
       }
-
-      dataGridView4->Rows[0]->Cells[1]->Value = "i";
-      dataGridView5->Rows[0]->Cells[1]->Value = "i";
-      dataGridView6->Rows[0]->Cells[1]->Value = "i";
-      dataGridView4->Rows[1]->Cells[0]->Value = "j";
-      dataGridView5->Rows[1]->Cells[0]->Value = "j";
-      dataGridView6->Rows[1]->Cells[0]->Value = "j";
-      dataGridView4->Rows[1]->Cells[1]->Value = "Y\\X";
-      dataGridView5->Rows[1]->Cells[1]->Value = "Y\\X";
-      dataGridView6->Rows[1]->Cells[1]->Value = "Y\\X";
-
-      for (int i = 2; i <= n + 2; i++) {
-        dataGridView4->Rows[0]->Cells[i]->Value = i - 2;
-        dataGridView6->Rows[0]->Cells[i]->Value = i - 2;
-        dataGridView4->Rows[1]->Cells[i]->Value = h * (i - 2);
-        dataGridView6->Rows[1]->Cells[i]->Value = h * (i - 2);
-      }
-      for (int i = 2; i <= n*2 + 2; i++) {
-        dataGridView5->Rows[0]->Cells[i]->Value = i - 2;
-        dataGridView5->Rows[1]->Cells[i]->Value = (h/2) * (i - 2);
-      }
-      for (int i = (int)n + 2; i > 1; i--) {
-        dataGridView4->Rows[i]->Cells[1]->Value = k * (n - i + 2);
-        dataGridView6->Rows[i]->Cells[1]->Value = k * (n - i + 2);
-        dataGridView4->Rows[i]->Cells[0]->Value = n - i + 2;
-        dataGridView6->Rows[i]->Cells[0]->Value = n - i + 2;
-      }
-      for (int i = (int)n*2 + 2; i > 1; i--) {
-        dataGridView5->Rows[i]->Cells[1]->Value = k/2 * (n - i + 2);
-        dataGridView5->Rows[i]->Cells[0]->Value = n*2 - i + 2;
+    }
+    for (int i = 2; i < main2.getW() + 2; i++)
+    {
+      for (int j = 2; j < main2.getH() + 2; j++)
+      {
+        dataGridView5->Rows[main2.getH() - j + 3]->Cells[i]->Value = main2.getV(i - 2, j - 2).ToString("E");
       }
     }
   }
-  public: System::Void resetTablev_t()
+  private: System::Void updateTable_t()
   {
-
-  }
-  public: System::Void resetTableu_t()
-  {
-
-  }
-  public: System::Void resetTabler_t()
-  {
-
-  }
-  public: System::Void resetTablev1()
-  {
-
-  }
-  public: System::Void resetTablev2()
-  {
-
-  }
-  public: System::Void resetTabler()
-  {
-
+    for (int i = 2; i < test.getW() + 2; i++)
+    {
+      for (int j = 2; j < test.getH() + 2; j++)
+      {
+        dataGridView2->Rows[test.getH() - j + 3]->Cells[i]->Value = test.getV(i - 2, j - 2).ToString("E");
+        dataGridView1->Rows[test.getH() - j + 3]->Cells[i]->Value = test.getU(i - 2, j - 2).ToString("E");
+        dataGridView3->Rows[test.getH() - j + 3]->Cells[i]->Value = (test.getU(i - 2, j - 2) - test.getV(i - 2, j - 2)).ToString("E");
+      }
+    }
   }
   };
 }

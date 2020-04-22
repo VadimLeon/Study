@@ -1,11 +1,11 @@
 #pragma once
 #include "NumericalMethodsBase.h"
+#include "Methods.h"
 #include <vector>
 #include <functional>
-#include <cmath>
-//#include <iostream>
+#include <math.h>
 
-#include "Methods.h"
+#define _USE_MATH_DEFINES
 
 class overRelaxa : public NumericalMethodsBase
 {
@@ -15,19 +15,23 @@ public:
   overRelaxa(const overRelaxa& _instance);
   ~overRelaxa();
 
+  void solveDifferenceScheme(bool isTest);
 
-  std::vector<std::vector<double>> solveDifferenceScheme(std::function<double(double, double)> f,
-                                                         double mut(double x, double y),
-                                                         int countStep,
-                                                         std::vector<double>& ans,
-                                                         bool isTest,
-                                                         std::vector<std::vector<double>>& _u);
+  void setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega);
+  void setOmega(double _omega) { omega = _omega; }
+  void resetParameters();
 
+  double getV(int i, int j) const;
+  double getU(int i, int j) const;
 
-  void   reset();
-  int    getN() const;
-  double getEps() const;
-  virtual void setParams(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega);
+  int getW() const { return xNumberStep; }
+  int getH() const { return yNumberStep; }
+
+  double getMaxR(int &x, int &y);
+  double getMaxR(const overRelaxa& instance, int& x, int& y);
+  double getMaxZ();
+  int getCountIt() const { return countIteration; }
+
 
 private:
   double ft(double _x, double _y);
@@ -36,8 +40,14 @@ private:
   double muy(double _y);
   double mux(double _x);
 
-protected:
-  std::vector<std::vector<double>> v;  // Iterative solution
-  std::vector<std::vector<double>> u;  // Exact solution
+  void initTest();
+  void initMain();
+
+  double getX(int i);
+  double getY(int J);
+
+private:
+  std::vector<std::vector<double> > v;  // Iterative solution
+  std::vector<std::vector<double> > u;  // Exact solution
 };
 

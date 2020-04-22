@@ -1,21 +1,25 @@
 #pragma once
 #include <vector>
+#include <math.h>
+
+#define _USE_MATH_DEFINES
 
 class NumericalMethodsBase
 {
+protected:
+  void updateSteps();
+  void setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega = 1.);
+
 public:
-#define PI 3.141592653589793
+  int    getN() const;
+  double getEps() const;
 
   NumericalMethodsBase();
   NumericalMethodsBase(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega);
   NumericalMethodsBase(const NumericalMethodsBase& _instance);
   ~NumericalMethodsBase();
 
-  virtual std::vector<std::vector<double> > solveDifferenceScheme() = 0;
-
-protected:
-  void updateSteps();
-  virtual void setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega);
+  virtual void solveDifferenceScheme(){}
 
 protected:
   int    xNumberStep;       // Number of partitions on the abscissa axis
