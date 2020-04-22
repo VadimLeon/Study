@@ -1,67 +1,6 @@
 #include "overRelaxa.h"
 
-
-overRelaxa::overRelaxa() : NumericalMethodsBase()
-{}
-
-overRelaxa::overRelaxa(int _xNumberStep, int _yNumberStep, double _eps, double _xRight, double _xLeft, double _yRight, double _yLeft, double _omega) :
-                       NumericalMethodsBase(_xNumberStep, _yNumberStep, _eps, _xRight, _xLeft, _yRight, _yLeft, _omega)
-{}
-
-overRelaxa::overRelaxa(const overRelaxa& _instance) : NumericalMethodsBase(_instance.xNumberStep, _instance.yNumberStep, _instance.eps,
-                                                                           _instance.xRight, _instance.xLeft,
-                                                                           _instance.yRight, _instance.yLeft,
-                                                                           _instance.omega)
-{}
-
-overRelaxa::~overRelaxa()
-{}
-
-
-
-double overRelaxa::ft(double x, double y)
-{
-  double addent = (sqr(x) + sqr(y)) * (2 * sqr(PI) * exp(sqr(sin(PI*x*y))) * (2 * sqr(sin(PI*x*y)) + 1) * sqr(cos(PI*x*y)) - sqr(sin(PI*x*y)));
-  return -(addent);
-}
-
-double overRelaxa::muu(double _x, double _y)
-{
-  return sqr(sin(PI * _x * _y));
-}
-
-double overRelaxa::mut(double _x, double _y)
-{
-  return exp(sqr(sin(PI * _x * _y)));
-}
-
-double overRelaxa::muy(double _y)
-{
-  return sin(PI * _y);
-}
-
-double overRelaxa::mux(double _x)
-{
-  return _x - sqr(_x);
-}
-
-double overRelaxa::mu1(double y)
-{
-  return 1./*exp(sin(PI*0*y)*sin(PI*0*y))*/;
-}
-double overRelaxa::mu2(double y)
-{
-  return exp(sqr(sin(PI * y)));
-}
-double overRelaxa::mu3(double x)
-{
-  return 1./*exp(sin(PI*x*0)*sin(PI*x*0))*/;
-}
-double overRelaxa::mu4(double x)
-{
-  return exp(sqr(sin(PI * x)));
-}
-
+// Solving difference scheme
 std::vector<std::vector<double>> overRelaxa::solveDifferenceScheme(std::function<double(double, double)> ft,
                                                                    double mut(double x, double y),
                                                                    int countStep,
@@ -69,15 +8,10 @@ std::vector<std::vector<double>> overRelaxa::solveDifferenceScheme(std::function
                                                                    bool isTest,
                                                                    std::vector<std::vector<double>>& u)
 {
-  double h = static_cast<double>(xRight - xLeft) / static_cast<double>(xNumberStep);
-  double k = static_cast<double>(yRight - yLeft) / static_cast<double>(yNumberStep);
   double h2 = 1 / sqr(h);
   double k2 = 1 / sqr(k);
   double a2 = 2 * (h2 + k2);
-  double maxEps = 0;
-  int    counter = 0;
 
-  std::vector<std::vector<double>> v(xNumberStep + 1, std::vector<double>(yNumberStep + 1));
   auto getX = [&](int i) -> double {
     return xLeft + h * i;
   };
@@ -90,16 +24,12 @@ std::vector<std::vector<double>> overRelaxa::solveDifferenceScheme(std::function
   if (isTest)
   {
     for (int i = 0; i < xNumberStep + 1; i++) {
-      v[i][0] = mut(getX(i), xLeft);
-      v[i][yNumberStep] = mut(getX(i), xRight);
-      u[i][0] = mut(getX(i), xLeft);
-      u[i][yNumberStep] = mut(getX(i), xRight);
+      v[i][0] = u[i][0] = mut(getX(i), xLeft);
+      v[i][yNumberStep] = u[i][yNumberStep] = mut(getX(i), xRight);
     }
     for (int j = 0; j < yNumberStep + 1; j++) {
-      v[0][j] = mut(yLeft, getY(j));
-      v[xNumberStep][j] = mut(yRight, getY(j));
-      u[0][j] = mut(yLeft, getY(j));
-      u[xNumberStep][j] = mut(yRight, getY(j));
+      v[0][j] = u[0][j] = mut(yLeft, getY(j));
+      v[xNumberStep][j] = u[xNumberStep][j] = mut(yRight, getY(j));
     }
   }
   else
@@ -137,8 +67,8 @@ std::vector<std::vector<double>> overRelaxa::solveDifferenceScheme(std::function
         if (currEps > maxEps) maxEps = currEps;
       }
     }
-    counter++;
-  } while (maxEps >= eps && counter < countStep);
+    ++countIteration;
+  } while (maxEps >= eps && countIteration < countStep);
 
   for (int j = 1; j < yNumberStep; j++)
   {
@@ -175,7 +105,7 @@ std::vector<std::vector<double>> overRelaxa::solveDifferenceScheme(std::function
       }
     }
 
-    ans.push_back(counter);
+    ans.push_back(countIteration);
     ans.push_back(maxEps);
     ans.push_back(R2);
     ans.push_back(temp_max);
@@ -183,20 +113,86 @@ std::vector<std::vector<double>> overRelaxa::solveDifferenceScheme(std::function
   return v;
 }
 
-
-
-double overRelaxa::testf(double _x, double _y)
-{ // -sin^2 (PI*x*y)
-  return -(sqr(sin(_x*_y*PI)));
-}
-
-double overRelaxa::testu(double _x, double _y)
-{ // e^(sin^2 (PI*x*y))
-  return exp(sqr(sin(_x*_y*PI)));
-}
-
-double overRelaxa::mu_t(double x, double y)
+// Functions of boundary and solucion
+double overRelaxa::ft(double x, double y)
 {
-  return sin(PI*x*y);
+  double addent = (sqr(x) + sqr(y)) * (2 * sqr(PI) * exp(sqr(sin(PI*x*y))) * (2 * sqr(sin(PI*x*y)) + 1) * sqr(cos(PI*x*y)) - sqr(sin(PI*x*y)));
+  return -(addent);
 }
 
+double overRelaxa::muu(double _x, double _y)
+{
+  return sqr(sin(PI * _x * _y));
+}
+
+double overRelaxa::mut(double _x, double _y)
+{
+  return exp(sqr(sin(PI * _x * _y)));
+}
+
+double overRelaxa::muy(double _y)
+{
+  return sin(PI * _y);
+}
+
+double overRelaxa::mux(double _x)
+{
+  return _x - sqr(_x);
+}
+
+
+int overRelaxa::getN() const
+{
+  return countIteration;
+}
+
+double overRelaxa::getEps() const
+{
+  return maxEps;
+}
+
+void overRelaxa::reset()
+{
+  if (!v.size())
+  {
+    for (int i = 0; i < v.size(); ++i)
+    {
+      v[i].clear();
+      u[i].clear();
+    }
+
+    v.clear();
+    u.clear();
+  }
+}
+
+void overRelaxa::setParams(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega)
+{
+  NumericalMethodsBase::setParameters(_xNumberStep, _yNumberStep, _eps, _maxCountStep, _xLeft, _xRight, _yLeft, _yRight, _omega);
+
+  if (!v.size()) reset();
+
+  v = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
+  u = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
+}
+
+// Constructors
+overRelaxa::overRelaxa() : NumericalMethodsBase()
+{}
+
+overRelaxa::overRelaxa(int _xNumberStep, int _yNumberStep,
+                       double _eps, double _maxCountStep,
+                       double _xRight, double _xLeft, double _yRight, double _yLeft,
+                       double _omega) :
+                       NumericalMethodsBase(_xNumberStep, _yNumberStep, _eps, _maxCountStep, _xRight, _xLeft, _yRight, _yLeft, _omega)
+{}
+
+overRelaxa::overRelaxa(const overRelaxa& _instance) : NumericalMethodsBase(_instance.xNumberStep, _instance.yNumberStep,
+                                                                           _instance.eps, _instance.maxCountStep,
+                                                                           _instance.xRight, _instance.xLeft,
+                                                                           _instance.yRight, _instance.yLeft,
+                                                                           _instance.omega)
+{}
+
+overRelaxa::~overRelaxa()
+{}
