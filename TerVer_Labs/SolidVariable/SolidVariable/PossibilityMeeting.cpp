@@ -14,6 +14,7 @@ PossibilityMeeting::PossibilityMeeting(const PossibilityMeeting& copy) : N(copy.
     for (int i = 0; i < copy.midTime.size(); ++i)
     {
       midTime.push_back(copy.midTime[i]);
+      //      possibles[i] = copy.possibles[i];
     }
   }
 }
