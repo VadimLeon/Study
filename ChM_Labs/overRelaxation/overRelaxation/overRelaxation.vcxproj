@@ -163,18 +163,16 @@
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Async</ExceptionHandling>
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Async</ExceptionHandling>
     </ClCompile>
-    <ClCompile Include="mOverRelaxation.cpp" />
     <ClCompile Include="NumericalMethodsBase.cpp" />
-    <ClCompile Include="overRelaxa.cpp" />
+    <ClCompile Include="overRelax.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Methods.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="mOverRelaxation.h" />
     <ClInclude Include="NumericalMethodsBase.h" />
-    <ClInclude Include="overRelaxa.h" />
+    <ClInclude Include="overRelax.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

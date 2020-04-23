@@ -18,13 +18,10 @@
     <ClCompile Include="MyForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mOverRelaxation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="overRelaxa.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NumericalMethodsBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="overRelax.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,16 +29,13 @@
     <ClInclude Include="MyForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mOverRelaxation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="overRelaxa.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NumericalMethodsBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Methods.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="overRelax.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

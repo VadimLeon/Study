@@ -1,7 +1,7 @@
-#include "overRelaxa.h"
+#include "overRelax.h"
 
 // Solving difference scheme
-void overRelaxa::solveDifferenceScheme(bool isTest)
+void OverRelax::solveDifferenceScheme(bool isTest)
 {
   double h2 = 1 / sqr(h);
   double k2 = 1 / sqr(k);
@@ -43,7 +43,7 @@ void overRelaxa::solveDifferenceScheme(bool isTest)
 }
 
 // Init solution
-void overRelaxa::initTest()
+void OverRelax::initTest()
 {
   for (int i = 0; i < xNumberStep + 1; i++)
   {
@@ -70,7 +70,7 @@ void overRelaxa::initTest()
   }
 }
 
-void overRelaxa::initMain()
+void OverRelax::initMain()
 {
   for (int i = 0; i < xNumberStep + 1; i++) {
     v[i][0]           = mux(getX(i));
@@ -83,27 +83,27 @@ void overRelaxa::initMain()
 }
 
 // Geter methods
-double overRelaxa::getX(int i)
+double OverRelax::getX(int i)
 {
   return h * (double)i;
 }
 
-double overRelaxa::getY(int j)
+double OverRelax::getY(int j)
 {
   return k * (double)j;
 }
 
-double overRelaxa::getV(int i, int j) const
+double OverRelax::getV(int i, int j) const
 {
   return v[i][j];
 }
 
-double overRelaxa::getU(int i, int j) const
+double OverRelax::getU(int i, int j) const
 {
   return u[i][j];
 }
 
-double overRelaxa::getMaxR(int &x, int &y)
+double OverRelax::getMaxR(int &x, int &y)
 {
   double Rmax = 0., tmp;
 
@@ -124,7 +124,7 @@ double overRelaxa::getMaxR(int &x, int &y)
   return Rmax;
 }
 
-double overRelaxa::getMaxR(const overRelaxa& instance, int& x, int& y)
+double OverRelax::getMaxR(const OverRelax& instance, int& x, int& y)
 {
   double Rmax = 0., tmp;
 
@@ -145,7 +145,7 @@ double overRelaxa::getMaxR(const overRelaxa& instance, int& x, int& y)
   return Rmax;
 }
 
-double overRelaxa::getMaxZ()
+double OverRelax::getMaxZ()
 {
   double h2 = 1 / sqr(h);
   double k2 = 1 / sqr(k);
@@ -167,33 +167,35 @@ double overRelaxa::getMaxZ()
 }
 
 // Functions of boundary and solucion
-double overRelaxa::ft(double x, double y)
+double OverRelax::ft(double x, double y)
 {
-  double addent = (sqr(x) + sqr(y)) * (2 * sqr(M_PI) * exp(sqr(sin(M_PI*x*y))) * (2 * sqr(sin(M_PI*x*y)) + 1) * sqr(cos(M_PI*x*y)) - sqr(sin(M_PI*x*y)));
-  return -(addent);
+  double addent1 = (2 * sin(M_PI*x*y)*sin(M_PI*x*y) + 1)*cos(M_PI*x*y)*cos(M_PI*x*y) - sin(M_PI*x*y)*sin(M_PI*x*y);
+  double addent2 = 2 * M_PI*M_PI*x*x*exp(sin(M_PI*x*y)*sin(M_PI*x*y))*addent1;
+  double addent3 = 2 * M_PI*M_PI*y*y*exp(sin(M_PI*x*y)*sin(M_PI*x*y))*addent1;
+  return -(addent2 + addent3);
 }
 
-double overRelaxa::muu(double _x, double _y)
+double OverRelax::muu(double _x, double _y)
 {
   return sqr(sin(M_PI * _x * _y));
 }
 
-double overRelaxa::mut(double _x, double _y)
+double OverRelax::mut(double _x, double _y)
 {
   return exp(sqr(sin(M_PI * _x * _y)));
 }
 
-double overRelaxa::muy(double _y)
+double OverRelax::muy(double _y)
 {
   return sin(M_PI * _y);
 }
 
-double overRelaxa::mux(double _x)
+double OverRelax::mux(double _x)
 {
   return _x - sqr(_x);
 }
 
-void overRelaxa::resetParameters()
+void OverRelax::resetParameters()
 {
   if (!v.size())
   {
@@ -208,7 +210,7 @@ void overRelaxa::resetParameters()
   }
 }
 
-void overRelaxa::setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega)
+void OverRelax::setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega)
 {
   NumericalMethodsBase::setParameters(_xNumberStep, _yNumberStep, _eps, _maxCountStep, _xLeft, _xRight, _yLeft, _yRight, _omega);
 
@@ -219,22 +221,22 @@ void overRelaxa::setParameters(int _xNumberStep, int _yNumberStep, double _eps, 
 }
 
 // Constructors
-overRelaxa::overRelaxa() : NumericalMethodsBase()
+OverRelax::OverRelax() : NumericalMethodsBase()
 {}
 
-overRelaxa::overRelaxa(int _xNumberStep, int _yNumberStep,
+OverRelax::OverRelax(int _xNumberStep, int _yNumberStep,
                        double _eps, double _maxCountStep,
                        double _xRight, double _xLeft, double _yRight, double _yLeft,
                        double _omega) :
                        NumericalMethodsBase(_xNumberStep, _yNumberStep, _eps, _maxCountStep, _xRight, _xLeft, _yRight, _yLeft, _omega)
 {}
 
-overRelaxa::overRelaxa(const overRelaxa& _instance) : NumericalMethodsBase(_instance.xNumberStep, _instance.yNumberStep,
+OverRelax::OverRelax(const OverRelax& _instance) : NumericalMethodsBase(_instance.xNumberStep, _instance.yNumberStep,
                                                                            _instance.eps, _instance.maxCountStep,
                                                                            _instance.xRight, _instance.xLeft,
                                                                            _instance.yRight, _instance.yLeft,
                                                                            _instance.omega)
 {}
 
-overRelaxa::~overRelaxa()
+OverRelax::~OverRelax()
 {}

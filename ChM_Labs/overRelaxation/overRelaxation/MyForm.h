@@ -1,12 +1,11 @@
 ﻿#pragma once
-#include "mOverRelaxation.h"
-#include "overRelaxa.h"
+#include "overRelax.h"
 
 namespace overRelaxation {
 
-  overRelaxa test;
-  overRelaxa main1;
-  overRelaxa main2;
+  OverRelax test;
+  OverRelax main1;
+  OverRelax main2;
   int n, m;
   double omega = 1., h, k;
   bool isTests;
@@ -79,7 +78,6 @@ namespace overRelaxation {
   private: System::Windows::Forms::Label^  label1;
   private: System::Windows::Forms::CheckBox^  checkBox1;
   private: System::Windows::Forms::TextBox^  textBox7;
-           //private: System::Windows::Forms::TabPage^  tabPage1;
   private: System::Windows::Forms::RadioButton^  radioButton2;
   private: System::Windows::Forms::RadioButton^  radioButton1;
   private: System::Windows::Forms::RadioButton^  radioButton4;
@@ -817,7 +815,42 @@ namespace overRelaxation {
     checkBox1->Checked = true;
     radioButton1->Checked = true;
   }
+  private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) {
+    double a = 0.;
+    double b = 1.;
+    double c = 0.;
+    double d = 1.;
+    n = Convert::ToInt32(textBox10->Text);
+    m = Convert::ToInt32(textBox11->Text);
+    h = static_cast<double>(b - a) / static_cast<double>(n);
+    k = static_cast<double>(d - c) / static_cast<double>(m);
+    checkBox1->Checked ? resetomega() : omega = Convert::ToDouble(textBox7->Text);
+    double eps = Convert::ToDouble(textBox1->Text);
+    int countStep = Convert::ToInt32(textBox2->Text);
 
+    isTests = radioButton1->Checked;
+    if (isTests)
+    {
+      test.setParameters(n, m, eps, countStep, a, b, c, d, omega);
+      test.solveDifferenceScheme(true);
+      resetHedarsTableT();
+      updateTable_t();
+    }
+    else
+    {
+      main1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
+      main2.setParameters(2*n, 2*m, eps, countStep, a, b, c, d, omega);
+      main1.solveDifferenceScheme(false);
+      main2.solveDifferenceScheme(false);
+      resetHedarsTableM();
+      updateTable_m();
+    }
+
+    textBox3->Text = isTests ? test.getCountIt().ToString() : main1.getCountIt().ToString();
+    textBox4->Text = isTests ? test.getEps().ToString("E") : main1.getEps().ToString("E");
+    int rMaxX, rMaxY;
+    textBox6->Text = isTests ? (test.getMaxR(rMaxX, rMaxY)).ToString("E") : main1.getMaxR(main2, rMaxX, rMaxY).ToString("E");
+  }
   private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
     if (checkBox1->Checked)
     {
@@ -829,61 +862,11 @@ namespace overRelaxation {
       textBox7->ReadOnly = false;
     }
   }
-
   private: System::Void radioButton3_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
     radioButton3->Checked ? radioButton1->Checked = true : radioButton2->Checked = true;
   }
-
   private: System::Void radioButton1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
     radioButton1->Checked ? radioButton3->Checked = true : radioButton4->Checked = true;
-  }
-
-  private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) {
-    double a = 0.;
-    double b = 1.;
-    double c = 0.;
-    double d = 1.;
-    n = Convert::ToInt32(textBox10->Text);
-    m = Convert::ToInt32(textBox11->Text);
-    //double n2 = n * 2;
-    //double m2 = m * 2;
-    h = static_cast<double>(b - a) / static_cast<double>(n);
-    k = static_cast<double>(d - c) / static_cast<double>(m);
-    checkBox1->Checked ? resetomega() : omega = Convert::ToDouble(textBox7->Text);
-    double eps = Convert::ToDouble(textBox1->Text);
-    int countStep = Convert::ToInt32(textBox2->Text);
-    //std::vector<double> ans;
-    //std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > > vt;
-    //std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > > vu;
-    //std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > > v2;
-    //std::vector<std::vector<double>> ut(n + 1, std::vector<double>(m + 1));
-
-    isTests = radioButton1->Checked;
-    if (isTests)
-    {
-      test.setParameters(n, m, eps, countStep, a, b, c, d, omega);
-      test.solveDifferenceScheme(true);
-      //vt = solveDifferenceScheme(ft, mut, a, b, c, d, n, m, eps, countStep, ans, omega, radioButton1->Checked, ut);
-      resetHedarsTableT();
-      updateTable_t();
-    }
-    else
-    {
-      main1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
-      main2.setParameters(2*n, 2*m, eps, countStep, a, b, c, d, omega);
-      main1.solveDifferenceScheme(false);
-      main2.solveDifferenceScheme(false);
-      //vu = solveDifferenceScheme(ft, muu, a, b, c, d, n, m, eps, countStep, ans, omega, radioButton1->Checked, ut);
-      //v2 = solveDifferenceScheme(ft, muu, a, b, c, d, n2, m2, eps, countStep, ans, omega, radioButton1->Checked, ut);
-      resetHedarsTableM();
-      updateTable_m();
-    }
-
-    textBox3->Text = isTests ? test.getCountIt().ToString() : main1.getCountIt().ToString();
-    textBox4->Text = isTests ? test.getEps().ToString("E") : main1.getEps().ToString("E");
-    //textBox5->Text = ans[2].ToString("E");
-    int rMaxX, rMaxY;
-    textBox6->Text = isTests ? (test.getMaxR(rMaxX, rMaxY)).ToString("E") : main1.getMaxR(main2, rMaxX, rMaxY).ToString("E");
   }
   private: System::Void textBox11_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
   {
@@ -928,19 +911,13 @@ namespace overRelaxation {
   private: System::Void resetomega()
   {
     double h = 1. / (Convert::ToDouble(textBox11->Text));
-    //double k = 1. / (Convert::ToDouble(textBox10->Text));
-
-    //omega = (4 / (sqr(h) + sqr(k)) * (sqr(k) * sqr(sin(M_PI * h / 2)) + sqr(h) * sqr(sin(M_PI * k / 2))));
-    double N = Convert::ToDouble(textBox11->Text);
-    //double tmp = 1 + sin(M_PI / N);
     double tmp = 1 + sqrt(4 * sqr(sin(M_PI * h * 0.5)));
     omega = 2. / tmp;
+    textBox7->Text = omega.ToString();
 
     test.setOmega(omega);
     main1.setOmega(omega);
     main2.setOmega(omega);
-    
-    textBox7->Text = omega.ToString();
   }
   private: System::Void resetHedarsTableM()
   {
@@ -1041,7 +1018,7 @@ namespace overRelaxation {
       for (int j = 2; j < main1.getH() + 3; j++)
       {
         dataGridView4->Rows[main1.getH() - j + 4]->Cells[i]->Value = main1.getV(i - 2, j - 2).ToString("E");
-        dataGridView6->Rows[main1.getH() - j + 4]->Cells[i]->Value = (main2.getV(2*i - 4, 2*j - 4) - main1.getV(i - 2, j - 2)).ToString("E");
+        dataGridView6->Rows[main1.getH() - j + 4]->Cells[i]->Value = abs((main2.getV(2*i - 4, 2*j - 4) - main1.getV(i - 2, j - 2))).ToString("E");
       }
     }
     for (int i = 2; i < main2.getW() + 3; i++)
@@ -1060,7 +1037,7 @@ namespace overRelaxation {
       {
         dataGridView2->Rows[test.getH() - j + 4]->Cells[i]->Value = test.getV(i - 2, j - 2).ToString("E");
         dataGridView1->Rows[test.getH() - j + 4]->Cells[i]->Value = test.getU(i - 2, j - 2).ToString("E");
-        dataGridView3->Rows[test.getH() - j + 4]->Cells[i]->Value = (test.getU(i - 2, j - 2) - test.getV(i - 2, j - 2)).ToString("E");
+        dataGridView3->Rows[test.getH() - j + 4]->Cells[i]->Value = (abs(test.getU(i - 2, j - 2) - test.getV(i - 2, j - 2))).ToString("E");
       }
     }
   }
