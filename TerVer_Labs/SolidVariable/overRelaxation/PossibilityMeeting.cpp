@@ -14,7 +14,6 @@ PossibilityMeeting::PossibilityMeeting(const PossibilityMeeting& copy) : N(copy.
     for (int i = 0; i < copy.midTime.size(); ++i)
     {
       midTime.push_back(copy.midTime[i]);
-      //      possibles[i] = copy.possibles[i];
     }
   }
 }
@@ -24,7 +23,7 @@ PossibilityMeeting::~PossibilityMeeting()
 
 void PossibilityMeeting::getRand(bool isUpdate)
 {
-  isUpdate ? srand(time(NULL)) : srand(1);
+  isUpdate ? srand(unsigned(time(NULL))) : srand(1);
   for (int i = 0; i < N; ++i)
   {
     possibles[i] = getTime((double)rand() / (double)RAND_MAX, i);
