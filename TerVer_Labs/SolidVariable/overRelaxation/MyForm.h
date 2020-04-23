@@ -1,9 +1,12 @@
-#pragma once
+﻿#pragma once
+#include <iostream>
 #include "PossibilityMeeting.h"
 
-PossibilityMeeting myGirl;
+PossibilityMeeting* myGirl;
+int countN;
 
 namespace SolidVariable {
+
 
   using namespace System;
   using namespace System::ComponentModel;
@@ -48,7 +51,10 @@ namespace SolidVariable {
   private: System::Windows::Forms::Label^  label2;
   private: System::Windows::Forms::DataGridView^  dataGridView2;
   private: System::Windows::Forms::CheckBox^  checkBox1;
+
+  private: System::Windows::Forms::Button^  button1;
   private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column10;
+  private: System::Windows::Forms::CheckBox^  checkBox2;
 
   protected:
 
@@ -67,18 +73,20 @@ namespace SolidVariable {
     {
       this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
       this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
+      this->button1 = (gcnew System::Windows::Forms::Button());
+      this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+      this->label2 = (gcnew System::Windows::Forms::Label());
+      this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
+      this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
       this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
       this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
       this->textBox1 = (gcnew System::Windows::Forms::TextBox());
       this->label1 = (gcnew System::Windows::Forms::Label());
-      this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
-      this->label2 = (gcnew System::Windows::Forms::Label());
-      this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-      this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+      this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
       this->tabControl1->SuspendLayout();
       this->tabPage1->SuspendLayout();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
       this->SuspendLayout();
       // 
       // tabControl1
@@ -87,11 +95,15 @@ namespace SolidVariable {
       this->tabControl1->Location = System::Drawing::Point(0, 0);
       this->tabControl1->Name = L"tabControl1";
       this->tabControl1->SelectedIndex = 0;
-      this->tabControl1->Size = System::Drawing::Size(924, 330);
+      this->tabControl1->Size = System::Drawing::Size(470, 330);
       this->tabControl1->TabIndex = 0;
       // 
       // tabPage1
       // 
+      this->tabPage1->AutoScroll = true;
+      this->tabPage1->AutoScrollMinSize = System::Drawing::Size(300, 0);
+      this->tabPage1->Controls->Add(this->checkBox2);
+      this->tabPage1->Controls->Add(this->button1);
       this->tabPage1->Controls->Add(this->checkBox1);
       this->tabPage1->Controls->Add(this->label2);
       this->tabPage1->Controls->Add(this->dataGridView2);
@@ -101,10 +113,58 @@ namespace SolidVariable {
       this->tabPage1->Location = System::Drawing::Point(4, 22);
       this->tabPage1->Name = L"tabPage1";
       this->tabPage1->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage1->Size = System::Drawing::Size(916, 304);
+      this->tabPage1->Size = System::Drawing::Size(462, 304);
       this->tabPage1->TabIndex = 0;
       this->tabPage1->Text = L"Tryst";
       this->tabPage1->UseVisualStyleBackColor = true;
+      // 
+      // button1
+      // 
+      this->button1->Location = System::Drawing::Point(82, 272);
+      this->button1->Name = L"button1";
+      this->button1->Size = System::Drawing::Size(92, 23);
+      this->button1->TabIndex = 6;
+      this->button1->Text = L"Compute";
+      this->button1->UseVisualStyleBackColor = true;
+      this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+      // 
+      // checkBox1
+      // 
+      this->checkBox1->AutoSize = true;
+      this->checkBox1->Location = System::Drawing::Point(159, 23);
+      this->checkBox1->Name = L"checkBox1";
+      this->checkBox1->Size = System::Drawing::Size(15, 14);
+      this->checkBox1->TabIndex = 5;
+      this->checkBox1->UseVisualStyleBackColor = true;
+      this->checkBox1->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox1_CheckedChanged);
+      // 
+      // label2
+      // 
+      this->label2->AutoSize = true;
+      this->label2->Location = System::Drawing::Point(215, 3);
+      this->label2->Name = L"label2";
+      this->label2->Size = System::Drawing::Size(62, 13);
+      this->label2->TabIndex = 4;
+      this->label2->Text = L"Information:";
+      // 
+      // dataGridView2
+      // 
+      this->dataGridView2->AllowUserToAddRows = false;
+      this->dataGridView2->AllowUserToDeleteRows = false;
+      this->dataGridView2->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+      this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+      this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->Column10 });
+      this->dataGridView2->Location = System::Drawing::Point(215, 20);
+      this->dataGridView2->Name = L"dataGridView2";
+      this->dataGridView2->ReadOnly = true;
+      this->dataGridView2->Size = System::Drawing::Size(198, 249);
+      this->dataGridView2->TabIndex = 3;
+      // 
+      // Column10
+      // 
+      this->Column10->HeaderText = L"Chance";
+      this->Column10->Name = L"Column10";
+      this->Column10->ReadOnly = true;
       // 
       // dataGridView1
       // 
@@ -115,7 +175,7 @@ namespace SolidVariable {
       this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->Column1 });
       this->dataGridView1->Location = System::Drawing::Point(4, 46);
       this->dataGridView1->Name = L"dataGridView1";
-      this->dataGridView1->Size = System::Drawing::Size(140, 173);
+      this->dataGridView1->Size = System::Drawing::Size(170, 220);
       this->dataGridView1->TabIndex = 2;
       // 
       // Column1
@@ -129,7 +189,7 @@ namespace SolidVariable {
       // 
       this->textBox1->Location = System::Drawing::Point(4, 20);
       this->textBox1->Name = L"textBox1";
-      this->textBox1->Size = System::Drawing::Size(119, 20);
+      this->textBox1->Size = System::Drawing::Size(149, 20);
       this->textBox1->TabIndex = 1;
       this->textBox1->Text = L"15";
       this->textBox1->TextAlignChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextAlignChanged);
@@ -144,49 +204,21 @@ namespace SolidVariable {
       this->label1->TabIndex = 0;
       this->label1->Text = L"Number boys: ";
       // 
-      // dataGridView2
+      // checkBox2
       // 
-      this->dataGridView2->AllowUserToAddRows = false;
-      this->dataGridView2->AllowUserToDeleteRows = false;
-      this->dataGridView2->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-      this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->Column10 });
-      this->dataGridView2->Location = System::Drawing::Point(215, 20);
-      this->dataGridView2->Name = L"dataGridView2";
-      this->dataGridView2->ReadOnly = true;
-      this->dataGridView2->Size = System::Drawing::Size(676, 199);
-      this->dataGridView2->TabIndex = 3;
-      // 
-      // label2
-      // 
-      this->label2->AutoSize = true;
-      this->label2->Location = System::Drawing::Point(215, 3);
-      this->label2->Name = L"label2";
-      this->label2->Size = System::Drawing::Size(62, 13);
-      this->label2->TabIndex = 4;
-      this->label2->Text = L"Information:";
-      // 
-      // Column10
-      // 
-      this->Column10->HeaderText = L"Chance";
-      this->Column10->Name = L"Column10";
-      this->Column10->ReadOnly = true;
-      // 
-      // checkBox1
-      // 
-      this->checkBox1->AutoSize = true;
-      this->checkBox1->Location = System::Drawing::Point(129, 23);
-      this->checkBox1->Name = L"checkBox1";
-      this->checkBox1->Size = System::Drawing::Size(15, 14);
-      this->checkBox1->TabIndex = 5;
-      this->checkBox1->UseVisualStyleBackColor = true;
-      this->checkBox1->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox1_CheckedChanged);
+      this->checkBox2->AutoSize = true;
+      this->checkBox2->Location = System::Drawing::Point(11, 275);
+      this->checkBox2->Name = L"checkBox2";
+      this->checkBox2->Size = System::Drawing::Size(63, 17);
+      this->checkBox2->TabIndex = 7;
+      this->checkBox2->Text = L"Refresh";
+      this->checkBox2->UseVisualStyleBackColor = true;
       // 
       // MyForm
       // 
       this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
       this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-      this->ClientSize = System::Drawing::Size(923, 327);
+      this->ClientSize = System::Drawing::Size(468, 327);
       this->Controls->Add(this->tabControl1);
       this->Name = L"MyForm";
       this->Text = L"Tryst with the first boyfriend";
@@ -194,8 +226,8 @@ namespace SolidVariable {
       this->tabControl1->ResumeLayout(false);
       this->tabPage1->ResumeLayout(false);
       this->tabPage1->PerformLayout();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
       this->ResumeLayout(false);
 
     }
@@ -205,11 +237,25 @@ namespace SolidVariable {
   {
     this->dataGridView1->Visible = false;
     this->dataGridView2->Visible = false;
+    textBox1->Text = "1";
+
+    //vvvvvvvvvvvvvvvvvvvvvvv
+    myGirl = new PossibilityMeeting();
+    textBox1->Text = "10";
+    countN = 10;
+    checkBox1->Checked = true;
+    dataGridView1->RowHeadersWidth = 50;
+    for (int i = 0; i < countN; ++i)
+    {
+      dataGridView1->Rows[i]->HeaderCell->Value = i.ToString();
+      dataGridView1->Rows[i]->Cells[0]->Value = 0.348 + 0.042 * i;
+    }
+    //^^^^^^^^^^^^^^^^^^^^^^^
   }
 
   private: System::Void textBox1_TextAlignChanged(System::Object^  sender, System::EventArgs^  e)
   {
-    ;
+    countN = (textBox1->Text != "") ? 0 : Convert::ToInt16(textBox1->Text);
   }
 
   private: System::Void textBox1_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
@@ -223,8 +269,32 @@ namespace SolidVariable {
 
   private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
   {
-    this->dataGridView1->RowCount = myGirl.getN();
+    countN = Convert::ToInt16(textBox1->Text);
+    myGirl->setN(Convert::ToInt16(textBox1->Text));
+    this->dataGridView1->RowCount = myGirl->getN();
     this->dataGridView1->Visible = true;
+  }
+  private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
+  {
+    dataGridView2->RowHeadersWidth = 50;
+
+    std::vector<double> tmp;
+    for (int i = 0; i < countN; ++i)
+    {
+      tmp.push_back(Convert::ToDouble(dataGridView1->Rows[i]->Cells[0]->Value->ToString()));
+    }
+
+    myGirl->setMidTime(tmp, (int)tmp.size(), checkBox2->Checked);
+
+    dataGridView2->Visible = true;
+    dataGridView2->RowCount = myGirl->getN();
+
+    for (const auto &x : myGirl->getMap())
+    {
+      dataGridView2->Rows[x.first]->HeaderCell->Value = x.first.ToString();
+      dataGridView2->Rows[x.first]->Cells[0]->Value = x.second.ToString();
+    }
+    dataGridView2->Sort(dataGridView2->Columns[0], ListSortDirection::Ascending);
   }
 };
 }
