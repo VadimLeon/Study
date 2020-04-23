@@ -67,8 +67,8 @@ namespace overRelaxation {
   private: System::Windows::Forms::TextBox^  textBox2;
   private: System::Windows::Forms::Label^  label3;
   private: System::Windows::Forms::TextBox^  textBox3;
-  private: System::Windows::Forms::TextBox^  textBox5;
-  private: System::Windows::Forms::Label^  label6;
+
+
   private: System::Windows::Forms::TextBox^  textBox4;
   private: System::Windows::Forms::Label^  label5;
   private: System::Windows::Forms::Label^  label4;
@@ -80,8 +80,6 @@ namespace overRelaxation {
   private: System::Windows::Forms::TextBox^  textBox7;
   private: System::Windows::Forms::RadioButton^  radioButton2;
   private: System::Windows::Forms::RadioButton^  radioButton1;
-  private: System::Windows::Forms::RadioButton^  radioButton4;
-  private: System::Windows::Forms::RadioButton^  radioButton3;
 
   private: System::Windows::Forms::Label^  label9;
   private: System::Windows::Forms::TabControl^  tabControl2;
@@ -101,6 +99,8 @@ namespace overRelaxation {
   private: System::Windows::Forms::DataGridView^  dataGridView5;
   private: System::Windows::Forms::TabPage^  tabPage9;
   private: System::Windows::Forms::DataGridView^  dataGridView6;
+  private: System::Windows::Forms::Label^  label10;
+  private: System::Windows::Forms::Label^  label6;
 
   protected:
   private: System::ComponentModel::IContainer^ components;
@@ -118,6 +118,8 @@ namespace overRelaxation {
     void InitializeComponent(void)
     {
       this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+      this->label10 = (gcnew System::Windows::Forms::Label());
+      this->label6 = (gcnew System::Windows::Forms::Label());
       this->tabControl2 = (gcnew System::Windows::Forms::TabControl());
       this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
       this->tabControl3 = (gcnew System::Windows::Forms::TabControl());
@@ -138,8 +140,6 @@ namespace overRelaxation {
       this->label8 = (gcnew System::Windows::Forms::Label());
       this->label7 = (gcnew System::Windows::Forms::Label());
       this->textBox6 = (gcnew System::Windows::Forms::TextBox());
-      this->textBox5 = (gcnew System::Windows::Forms::TextBox());
-      this->label6 = (gcnew System::Windows::Forms::Label());
       this->textBox4 = (gcnew System::Windows::Forms::TextBox());
       this->label5 = (gcnew System::Windows::Forms::Label());
       this->label4 = (gcnew System::Windows::Forms::Label());
@@ -166,8 +166,6 @@ namespace overRelaxation {
       this->label13 = (gcnew System::Windows::Forms::Label());
       this->textBox11 = (gcnew System::Windows::Forms::TextBox());
       this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
-      this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
-      this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
       this->tabPage2->SuspendLayout();
       this->tabControl2->SuspendLayout();
       this->tabPage1->SuspendLayout();
@@ -193,12 +191,12 @@ namespace overRelaxation {
       // 
       // tabPage2
       // 
+      this->tabPage2->Controls->Add(this->label10);
+      this->tabPage2->Controls->Add(this->label6);
       this->tabPage2->Controls->Add(this->tabControl2);
       this->tabPage2->Controls->Add(this->label8);
       this->tabPage2->Controls->Add(this->label7);
       this->tabPage2->Controls->Add(this->textBox6);
-      this->tabPage2->Controls->Add(this->textBox5);
-      this->tabPage2->Controls->Add(this->label6);
       this->tabPage2->Controls->Add(this->textBox4);
       this->tabPage2->Controls->Add(this->label5);
       this->tabPage2->Controls->Add(this->label4);
@@ -214,6 +212,22 @@ namespace overRelaxation {
       this->tabPage2->TabIndex = 1;
       this->tabPage2->Text = L"Метод верхней релаксации";
       this->tabPage2->UseVisualStyleBackColor = true;
+      // 
+      // label10
+      // 
+      this->label10->AutoSize = true;
+      this->label10->Location = System::Drawing::Point(1041, 324);
+      this->label10->Name = L"label10";
+      this->label10->Size = System::Drawing::Size(0, 13);
+      this->label10->TabIndex = 35;
+      // 
+      // label6
+      // 
+      this->label6->AutoSize = true;
+      this->label6->Location = System::Drawing::Point(980, 324);
+      this->label6->Name = L"label6";
+      this->label6->Size = System::Drawing::Size(0, 13);
+      this->label6->TabIndex = 34;
       // 
       // tabControl2
       // 
@@ -423,26 +437,6 @@ namespace overRelaxation {
       this->textBox6->Size = System::Drawing::Size(133, 20);
       this->textBox6->TabIndex = 30;
       // 
-      // textBox5
-      // 
-      this->textBox5->Location = System::Drawing::Point(976, 330);
-      this->textBox5->Margin = System::Windows::Forms::Padding(2);
-      this->textBox5->Name = L"textBox5";
-      this->textBox5->Size = System::Drawing::Size(133, 20);
-      this->textBox5->TabIndex = 29;
-      this->textBox5->Visible = false;
-      // 
-      // label6
-      // 
-      this->label6->AutoSize = true;
-      this->label6->Location = System::Drawing::Point(976, 315);
-      this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-      this->label6->Name = L"label6";
-      this->label6->Size = System::Drawing::Size(54, 13);
-      this->label6->TabIndex = 28;
-      this->label6->Text = L"Невязка:";
-      this->label6->Visible = false;
-      // 
       // textBox4
       // 
       this->textBox4->Location = System::Drawing::Point(979, 255);
@@ -540,7 +534,6 @@ namespace overRelaxation {
       this->radioButton1->TabStop = true;
       this->radioButton1->Text = L"Тестовая задача";
       this->radioButton1->UseVisualStyleBackColor = true;
-      this->radioButton1->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton1_CheckedChanged);
       // 
       // checkBox1
       // 
@@ -719,29 +712,6 @@ namespace overRelaxation {
       this->tabControl1->Size = System::Drawing::Size(1129, 466);
       this->tabControl1->TabIndex = 14;
       // 
-      // radioButton4
-      // 
-      this->radioButton4->AutoSize = true;
-      this->radioButton4->Location = System::Drawing::Point(999, 36);
-      this->radioButton4->Name = L"radioButton4";
-      this->radioButton4->Size = System::Drawing::Size(113, 17);
-      this->radioButton4->TabIndex = 31;
-      this->radioButton4->TabStop = true;
-      this->radioButton4->Text = L"Основная задача";
-      this->radioButton4->UseVisualStyleBackColor = true;
-      // 
-      // radioButton3
-      // 
-      this->radioButton3->AutoSize = true;
-      this->radioButton3->Location = System::Drawing::Point(999, 12);
-      this->radioButton3->Name = L"radioButton3";
-      this->radioButton3->Size = System::Drawing::Size(111, 17);
-      this->radioButton3->TabIndex = 30;
-      this->radioButton3->TabStop = true;
-      this->radioButton3->Text = L"Тестовая задача";
-      this->radioButton3->UseVisualStyleBackColor = true;
-      this->radioButton3->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton3_CheckedChanged);
-      // 
       // MyForm
       // 
       this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -791,7 +761,6 @@ namespace overRelaxation {
     resetomega();
     textBox3->ReadOnly = true;
     textBox4->ReadOnly = true;
-    textBox5->ReadOnly = true;
     textBox6->ReadOnly = true;
     textBox7->ReadOnly = true;
     dataGridView1->ReadOnly = true;
@@ -846,10 +815,12 @@ namespace overRelaxation {
       updateTable_m();
     }
 
+    int rMaxX, rMaxY;
     textBox3->Text = isTests ? test.getCountIt().ToString() : main1.getCountIt().ToString();
     textBox4->Text = isTests ? test.getEps().ToString("E") : main1.getEps().ToString("E");
-    int rMaxX, rMaxY;
-    textBox6->Text = isTests ? (test.getMaxR(rMaxX, rMaxY)).ToString("E") : main1.getMaxR(main2, rMaxX, rMaxY).ToString("E");
+    textBox6->Text = isTests ? (test.getMaxR(rMaxX, rMaxY)).ToString("E") : (main1.getMaxR(main2, rMaxX, rMaxY)).ToString("E");
+    label6->Text = ("x: " + rMaxX.ToString());
+    label10->Text = ("y: " + rMaxY.ToString());
   }
   private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
     if (checkBox1->Checked)
@@ -861,12 +832,6 @@ namespace overRelaxation {
     {
       textBox7->ReadOnly = false;
     }
-  }
-  private: System::Void radioButton3_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-    radioButton3->Checked ? radioButton1->Checked = true : radioButton2->Checked = true;
-  }
-  private: System::Void radioButton1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-    radioButton1->Checked ? radioButton3->Checked = true : radioButton4->Checked = true;
   }
   private: System::Void textBox11_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
   {
@@ -911,7 +876,7 @@ namespace overRelaxation {
   private: System::Void resetomega()
   {
     double h = 1. / (Convert::ToDouble(textBox11->Text));
-    double tmp = 1 + sqrt(4 * sqr(sin(M_PI * h * 0.5)));
+    double tmp = 1. + sqrt(4 * sqr(sin(M_PI * h * 0.5)));
     omega = 2. / tmp;
     textBox7->Text = omega.ToString();
 
@@ -1013,12 +978,22 @@ namespace overRelaxation {
   }
   private: System::Void updateTable_m()
   {
+    double tmpMaxR = 0., tmpR;
+    int rMaxX, rMaxY;
+
     for (int i = 2; i < main1.getW() + 3; i++)
     {
       for (int j = 2; j < main1.getH() + 3; j++)
       {
         dataGridView4->Rows[main1.getH() - j + 4]->Cells[i]->Value = main1.getV(i - 2, j - 2).ToString("E");
-        dataGridView6->Rows[main1.getH() - j + 4]->Cells[i]->Value = abs((main2.getV(2*i - 4, 2*j - 4) - main1.getV(i - 2, j - 2))).ToString("E");
+        tmpR = abs(main2.getV(2 * i - 4, 2 * j - 4) - main1.getV(i - 2, j - 2));
+        dataGridView6->Rows[main1.getH() - j + 4]->Cells[i]->Value = tmpR.ToString("E");
+        if (tmpR > tmpMaxR)
+        {
+          tmpMaxR = tmpR;
+          rMaxX = i - 2;
+          rMaxY = j - 2;
+        }
       }
     }
     for (int i = 2; i < main2.getW() + 3; i++)
@@ -1028,6 +1003,10 @@ namespace overRelaxation {
         dataGridView5->Rows[main2.getH() - j + 4]->Cells[i]->Value = main2.getV(i - 2, j - 2).ToString("E");
       }
     }
+
+    textBox6->Text = tmpMaxR.ToString("E");
+    label6->Text = ("x: " + rMaxX.ToString());
+    label10->Text = ("y: " + rMaxY.ToString());
   }
   private: System::Void updateTable_t()
   {
