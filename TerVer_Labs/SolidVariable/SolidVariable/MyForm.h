@@ -255,7 +255,7 @@ namespace SolidVariable {
 
   private: System::Void textBox1_TextAlignChanged(System::Object^  sender, System::EventArgs^  e)
   {
-    countN = (textBox1->Text != "") ? 0 : Convert::ToInt16(textBox1->Text);
+    countN = (textBox1->Text != "") ? 0 : Convert::ToInt32(textBox1->Text);
   }
 
   private: System::Void textBox1_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
@@ -269,10 +269,31 @@ namespace SolidVariable {
 
   private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
   {
-    countN = Convert::ToInt16(textBox1->Text);
-    myGirl->setN(Convert::ToInt16(textBox1->Text));
-    this->dataGridView1->RowCount = myGirl->getN();
-    this->dataGridView1->Visible = true;
+    textBox1->ReadOnly = checkBox1->Checked;
+    if (checkBox1->Checked)
+    {
+      if (textBox1->Text == "") checkBox1->Checked = false;
+      
+      myGirl->setN(Convert::ToInt32(textBox1->Text));
+      this->dataGridView1->RowCount = myGirl->getN();
+      updateTableK(sender, e);
+      this->dataGridView1->Visible = true;
+    }
+    else
+    {
+      this->dataGridView1->Visible = false;
+      this->dataGridView1->Rows->Clear();
+    }
+
+  }
+  private: System::Void updateTableK(System::Object^  sender, System::EventArgs^  e)
+  {
+    for (int i = 0; i < myGirl->getN(); ++i)
+    {
+      dataGridView1->Rows[i]->HeaderCell->Value = i.ToString();
+      dataGridView2->Rows[i]->HeaderCell->Value = i.ToString();
+      dataGridView1->Rows[i]->Cells[0]->Value = "0,";
+    }
   }
   private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
   {

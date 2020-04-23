@@ -927,12 +927,13 @@ namespace overRelaxation {
   }
   private: System::Void resetomega()
   {
-    //double h = 1. / (Convert::ToDouble(textBox11->Text));
+    double h = 1. / (Convert::ToDouble(textBox11->Text));
     //double k = 1. / (Convert::ToDouble(textBox10->Text));
 
     //omega = (4 / (sqr(h) + sqr(k)) * (sqr(k) * sqr(sin(M_PI * h / 2)) + sqr(h) * sqr(sin(M_PI * k / 2))));
     double N = Convert::ToDouble(textBox11->Text);
-    double tmp = 1 + sin(M_PI / N);
+    //double tmp = 1 + sin(M_PI / N);
+    double tmp = 1 + sqrt(4 * sqr(sin(M_PI * h * 0.5)));
     omega = 2. / tmp;
 
     test.setOmega(omega);
@@ -975,7 +976,7 @@ namespace overRelaxation {
     }
     for (int i = 2; i <= n * 2 + 2; i++) {
       dataGridView5->Rows[0]->Cells[i]->Value = i - 2;
-      dataGridView5->Rows[1]->Cells[i]->Value = (h / 2) * (i - 2);
+      dataGridView5->Rows[1]->Cells[i]->Value = (h * 0.5) * (i - 2);
     }
     for (int i = (int)n + 2; i > 1; i--) {
       dataGridView4->Rows[i]->Cells[1]->Value = k * (n - i + 2);
@@ -984,7 +985,7 @@ namespace overRelaxation {
       dataGridView6->Rows[i]->Cells[0]->Value = n - i + 2;
     }
     for (int i = (int)n * 2 + 2; i > 1; i--) {
-      dataGridView5->Rows[i]->Cells[1]->Value = k / 2 * (n - i + 2);
+      dataGridView5->Rows[i]->Cells[1]->Value = k * 0.5 * (n - i + 2);
       dataGridView5->Rows[i]->Cells[0]->Value = n * 2 - i + 2;
     }
   }
