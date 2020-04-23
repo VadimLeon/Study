@@ -1035,31 +1035,31 @@ namespace overRelaxation {
   }
   private: System::Void updateTable_m()
   {
-    for (int i = 2; i < main1.getW() + 2; i++)
+    for (int i = 2; i < main1.getW() + 3; i++)
     {
-      for (int j = 2; j < main1.getH() + 2; j++)
+      for (int j = 2; j < main1.getH() + 3; j++)
       {
-        dataGridView4->Rows[main1.getH() - j + 3]->Cells[i]->Value = main1.getV(i - 2, j - 2).ToString("E");
-        dataGridView6->Rows[main1.getH() - j + 3]->Cells[i]->Value = (main2.getV(2*i - 4, 2*j - 4) - main1.getV(i - 2, j - 2)).ToString("E");
+        dataGridView4->Rows[main1.getH() - j + 4]->Cells[i]->Value = main1.getV(i - 2, j - 2).ToString("E");
+        dataGridView6->Rows[main1.getH() - j + 4]->Cells[i]->Value = (main2.getV(2*i - 4, 2*j - 4) - main1.getV(i - 2, j - 2)).ToString("E");
       }
     }
-    for (int i = 2; i < main2.getW() + 2; i++)
+    for (int i = 2; i < main2.getW() + 3; i++)
     {
-      for (int j = 2; j < main2.getH() + 2; j++)
+      for (int j = 2; j < main2.getH() + 3; j++)
       {
-        dataGridView5->Rows[main2.getH() - j + 3]->Cells[i]->Value = main2.getV(i - 2, j - 2).ToString("E");
+        dataGridView5->Rows[main2.getH() - j + 4]->Cells[i]->Value = main2.getV(i - 2, j - 2).ToString("E");
       }
     }
   }
   private: System::Void updateTable_t()
   {
-    for (int i = 2; i < test.getW() + 2; i++)
+    for (int i = 2; i < test.getW() + 3; i++)
     {
-      for (int j = 2; j < test.getH() + 2; j++)
+      for (int j = 2; j < test.getH() + 3; j++)
       {
-        dataGridView2->Rows[test.getH() - j + 3]->Cells[i]->Value = test.getV(i - 2, j - 2).ToString("E");
-        dataGridView1->Rows[test.getH() - j + 3]->Cells[i]->Value = test.getU(i - 2, j - 2).ToString("E");
-        dataGridView3->Rows[test.getH() - j + 3]->Cells[i]->Value = (test.getU(i - 2, j - 2) - test.getV(i - 2, j - 2)).ToString("E");
+        dataGridView2->Rows[test.getH() - j + 4]->Cells[i]->Value = test.getV(i - 2, j - 2).ToString("E");
+        dataGridView1->Rows[test.getH() - j + 4]->Cells[i]->Value = test.getU(i - 2, j - 2).ToString("E");
+        dataGridView3->Rows[test.getH() - j + 4]->Cells[i]->Value = (test.getU(i - 2, j - 2) - test.getV(i - 2, j - 2)).ToString("E");
       }
     }
   }
