@@ -128,11 +128,11 @@ double OverRelax::getMaxR(const OverRelax& instance, int& x, int& y)
 {
   double Rmax = 0., tmp;
 
-  for (int i = 0; i < xNumberStep; ++i)
+  for (int i = 1; i < xNumberStep; ++i)
   {
-    for (int j = 0; j < yNumberStep; ++j)
+    for (int j = 1; j < yNumberStep; ++j)
     {
-      tmp = std::fabs(instance.v[i][j] - v[i][j]);
+      tmp = std::fabs(instance.v[2 * i][2 * j] - v[i][j]);
       if (tmp > Rmax)
       {
         Rmax = tmp;

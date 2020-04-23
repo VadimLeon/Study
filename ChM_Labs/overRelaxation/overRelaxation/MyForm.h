@@ -67,8 +67,8 @@ namespace overRelaxation {
   private: System::Windows::Forms::TextBox^  textBox2;
   private: System::Windows::Forms::Label^  label3;
   private: System::Windows::Forms::TextBox^  textBox3;
-  private: System::Windows::Forms::TextBox^  textBox5;
-  private: System::Windows::Forms::Label^  label6;
+
+
   private: System::Windows::Forms::TextBox^  textBox4;
   private: System::Windows::Forms::Label^  label5;
   private: System::Windows::Forms::Label^  label4;
@@ -101,6 +101,8 @@ namespace overRelaxation {
   private: System::Windows::Forms::DataGridView^  dataGridView5;
   private: System::Windows::Forms::TabPage^  tabPage9;
   private: System::Windows::Forms::DataGridView^  dataGridView6;
+  private: System::Windows::Forms::Label^  label10;
+  private: System::Windows::Forms::Label^  label6;
 
   protected:
   private: System::ComponentModel::IContainer^ components;
@@ -118,6 +120,8 @@ namespace overRelaxation {
     void InitializeComponent(void)
     {
       this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+      this->label10 = (gcnew System::Windows::Forms::Label());
+      this->label6 = (gcnew System::Windows::Forms::Label());
       this->tabControl2 = (gcnew System::Windows::Forms::TabControl());
       this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
       this->tabControl3 = (gcnew System::Windows::Forms::TabControl());
@@ -138,8 +142,6 @@ namespace overRelaxation {
       this->label8 = (gcnew System::Windows::Forms::Label());
       this->label7 = (gcnew System::Windows::Forms::Label());
       this->textBox6 = (gcnew System::Windows::Forms::TextBox());
-      this->textBox5 = (gcnew System::Windows::Forms::TextBox());
-      this->label6 = (gcnew System::Windows::Forms::Label());
       this->textBox4 = (gcnew System::Windows::Forms::TextBox());
       this->label5 = (gcnew System::Windows::Forms::Label());
       this->label4 = (gcnew System::Windows::Forms::Label());
@@ -193,12 +195,12 @@ namespace overRelaxation {
       // 
       // tabPage2
       // 
+      this->tabPage2->Controls->Add(this->label10);
+      this->tabPage2->Controls->Add(this->label6);
       this->tabPage2->Controls->Add(this->tabControl2);
       this->tabPage2->Controls->Add(this->label8);
       this->tabPage2->Controls->Add(this->label7);
       this->tabPage2->Controls->Add(this->textBox6);
-      this->tabPage2->Controls->Add(this->textBox5);
-      this->tabPage2->Controls->Add(this->label6);
       this->tabPage2->Controls->Add(this->textBox4);
       this->tabPage2->Controls->Add(this->label5);
       this->tabPage2->Controls->Add(this->label4);
@@ -214,6 +216,22 @@ namespace overRelaxation {
       this->tabPage2->TabIndex = 1;
       this->tabPage2->Text = L"Метод верхней релаксации";
       this->tabPage2->UseVisualStyleBackColor = true;
+      // 
+      // label10
+      // 
+      this->label10->AutoSize = true;
+      this->label10->Location = System::Drawing::Point(1041, 324);
+      this->label10->Name = L"label10";
+      this->label10->Size = System::Drawing::Size(0, 13);
+      this->label10->TabIndex = 35;
+      // 
+      // label6
+      // 
+      this->label6->AutoSize = true;
+      this->label6->Location = System::Drawing::Point(980, 324);
+      this->label6->Name = L"label6";
+      this->label6->Size = System::Drawing::Size(0, 13);
+      this->label6->TabIndex = 34;
       // 
       // tabControl2
       // 
@@ -422,26 +440,6 @@ namespace overRelaxation {
       this->textBox6->Name = L"textBox6";
       this->textBox6->Size = System::Drawing::Size(133, 20);
       this->textBox6->TabIndex = 30;
-      // 
-      // textBox5
-      // 
-      this->textBox5->Location = System::Drawing::Point(976, 330);
-      this->textBox5->Margin = System::Windows::Forms::Padding(2);
-      this->textBox5->Name = L"textBox5";
-      this->textBox5->Size = System::Drawing::Size(133, 20);
-      this->textBox5->TabIndex = 29;
-      this->textBox5->Visible = false;
-      // 
-      // label6
-      // 
-      this->label6->AutoSize = true;
-      this->label6->Location = System::Drawing::Point(976, 315);
-      this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-      this->label6->Name = L"label6";
-      this->label6->Size = System::Drawing::Size(54, 13);
-      this->label6->TabIndex = 28;
-      this->label6->Text = L"Невязка:";
-      this->label6->Visible = false;
       // 
       // textBox4
       // 
@@ -791,7 +789,6 @@ namespace overRelaxation {
     resetomega();
     textBox3->ReadOnly = true;
     textBox4->ReadOnly = true;
-    textBox5->ReadOnly = true;
     textBox6->ReadOnly = true;
     textBox7->ReadOnly = true;
     dataGridView1->ReadOnly = true;
@@ -846,10 +843,12 @@ namespace overRelaxation {
       updateTable_m();
     }
 
+    int rMaxX, rMaxY;
     textBox3->Text = isTests ? test.getCountIt().ToString() : main1.getCountIt().ToString();
     textBox4->Text = isTests ? test.getEps().ToString("E") : main1.getEps().ToString("E");
-    int rMaxX, rMaxY;
-    textBox6->Text = isTests ? (test.getMaxR(rMaxX, rMaxY)).ToString("E") : main1.getMaxR(main2, rMaxX, rMaxY).ToString("E");
+    textBox6->Text = isTests ? (test.getMaxR(rMaxX, rMaxY)).ToString("E") : (main1.getMaxR(main2, rMaxX, rMaxY)).ToString("E");
+    label6->Text = ("x: " + rMaxX.ToString());
+    label10->Text = ("y: " + rMaxY.ToString());
   }
   private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
     if (checkBox1->Checked)
@@ -1013,12 +1012,22 @@ namespace overRelaxation {
   }
   private: System::Void updateTable_m()
   {
+    double tmpMaxR = 0., tmpR;
+    int rMaxX, rMaxY;
+
     for (int i = 2; i < main1.getW() + 3; i++)
     {
       for (int j = 2; j < main1.getH() + 3; j++)
       {
         dataGridView4->Rows[main1.getH() - j + 4]->Cells[i]->Value = main1.getV(i - 2, j - 2).ToString("E");
-        dataGridView6->Rows[main1.getH() - j + 4]->Cells[i]->Value = abs((main2.getV(2*i - 4, 2*j - 4) - main1.getV(i - 2, j - 2))).ToString("E");
+        tmpR = abs(main2.getV(2 * i - 4, 2 * j - 4) - main1.getV(i - 2, j - 2));
+        dataGridView6->Rows[main1.getH() - j + 4]->Cells[i]->Value = tmpR.ToString("E");
+        if (tmpR > tmpMaxR)
+        {
+          tmpMaxR = tmpR;
+          rMaxX = i - 2;
+          rMaxY = j - 2;
+        }
       }
     }
     for (int i = 2; i < main2.getW() + 3; i++)
@@ -1028,6 +1037,10 @@ namespace overRelaxation {
         dataGridView5->Rows[main2.getH() - j + 4]->Cells[i]->Value = main2.getV(i - 2, j - 2).ToString("E");
       }
     }
+
+    textBox6->Text = tmpMaxR.ToString("E");
+    label6->Text = ("x: " + rMaxX.ToString());
+    label10->Text = ("y: " + rMaxY.ToString());
   }
   private: System::Void updateTable_t()
   {
