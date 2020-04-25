@@ -192,7 +192,6 @@ namespace SolidVariable {
       this->textBox1->Size = System::Drawing::Size(149, 20);
       this->textBox1->TabIndex = 1;
       this->textBox1->Text = L"15";
-      this->textBox1->TextAlignChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextAlignChanged);
       this->textBox1->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::textBox1_KeyPress);
       // 
       // label1
@@ -237,14 +236,19 @@ namespace SolidVariable {
   {
     this->dataGridView1->Visible = false;
     this->dataGridView2->Visible = false;
-    textBox1->Text = "1";
+    this->checkBox2->Visible = false;
+    this->button1->Visible = false;
+    this->label2->Visible = false;
+    textBox1->Text = "5";
+
+    dataGridView1->RowHeadersWidth = 50;
+    dataGridView2->RowHeadersWidth = 50;
 
     //vvvvvvvvvvvvvvvvvvvvvvv
     myGirl = new PossibilityMeeting();
     textBox1->Text = "10";
-    countN = 10;
+    countN = Convert::ToInt32(textBox1->Text);
     checkBox1->Checked = true;
-    dataGridView1->RowHeadersWidth = 50;
     for (int i = 0; i < countN; ++i)
     {
       dataGridView1->Rows[i]->HeaderCell->Value = i.ToString();
@@ -252,12 +256,6 @@ namespace SolidVariable {
     }
     //^^^^^^^^^^^^^^^^^^^^^^^
   }
-
-  private: System::Void textBox1_TextAlignChanged(System::Object^  sender, System::EventArgs^  e)
-  {
-    countN = (textBox1->Text != "") ? 0 : Convert::ToInt32(textBox1->Text);
-  }
-
   private: System::Void textBox1_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
   {
     char number = (char)e->KeyChar;
@@ -266,56 +264,62 @@ namespace SolidVariable {
       e->Handled = true;
     }
   }
-
   private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
   {
     textBox1->ReadOnly = checkBox1->Checked;
     if (checkBox1->Checked)
     {
-      if (textBox1->Text == "") checkBox1->Checked = false;
-      
-      myGirl->setN(Convert::ToInt32(textBox1->Text));
-      this->dataGridView1->RowCount = myGirl->getN();
-      updateTableK(sender, e);
-      this->dataGridView1->Visible = true;
+      if (textBox1->Text == "") { checkBox1->Checked = false; }
+      else
+      {
+        myGirl->setN(Convert::ToInt32(textBox1->Text));
+        dataGridView1->RowCount = myGirl->getN();
+        dataGridView2->RowCount = myGirl->getN();
+        updateTableK(sender, e);
+        this->dataGridView1->Visible = true;
+        this->checkBox2->Visible = true;
+        this->button1->Visible = true;
+      }
     }
     else
     {
       this->dataGridView1->Visible = false;
+      this->dataGridView2->Visible = false;
+      this->checkBox2->Visible = false;
+      this->button1->Visible = false;
+      this->label2->Visible = false;
       this->dataGridView1->Rows->Clear();
+      this->dataGridView2->Rows->Clear();
     }
-
   }
   private: System::Void updateTableK(System::Object^  sender, System::EventArgs^  e)
   {
     for (int i = 0; i < myGirl->getN(); ++i)
     {
-      dataGridView1->Rows[i]->HeaderCell->Value = i.ToString();
-      dataGridView2->Rows[i]->HeaderCell->Value = i.ToString();
-      dataGridView1->Rows[i]->Cells[0]->Value = "0,";
+      dataGridView1->Rows[i]->HeaderCell->Value = (i + 1).ToString();
     }
   }
   private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
   {
-    dataGridView2->RowHeadersWidth = 50;
-
     std::vector<double> tmp;
-    for (int i = 0; i < countN; ++i)
+    for (int i = 0; i < myGirl->getN(); ++i)
     {
       tmp.push_back(Convert::ToDouble(dataGridView1->Rows[i]->Cells[0]->Value->ToString()));
     }
 
     myGirl->setMidTime(tmp, (int)tmp.size(), checkBox2->Checked);
 
-    dataGridView2->Visible = true;
     dataGridView2->RowCount = myGirl->getN();
 
     for (const auto &x : myGirl->getMap())
     {
-      dataGridView2->Rows[x.first]->HeaderCell->Value = x.first.ToString();
+      dataGridView2->Rows[x.first]->HeaderCell->Value = (x.first + 1).ToString();
       dataGridView2->Rows[x.first]->Cells[0]->Value = x.second.ToString();
     }
     dataGridView2->Sort(dataGridView2->Columns[0], ListSortDirection::Ascending);
+
+    label2->Visible = true;
+    dataGridView2->Visible = true;
   }
-};
+  };
 }
