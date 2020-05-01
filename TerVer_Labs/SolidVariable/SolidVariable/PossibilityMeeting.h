@@ -9,16 +9,21 @@ public:
   PossibilityMeeting(const PossibilityMeeting& copy);
   ~PossibilityMeeting();
 
-  int  getN() const;
-  void setN(const int _N);
+  void setCount(int countExpirements);
   void setMidTime(std::vector<double> ins, int n, bool isUpdate = false);
+
+  int    getN() const;
+  int    getCount() const;
+  std::vector<std::pair<int, double>> getBestBoys() { return firstBoys; }
+
+private:
+  void   getRand(bool isUpdate = false);
   double getTime(double ran, int k);
-  void getRand(bool isUpdate = false);
-  std::map<int, double> getMap() { return possibles; }
 
 protected:
-  int N;                           // Number of experiments
-  std::vector<double> midTime;     // Arrays: middle value distribution
-  std::map<int, double> possibles; // Map: < Number of candidate, Possibility value >
+  int N;                                          // Number of boyfriend
+  int count;                                      // Count of experiments
+  std::vector<double> midTime;                    // Arrays: middle value distribution
+  std::vector<std::pair<int, double>> firstBoys;  // All boyfrends in first position in 'count' experiments
 };
 

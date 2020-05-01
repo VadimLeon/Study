@@ -2,10 +2,10 @@
 #include <iostream>
 #include <ctime>
 
-PossibilityMeeting::PossibilityMeeting() : N(1)
+PossibilityMeeting::PossibilityMeeting() : N(1), count(1)
 {}
 
-PossibilityMeeting::PossibilityMeeting(const PossibilityMeeting& copy) : N(copy.N)
+PossibilityMeeting::PossibilityMeeting(const PossibilityMeeting& copy) : N(copy.N), count(copy.count)
 {
   if (this != &copy)
   {
@@ -14,7 +14,6 @@ PossibilityMeeting::PossibilityMeeting(const PossibilityMeeting& copy) : N(copy.
     for (int i = 0; i < copy.midTime.size(); ++i)
     {
       midTime.push_back(copy.midTime[i]);
-      //      possibles[i] = copy.possibles[i];
     }
   }
 }
@@ -24,10 +23,19 @@ PossibilityMeeting::~PossibilityMeeting()
 
 void PossibilityMeeting::getRand(bool isUpdate)
 {
-  isUpdate ? srand(unsigned(time(NULL))) : srand(1);
-  for (int i = 0; i < N; ++i)
+  srand(1);
+
+  for (int j = 0; j < count; ++j)
   {
-    possibles[i] = getTime((double)rand() / (double)RAND_MAX, i);
+    std::map<double, int> possibles;
+
+    isUpdate ? srand(unsigned(time(NULL) + 11 * (j + 1))) : false;
+    for (int i = 0; i < N; ++i)
+    {
+      possibles.insert(std::make_pair(getTime((double)rand() / (double)RAND_MAX, i), i));
+    }
+
+    firstBoys.push_back(std::make_pair(possibles.begin()->second, possibles.begin()->first));
   }
 }
 
@@ -38,12 +46,12 @@ double PossibilityMeeting::getTime(double ran, int k)
 
 void PossibilityMeeting::setMidTime(std::vector<double> ins, int n, bool isUpdate)
 {
-  setN(n);
+  N = n;
 
   if (!midTime.empty()) midTime.clear();
-  if (!possibles.empty()) possibles.clear();
+  if (!firstBoys.empty()) firstBoys.clear();
 
-  for (int i = 0; i < n; ++i)
+  for (int i = 0; i < N; ++i)
   {
     midTime.push_back(ins[i]);
   }
@@ -56,8 +64,12 @@ int PossibilityMeeting::getN() const
   return N;
 }
 
-void PossibilityMeeting::setN(const int _N)
+int  PossibilityMeeting::getCount() const
 {
-  N = _N;
-  midTime.resize(N);
+  return count;
+}
+
+void PossibilityMeeting::setCount(int countExpirement)
+{
+  count = countExpirement;
 }
