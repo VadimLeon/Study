@@ -29,6 +29,12 @@
     <ClInclude Include="PossibilityMeeting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dislin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Methods.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

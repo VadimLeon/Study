@@ -47,24 +47,13 @@ namespace SolidVariable {
   private: System::Windows::Forms::Label^  label1;
   private: System::Windows::Forms::TextBox^  textBox1;
   private: System::Windows::Forms::DataGridView^  dataGridView1;
-
   private: System::Windows::Forms::Label^  label2;
   private: System::Windows::Forms::DataGridView^  dataGridView2;
   private: System::Windows::Forms::CheckBox^  checkBox1;
-
   private: System::Windows::Forms::Button^  button1;
-
   private: System::Windows::Forms::CheckBox^  checkBox2;
   private: System::Windows::Forms::TabPage^  tabPage2;
   private: System::Windows::Forms::DataGridView^  dataGridView3;
-  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column2;
-  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column3;
-  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column4;
-  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column5;
-  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column6;
-  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column7;
-  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column8;
-  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column9;
   private: System::Windows::Forms::DataGridView^  dataGridView5;
   private: System::Windows::Forms::DataGridView^  dataGridView4;
   private: System::Windows::Forms::TabPage^  tabPage3;
@@ -73,12 +62,23 @@ namespace SolidVariable {
   private: System::Windows::Forms::TabPage^  tabPage5;
   private: System::Windows::Forms::TextBox^  textBox2;
   private: System::Windows::Forms::Label^  label3;
-
   private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column1;
-
   private: System::Windows::Forms::CheckBox^  checkBox3;
+
+
+  private: ZedGraph::ZedGraphControl^  zedGraphControl1;
+  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column2;
+  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column3;
+  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column4;
+  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column5;
+  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column6;
+  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column7;
+  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column8;
+  private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column9;
+  private: ZedGraph::ZedGraphControl^  zedGraphControl2;
   private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column11;
   private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column10;
+  private: System::ComponentModel::IContainer^  components;
 
   protected:
 
@@ -86,7 +86,7 @@ namespace SolidVariable {
     /// <summary>
     /// Required designer variable.
     /// </summary>
-    System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
     /// <summary>
@@ -95,6 +95,7 @@ namespace SolidVariable {
     /// </summary>
     void InitializeComponent(void)
     {
+      this->components = (gcnew System::ComponentModel::Container());
       this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
       this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
       this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
@@ -105,6 +106,8 @@ namespace SolidVariable {
       this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
       this->label2 = (gcnew System::Windows::Forms::Label());
       this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
+      this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+      this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
       this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
       this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
       this->textBox1 = (gcnew System::Windows::Forms::TextBox());
@@ -124,9 +127,9 @@ namespace SolidVariable {
       this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
       this->tabControl2 = (gcnew System::Windows::Forms::TabControl());
       this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
+      this->zedGraphControl1 = (gcnew ZedGraph::ZedGraphControl());
       this->tabPage5 = (gcnew System::Windows::Forms::TabPage());
-      this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-      this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+      this->zedGraphControl2 = (gcnew ZedGraph::ZedGraphControl());
       this->tabControl1->SuspendLayout();
       this->tabPage1->SuspendLayout();
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
@@ -137,6 +140,8 @@ namespace SolidVariable {
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->BeginInit();
       this->tabPage3->SuspendLayout();
       this->tabControl2->SuspendLayout();
+      this->tabPage4->SuspendLayout();
+      this->tabPage5->SuspendLayout();
       this->SuspendLayout();
       // 
       // tabControl1
@@ -264,6 +269,25 @@ namespace SolidVariable {
       this->dataGridView2->Size = System::Drawing::Size(198, 286);
       this->dataGridView2->TabIndex = 3;
       // 
+      // Column11
+      // 
+      this->Column11->HeaderText = L"№ boy";
+      this->Column11->MaxInputLength = 10;
+      this->Column11->MinimumWidth = 20;
+      this->Column11->Name = L"Column11";
+      this->Column11->ReadOnly = true;
+      this->Column11->Width = 30;
+      // 
+      // Column10
+      // 
+      this->Column10->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
+      this->Column10->HeaderText = L"Chance";
+      this->Column10->MaxInputLength = 327;
+      this->Column10->MinimumWidth = 20;
+      this->Column10->Name = L"Column10";
+      this->Column10->ReadOnly = true;
+      this->Column10->Width = 69;
+      // 
       // dataGridView1
       // 
       this->dataGridView1->AllowUserToAddRows = false;
@@ -319,23 +343,27 @@ namespace SolidVariable {
       // 
       // dataGridView5
       // 
+      this->dataGridView5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->dataGridView5->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
       this->dataGridView5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView5->Location = System::Drawing::Point(8, 216);
+      this->dataGridView5->Location = System::Drawing::Point(3, 216);
       this->dataGridView5->Name = L"dataGridView5";
-      this->dataGridView5->Size = System::Drawing::Size(452, 85);
+      this->dataGridView5->Size = System::Drawing::Size(437, 85);
       this->dataGridView5->TabIndex = 2;
       // 
       // dataGridView4
       // 
       this->dataGridView4->AllowUserToAddRows = false;
       this->dataGridView4->AllowUserToDeleteRows = false;
+      this->dataGridView4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->dataGridView4->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
       this->dataGridView4->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView4->Location = System::Drawing::Point(8, 143);
+      this->dataGridView4->Location = System::Drawing::Point(3, 143);
       this->dataGridView4->Name = L"dataGridView4";
       this->dataGridView4->ReadOnly = true;
-      this->dataGridView4->Size = System::Drawing::Size(452, 67);
+      this->dataGridView4->Size = System::Drawing::Size(437, 67);
       this->dataGridView4->TabIndex = 1;
       // 
       // dataGridView3
@@ -350,60 +378,76 @@ namespace SolidVariable {
         this->Column2,
           this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8, this->Column9
       });
-      this->dataGridView3->Location = System::Drawing::Point(8, 7);
+      this->dataGridView3->Location = System::Drawing::Point(3, 7);
       this->dataGridView3->Name = L"dataGridView3";
       this->dataGridView3->ReadOnly = true;
       this->dataGridView3->RowHeadersVisible = false;
-      this->dataGridView3->Size = System::Drawing::Size(452, 77);
+      this->dataGridView3->Size = System::Drawing::Size(437, 63);
       this->dataGridView3->TabIndex = 0;
       // 
       // Column2
       // 
+      this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
       this->Column2->HeaderText = L"Eɳ";
       this->Column2->Name = L"Column2";
       this->Column2->ReadOnly = true;
+      this->Column2->Width = 45;
       // 
       // Column3
       // 
+      this->Column3->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
       this->Column3->HeaderText = L"x̅";
       this->Column3->Name = L"Column3";
       this->Column3->ReadOnly = true;
+      this->Column3->Width = 37;
       // 
       // Column4
       // 
+      this->Column4->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
       this->Column4->HeaderText = L"| Eɳ - x̅ |";
       this->Column4->Name = L"Column4";
       this->Column4->ReadOnly = true;
+      this->Column4->Width = 69;
       // 
       // Column5
       // 
+      this->Column5->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
       this->Column5->HeaderText = L"Dɳ";
       this->Column5->Name = L"Column5";
       this->Column5->ReadOnly = true;
+      this->Column5->Width = 46;
       // 
       // Column6
       // 
+      this->Column6->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
       this->Column6->HeaderText = L"S^2";
       this->Column6->Name = L"Column6";
       this->Column6->ReadOnly = true;
+      this->Column6->Width = 51;
       // 
       // Column7
       // 
+      this->Column7->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
       this->Column7->HeaderText = L"| Dɳ - S^2 |";
       this->Column7->Name = L"Column7";
       this->Column7->ReadOnly = true;
+      this->Column7->Width = 84;
       // 
       // Column8
       // 
+      this->Column8->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
       this->Column8->HeaderText = L"Me\'";
       this->Column8->Name = L"Column8";
       this->Column8->ReadOnly = true;
+      this->Column8->Width = 49;
       // 
       // Column9
       // 
+      this->Column9->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
       this->Column9->HeaderText = L"R\'";
       this->Column9->Name = L"Column9";
       this->Column9->ReadOnly = true;
+      this->Column9->Width = 42;
       // 
       // tabPage3
       // 
@@ -418,51 +462,78 @@ namespace SolidVariable {
       // 
       // tabControl2
       // 
+      this->tabControl2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->tabControl2->Controls->Add(this->tabPage4);
       this->tabControl2->Controls->Add(this->tabPage5);
-      this->tabControl2->Location = System::Drawing::Point(0, 0);
+      this->tabControl2->Location = System::Drawing::Point(-4, 0);
       this->tabControl2->Name = L"tabControl2";
       this->tabControl2->SelectedIndex = 0;
-      this->tabControl2->Size = System::Drawing::Size(470, 307);
+      this->tabControl2->Size = System::Drawing::Size(451, 349);
       this->tabControl2->TabIndex = 0;
       // 
       // tabPage4
       // 
+      this->tabPage4->Controls->Add(this->zedGraphControl1);
       this->tabPage4->Location = System::Drawing::Point(4, 22);
       this->tabPage4->Name = L"tabPage4";
       this->tabPage4->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage4->Size = System::Drawing::Size(462, 281);
+      this->tabPage4->Size = System::Drawing::Size(443, 323);
       this->tabPage4->TabIndex = 0;
-      this->tabPage4->Text = L"tabPage4";
+      this->tabPage4->Text = L"Distribution functions";
       this->tabPage4->UseVisualStyleBackColor = true;
+      // 
+      // zedGraphControl1
+      // 
+      this->zedGraphControl1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
+      this->zedGraphControl1->Location = System::Drawing::Point(3, 3);
+      this->zedGraphControl1->Name = L"zedGraphControl1";
+      this->zedGraphControl1->ScrollGrace = 0;
+      this->zedGraphControl1->ScrollMaxX = 0;
+      this->zedGraphControl1->ScrollMaxY = 0;
+      this->zedGraphControl1->ScrollMaxY2 = 0;
+      this->zedGraphControl1->ScrollMinX = 0;
+      this->zedGraphControl1->ScrollMinY = 0;
+      this->zedGraphControl1->ScrollMinY2 = 0;
+      this->zedGraphControl1->Size = System::Drawing::Size(437, 317);
+      this->zedGraphControl1->TabIndex = 0;
+      this->zedGraphControl1->GraphPane->Title->Text = "F(x) and F'(x)";
+      this->zedGraphControl1->GraphPane->XAxis->Title->Text = "Waiting time";
+      this->zedGraphControl1->GraphPane->YAxis->Title->Text = "Spite";
       // 
       // tabPage5
       // 
+      this->tabPage5->Controls->Add(this->zedGraphControl2);
       this->tabPage5->Location = System::Drawing::Point(4, 22);
       this->tabPage5->Name = L"tabPage5";
       this->tabPage5->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage5->Size = System::Drawing::Size(462, 281);
+      this->tabPage5->Size = System::Drawing::Size(443, 323);
       this->tabPage5->TabIndex = 1;
-      this->tabPage5->Text = L"tabPage5";
+      this->tabPage5->Text = L"Statistics";
       this->tabPage5->UseVisualStyleBackColor = true;
       // 
-      // Column11
+      // zedGraphControl2
       // 
-      this->Column11->HeaderText = L"№ boy";
-      this->Column11->MaxInputLength = 10;
-      this->Column11->MinimumWidth = 20;
-      this->Column11->Name = L"Column11";
-      this->Column11->ReadOnly = true;
-      this->Column11->Width = 30;
-      // 
-      // Column10
-      // 
-      this->Column10->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::DisplayedCells;
-      this->Column10->HeaderText = L"Chance";
-      this->Column10->MinimumWidth = 20;
-      this->Column10->Name = L"Column10";
-      this->Column10->ReadOnly = true;
-      this->Column10->Width = 69;
+      this->zedGraphControl2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
+      this->zedGraphControl2->Location = System::Drawing::Point(3, 3);
+      this->zedGraphControl2->Name = L"zedGraphControl2";
+      this->zedGraphControl2->ScrollGrace = 0;
+      this->zedGraphControl2->ScrollMaxX = 0;
+      this->zedGraphControl2->ScrollMaxY = 0;
+      this->zedGraphControl2->ScrollMaxY2 = 0;
+      this->zedGraphControl2->ScrollMinX = 0;
+      this->zedGraphControl2->ScrollMinY = 0;
+      this->zedGraphControl2->ScrollMinY2 = 0;
+      this->zedGraphControl2->Size = System::Drawing::Size(437, 317);
+      this->zedGraphControl2->TabIndex = 0;
+      this->zedGraphControl2->GraphPane->Title->Text = "How first?";
+      this->zedGraphControl2->GraphPane->Title->Text = "Number expiriment";
+      this->zedGraphControl2->GraphPane->Title->Text = "Number boy";
       // 
       // MyForm
       // 
@@ -484,6 +555,8 @@ namespace SolidVariable {
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->EndInit();
       this->tabPage3->ResumeLayout(false);
       this->tabControl2->ResumeLayout(false);
+      this->tabPage4->ResumeLayout(false);
+      this->tabPage5->ResumeLayout(false);
       this->ResumeLayout(false);
 
     }
@@ -501,8 +574,6 @@ namespace SolidVariable {
 
     dataGridView1->RowHeadersWidth = 50;
     dataGridView2->RowHeadersWidth = 50;
-
-    dataGridView3->RowCount = 1;
 
     //vvvvvvvvvvvvvvvvvvvvvvv
     myGirl = new PossibilityMeeting();
@@ -528,7 +599,7 @@ namespace SolidVariable {
       else
       {
         myGirl->setCount(Convert::ToInt32(textBox2->Text));
-        updateTableK(sender, e);
+        updateTableK();
         this->dataGridView1->Visible = true;
         this->checkBox2->Visible = true;
         this->button1->Visible = true;
@@ -574,13 +645,15 @@ namespace SolidVariable {
     }
 
     myGirl->setMidTime(tmp, (int)tmp.size(), checkBox2->Checked);
-    updateTableT(sender, e);
+    updateTableT();
+    updateTableCharacter();
 
     label2->Visible = true;
     dataGridView2->Visible = true;
+    updateZedFun();
   }
 
-  private: System::Void updateTableK(System::Object^  sender, System::EventArgs^  e)
+  private: System::Void updateTableK()
   {
     int nBoys = Convert::ToInt32(textBox1->Text);
     dataGridView1->RowCount = nBoys;
@@ -590,7 +663,7 @@ namespace SolidVariable {
       dataGridView1->Rows[i]->HeaderCell->Value = (i + 1).ToString();
     }
   }
-  private: System::Void updateTableT(System::Object^  sender, System::EventArgs^  e)
+  private: System::Void updateTableT()
   {
     int nExpirements = myGirl->getCount();
     dataGridView2->RowCount = nExpirements;
@@ -598,10 +671,60 @@ namespace SolidVariable {
     int k = 0;
     for (const auto &x : myGirl->getBestBoys())
     {
-      dataGridView2->Rows[k]->Cells[0]->Value = (x.first + 1).ToString();
-      dataGridView2->Rows[k++]->Cells[1]->Value = x.second.ToString();
+      dataGridView2->Rows[k]->Cells[0]->Value = (x.second + 1).ToString();
+      dataGridView2->Rows[k++]->Cells[1]->Value = x.first.ToString();
     }
     dataGridView2->Sort(dataGridView2->Columns[1], ListSortDirection::Ascending);
+  }
+  private: System::Void updateTableCharacter()
+  {
+    dataGridView3->Rows->Clear();
+    dataGridView3->RowCount = 1;
+
+    dataGridView3->Rows[0]->Cells[0]->Value = "-";
+    dataGridView3->Rows[0]->Cells[1]->Value = (myGirl->getX()).ToString();
+    dataGridView3->Rows[0]->Cells[2]->Value = "-";
+    dataGridView3->Rows[0]->Cells[3]->Value = "-";
+    dataGridView3->Rows[0]->Cells[4]->Value = (myGirl->getS2()).ToString();
+    dataGridView3->Rows[0]->Cells[5]->Value = "-";
+    dataGridView3->Rows[0]->Cells[6]->Value = (myGirl->getMe()).ToString();
+    dataGridView3->Rows[0]->Cells[7]->Value = (myGirl->getR()).ToString();
+  }
+
+  private: System::Void updateZedFun()
+  {
+    ZedGraph::GraphPane^ paneFun = zedGraphControl1->GraphPane;
+    paneFun->CurveList->Clear();
+    ZedGraph::PointPairList^ listMain = gcnew ZedGraph::PointPairList;
+    listMain->Add(0., 0.);
+    ZedGraph::PointPairList^ listSample = gcnew ZedGraph::PointPairList;
+    listSample->Add(0., 0.);
+
+    ZedGraph::GraphPane^ paneBoy = zedGraphControl2->GraphPane;
+    paneBoy->CurveList->Clear();
+    ZedGraph::PointPairList^ listBoys = gcnew ZedGraph::PointPairList;
+
+    int n = Convert::ToInt32(textBox2->Text);
+    for (int i = 0; i < n; ++i)
+    {
+      listMain->Add(Convert::ToDouble(dataGridView2->Rows[i]->Cells[1]->Value->ToString()),
+                    myGirl->getY(Convert::ToDouble(dataGridView2->Rows[i]->Cells[1]->Value->ToString())));
+
+      double Xx = Convert::ToDouble(dataGridView2->Rows[i]->Cells[1]->Value->ToString());
+      int index = (Convert::ToInt32(dataGridView2->Rows[i]->Cells[0]->Value->ToString()) - 1);
+      double Yx = Convert::ToDouble(dataGridView1->Rows[index]->Cells[0]->Value->ToString());
+      listSample->Add(Convert::ToDouble(dataGridView2->Rows[i]->Cells[1]->Value->ToString()), myGirl->getY(Xx, Yx));
+      listBoys->Add(i + 1, Convert::ToInt32(dataGridView2->Rows[i]->Cells[0]->Value->ToString()));
+    }
+
+    paneFun->AddCurve("F(x)", listMain, Color::Red, ZedGraph::SymbolType::None);
+    paneFun->AddCurve("F'(x)", listSample, Color::Blue, ZedGraph::SymbolType::None);
+    zedGraphControl1->AxisChange();
+    zedGraphControl1->Invalidate();
+
+    paneBoy->AddCurve("Boy(N)", listBoys, Color::Red, ZedGraph::SymbolType::None);
+    zedGraphControl2->AxisChange();
+    zedGraphControl2->Invalidate();
   }
 
   private: System::Void textBox1_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)

@@ -1,4 +1,5 @@
-#pragma once
+﻿#pragma once
+#include "Methods.h"
 #include <vector>
 #include <map>
 
@@ -12,18 +13,30 @@ public:
   void setCount(int countExpirements);
   void setMidTime(std::vector<double> ins, int n, bool isUpdate = false);
 
-  int    getN() const;
-  int    getCount() const;
-  std::vector<std::pair<int, double>> getBestBoys() { return firstBoys; }
+  std::multimap<double, int> getBestBoys() { return firstBoys; }
+  int getN()     const;
+  int getCount() const;
+  double getR()  const;
+  double getMe() const;
+  double getX()  const;
+  double getS2() const;
+  double getY(double _x);
+  double getY(double _x, double _mathWait);
 
 private:
   void   getRand(bool isUpdate = false);
   double getTime(double ran, int k);
+  void   calculate();
 
 protected:
-  int N;                                          // Number of boyfriend
-  int count;                                      // Count of experiments
-  std::vector<double> midTime;                    // Arrays: middle value distribution
-  std::vector<std::pair<int, double>> firstBoys;  // All boyfrends in first position in 'count' experiments
+  double sampleMean;                    // x'
+  double sampleVariance;                // S^2
+  double sampleRange;                   // R"
+  double sampleMedian;                  // Me"
+  double midleTime;                     // Middle math waiting
+  int N;                                // Number of boyfriend
+  int count;                            // Count of experiments
+  std::vector<double> midTime;          // Arrays: middle value distribution
+  std::multimap<double, int> firstBoys; // All boyfrends in first position in 'count' experiments
 };
 

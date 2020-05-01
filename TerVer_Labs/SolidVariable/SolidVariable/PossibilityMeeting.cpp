@@ -6,17 +6,7 @@ PossibilityMeeting::PossibilityMeeting() : N(1), count(1)
 {}
 
 PossibilityMeeting::PossibilityMeeting(const PossibilityMeeting& copy) : N(copy.N), count(copy.count)
-{
-  if (this != &copy)
-  {
-    if (!midTime.empty()) midTime.clear();
-
-    for (int i = 0; i < copy.midTime.size(); ++i)
-    {
-      midTime.push_back(copy.midTime[i]);
-    }
-  }
-}
+{}
 
 PossibilityMeeting::~PossibilityMeeting()
 {}
@@ -35,8 +25,10 @@ void PossibilityMeeting::getRand(bool isUpdate)
       possibles.insert(std::make_pair(getTime((double)rand() / (double)RAND_MAX, i), i));
     }
 
-    firstBoys.push_back(std::make_pair(possibles.begin()->second, possibles.begin()->first));
+    firstBoys.insert(std::make_pair(possibles.begin()->first, possibles.begin()->second));
   }
+
+  calculate();
 }
 
 double PossibilityMeeting::getTime(double ran, int k)
@@ -51,12 +43,62 @@ void PossibilityMeeting::setMidTime(std::vector<double> ins, int n, bool isUpdat
   if (!midTime.empty()) midTime.clear();
   if (!firstBoys.empty()) firstBoys.clear();
 
+  midleTime = 0.;
   for (int i = 0; i < N; ++i)
   {
     midTime.push_back(ins[i]);
+    midleTime += ins[i];
   }
+  midleTime /= N;
 
   getRand(isUpdate);
+}
+
+void PossibilityMeeting::setCount(int countExpirement)
+{
+  count = countExpirement;
+}
+
+double PossibilityMeeting::getY(double _x)
+{
+  return (1. - exp(-(_x / midleTime)));
+}
+
+double PossibilityMeeting::getY(double _x, double _mathWait)
+{
+  return (1. - exp(-(_x / _mathWait)));
+}
+
+void PossibilityMeeting::calculate()
+{
+  double sum = 0.;
+
+  // get x'
+  for (const auto &x : firstBoys)
+  {
+    sum += x.first;
+  }
+  sampleMean = sum / (double)count;
+
+  bool isMidle = (count % 2 == 0);
+  int midle = int(count / 2), med = 0;
+  sum = 0.;
+  for (const auto &x : firstBoys)
+  {
+    // get S^2
+    sum += sqr(x.first - sampleMean);
+
+    // get Me"
+    if (med == midle && isMidle) sampleMedian = x.first;
+    if (med == midle + 1 && isMidle) sampleMedian = (sampleMedian + x.first) / 2;
+    else if (med == midle + 1) sampleMedian = x.first;
+    ++med;
+  }
+  sampleVariance = sum / (double)count;
+
+  // get R"
+  sampleRange = (firstBoys.crbegin()->first - firstBoys.begin()->first);
+
 }
 
 int PossibilityMeeting::getN() const
@@ -69,7 +111,22 @@ int  PossibilityMeeting::getCount() const
   return count;
 }
 
-void PossibilityMeeting::setCount(int countExpirement)
+double PossibilityMeeting::getR() const
 {
-  count = countExpirement;
+  return sampleRange;
+}
+
+double PossibilityMeeting::getMe() const
+{
+  return sampleMedian;
+}
+
+double PossibilityMeeting::getX() const
+{
+  return sampleMean;
+}
+
+double PossibilityMeeting::getS2() const
+{
+  return sampleVariance;
 }
