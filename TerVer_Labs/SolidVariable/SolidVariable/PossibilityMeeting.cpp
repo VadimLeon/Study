@@ -130,3 +130,16 @@ double PossibilityMeeting::getS2() const
 {
   return sampleVariance;
 }
+
+double PossibilityMeeting::getMaxD()
+{
+  int i = 0;
+  std::map<double, int> stec;
+  for (const auto &x : firstBoys)
+  {
+    double diff = abs(getY(x.first, midTime[x.second]) - getY(x.first));
+    stec.insert(std::make_pair(diff, i++));
+  }
+
+  return (stec.rbegin()->first);
+}

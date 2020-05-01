@@ -532,8 +532,8 @@ namespace SolidVariable {
       this->zedGraphControl2->Size = System::Drawing::Size(437, 317);
       this->zedGraphControl2->TabIndex = 0;
       this->zedGraphControl2->GraphPane->Title->Text = "How first?";
-      this->zedGraphControl2->GraphPane->Title->Text = "Number expiriment";
-      this->zedGraphControl2->GraphPane->Title->Text = "Number boy";
+      this->zedGraphControl2->GraphPane->XAxis->Title->Text = "Number expiriment";
+      this->zedGraphControl2->GraphPane->YAxis->Title->Text = "Number boy";
       // 
       // MyForm
       // 
@@ -681,12 +681,15 @@ namespace SolidVariable {
     dataGridView3->Rows->Clear();
     dataGridView3->RowCount = 1;
 
+    double X = myGirl->getX();
+    double D = myGirl->getMaxD();
+    double S2 = myGirl->getS2();
     dataGridView3->Rows[0]->Cells[0]->Value = "-";
-    dataGridView3->Rows[0]->Cells[1]->Value = (myGirl->getX()).ToString();
+    dataGridView3->Rows[0]->Cells[1]->Value = X.ToString();
     dataGridView3->Rows[0]->Cells[2]->Value = "-";
-    dataGridView3->Rows[0]->Cells[3]->Value = "-";
-    dataGridView3->Rows[0]->Cells[4]->Value = (myGirl->getS2()).ToString();
-    dataGridView3->Rows[0]->Cells[5]->Value = "-";
+    dataGridView3->Rows[0]->Cells[3]->Value = D.ToString();
+    dataGridView3->Rows[0]->Cells[4]->Value = S2.ToString();
+    dataGridView3->Rows[0]->Cells[5]->Value = (D - S2).ToString();
     dataGridView3->Rows[0]->Cells[6]->Value = (myGirl->getMe()).ToString();
     dataGridView3->Rows[0]->Cells[7]->Value = (myGirl->getR()).ToString();
   }

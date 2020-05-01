@@ -20,6 +20,7 @@ public:
   double getMe() const;
   double getX()  const;
   double getS2() const;
+  double getMaxD();
   double getY(double _x);
   double getY(double _x, double _mathWait);
 
