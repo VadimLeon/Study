@@ -10,12 +10,17 @@ public:
   PossibilityMeeting(const PossibilityMeeting& copy);
   ~PossibilityMeeting();
 
-  void setCount(int countExpirements);
-  void setMidTime(std::vector<double> ins, int n, bool isUpdate = false);
+  void SetCount(int countExpirements);
+  void SetMidTime(std::vector<double> ins, int n, bool isUpdate = false);
+  void SetNumberBorders(int N);
+  void SetBordersValue(std::vector<double> value);
 
   std::multimap<double, int> getBestBoys() { return firstBoys; }
+  std::vector<double> getBordersValue();
+  int getNumberBorders() const;
   int getN()     const;
   int getCount() const;
+  double getE()  const;
   double getR()  const;
   double getMe() const;
   double getX()  const;
@@ -37,6 +42,8 @@ protected:
   double midleTime;                     // Middle math waiting
   int N;                                // Number of boyfriend
   int count;                            // Count of experiments
+  int numberBorders;                    // Number of Gap Boundaries
+  std::vector<double> borders;          // Values of Gap Boundaries
   std::vector<double> midTime;          // Arrays: middle value distribution
   std::multimap<double, int> firstBoys; // All boyfrends in first position in 'count' experiments
 };

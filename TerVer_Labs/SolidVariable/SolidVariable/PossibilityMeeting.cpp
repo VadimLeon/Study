@@ -36,7 +36,7 @@ double PossibilityMeeting::getTime(double ran, int k)
   return -(1 / midTime[k])*log(1. - ran);
 }
 
-void PossibilityMeeting::setMidTime(std::vector<double> ins, int n, bool isUpdate)
+void PossibilityMeeting::SetMidTime(std::vector<double> ins, int n, bool isUpdate)
 {
   N = n;
 
@@ -54,9 +54,19 @@ void PossibilityMeeting::setMidTime(std::vector<double> ins, int n, bool isUpdat
   getRand(isUpdate);
 }
 
-void PossibilityMeeting::setCount(int countExpirement)
+void PossibilityMeeting::SetCount(int countExpirement)
 {
   count = countExpirement;
+}
+
+void PossibilityMeeting::SetBordersValue(std::vector<double> value)
+{
+  if (!borders.empty()) { borders.clear(); }
+
+  for (int i = 0; i < numberBorders; ++i)
+  {
+    borders.push_back(value[i]);
+  }
 }
 
 double PossibilityMeeting::getY(double _x)
@@ -111,6 +121,11 @@ int  PossibilityMeeting::getCount() const
   return count;
 }
 
+double PossibilityMeeting::getE()  const
+{
+  return midleTime;
+}
+
 double PossibilityMeeting::getR() const
 {
   return sampleRange;
@@ -142,4 +157,19 @@ double PossibilityMeeting::getMaxD()
   }
 
   return (stec.rbegin()->first);
+}
+
+void PossibilityMeeting::SetNumberBorders(int N)
+{
+  numberBorders = N;
+}
+
+int PossibilityMeeting::getNumberBorders() const
+{
+  return numberBorders;
+}
+
+std::vector<double> PossibilityMeeting::getBordersValue()
+{
+  return borders;
 }
