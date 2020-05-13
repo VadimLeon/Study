@@ -74,6 +74,11 @@ double PossibilityMeeting::getY(double _x)
   return (1. - exp(-(_x / midleTime)));
 }
 
+double PossibilityMeeting::getZ(double _x)
+{
+  return (exp(-(_x / midleTime)));
+}
+
 double PossibilityMeeting::getY(double _x, double _mathWait)
 {
   return (1. - exp(-(_x / _mathWait)));
@@ -173,3 +178,13 @@ std::vector<double> PossibilityMeeting::getBordersValue()
 {
   return borders;
 }
+
+std::vector<double> getMidBorders()
+{
+  std::vector<double> res;
+
+
+
+  return res;
+}
+

@@ -17,6 +17,7 @@ public:
 
   std::multimap<double, int> getBestBoys() { return firstBoys; }
   std::vector<double> getBordersValue();
+  std::vector<double> getMidBorders();
   int getNumberBorders() const;
   int getN()     const;
   int getCount() const;
@@ -26,6 +27,7 @@ public:
   double getX()  const;
   double getS2() const;
   double getMaxD();
+  double getZ(double _x);
   double getY(double _x);
   double getY(double _x, double _mathWait);
 

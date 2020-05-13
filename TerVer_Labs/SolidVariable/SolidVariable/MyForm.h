@@ -6,8 +6,6 @@ PossibilityMeeting* myGirl;
 int countN;
 
 namespace SolidVariable {
-
-
   using namespace System;
   using namespace System::ComponentModel;
   using namespace System::Collections;
@@ -64,8 +62,6 @@ namespace SolidVariable {
   private: System::Windows::Forms::Label^  label3;
   private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column1;
   private: System::Windows::Forms::CheckBox^  checkBox3;
-
-
   private: ZedGraph::ZedGraphControl^  zedGraphControl1;
   private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column2;
   private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column3;
@@ -93,7 +89,6 @@ namespace SolidVariable {
   private: System::ComponentModel::IContainer^  components;
 
   protected:
-
   private:
     /// <summary>
     /// Required designer variable.
@@ -386,7 +381,8 @@ namespace SolidVariable {
       // 
       // textBox4
       // 
-      this->textBox4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+      this->textBox4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->textBox4->Location = System::Drawing::Point(300, 318);
       this->textBox4->Name = L"textBox4";
       this->textBox4->ReadOnly = true;
@@ -470,7 +466,7 @@ namespace SolidVariable {
       // 
       // Column14
       // 
-      this->Column14->HeaderText = L"z_j / n |^\'j |";
+      this->Column14->HeaderText = L"z_j / n |Δ\'j |";
       this->Column14->Name = L"Column14";
       this->Column14->ReadOnly = true;
       // 
@@ -726,7 +722,7 @@ namespace SolidVariable {
 
     textBox1->Text = "5";
     textBox2->Text = "15";
-    textBox3->Text = "5";
+    textBox3->Text = "6";
 
     dataGridView1->RowHeadersWidth = 50;
     dataGridView2->RowHeadersWidth = 50;
@@ -743,6 +739,10 @@ namespace SolidVariable {
     {
       dataGridView1->Rows[i]->HeaderCell->Value = (i + 1).ToString();
       dataGridView1->Rows[i]->Cells[0]->Value = 0.348 + 0.042 * i;
+    }
+    for (int i = 0; i < Convert::ToInt32(textBox3->Text); ++i)
+    {
+      dataGridView4->Rows[i]->Cells[0]->Value = 0.1 + i * 0.1;
     }
     //^^^^^^^^^^^^^^^^^^^^^^^
   }
@@ -841,11 +841,16 @@ namespace SolidVariable {
   private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e)
   {
     std::vector<double> bordersN;
+    bordersN.push_back(0.);
+
     for (int i = 0; i < myGirl->getNumberBorders(); ++i)
     {
       bordersN.push_back(Convert::ToDouble(dataGridView4->Rows[i]->Cells[0]->Value->ToString()));
     }
     myGirl->SetBordersValue(bordersN);
+
+    updateTableCher2();
+    updateZedHistogram();
 
     this->textBox4->Visible = true;
     this->label6->Visible = true;
@@ -899,11 +904,23 @@ namespace SolidVariable {
   {
     int N = myGirl->getNumberBorders();
     dataGridView4->RowCount = N;
-    dataGridView5->RowCount = N;
 
     for (int i = 0; i < N; ++i)
     {
-      dataGridView4->Rows[i]->HeaderCell->Value = "z_" + i.ToString();
+      dataGridView4->Rows[i]->HeaderCell->Value = "d_" + i.ToString();
+    }
+  }
+  private: System::Void updateTableCher2()
+  {
+    int N = myGirl->getNumberBorders();
+    dataGridView5->RowCount = N;
+
+    dataGridView5->Rows[0]->Cells[0]->Value = (Convert::ToDouble(dataGridView4->Rows[0]->Cells[0]->Value) / 2);
+    for (int i = 1; i < N; ++i)
+    {
+      dataGridView5->Rows[i]->Cells[0]->Value = Convert::ToDouble(dataGridView4->Rows[i - 1]->Cells[0]->Value) +
+        ((Convert::ToDouble(dataGridView4->Rows[i]->Cells[0]->Value) -
+        Convert::ToDouble(dataGridView4->Rows[i - 1]->Cells[0]->Value)) / 2);
     }
   }
 
@@ -944,7 +961,83 @@ namespace SolidVariable {
   }
   private: System::Void updateZedHistogram()
   {
+    ZedGraph::GraphPane^ paneFun = zedGraphControl3->GraphPane;
+    paneFun->CurveList->Clear();
+    ZedGraph::PointPairList^ listMain = gcnew ZedGraph::PointPairList;
 
+    std::vector<double> midleVal;
+    for (int j = 0; j < myGirl->getNumberBorders(); ++j)
+    {
+      midleVal.push_back((double)0);
+    }
+
+    int i = 0, l = 0, m = 0;
+    bool exit = false;
+
+    for (int k = 0; k < myGirl->getNumberBorders(); ++k)
+    {
+      exit = false;
+      for (; m < myGirl->getCount() && !exit; ++m)
+      {
+        if (Convert::ToDouble(dataGridView2->Rows[m]->Cells[1]->Value->ToString()) >
+            Convert::ToDouble(dataGridView4->Rows[k]->Cells[0]->Value->ToString()))
+        {
+          if (m > 0 && k > 0)
+          {
+            if (Convert::ToDouble(dataGridView2->Rows[m - 1]->Cells[1]->Value->ToString()) <
+                Convert::ToDouble(dataGridView4->Rows[k - 1]->Cells[0]->Value->ToString()))
+            {
+              ++i;
+            }
+          }
+          int nn = m - l;
+
+          if (nn)
+          {
+            midleVal[i++] = (double)nn / (double)myGirl->getCount();
+          }
+          l = m;
+          --m;
+          exit = true;
+        }
+      }
+
+      if (k + 1 == myGirl->getNumberBorders())
+      {
+        int nn = m - l;
+        midleVal[i++] = (double)nn / (double)myGirl->getCount();
+      }
+    }
+
+    listMain->Add(0., 0.);
+    listMain->Add(0., midleVal[0]);
+    listMain->Add(Convert::ToDouble(dataGridView4->Rows[0]->Cells[0]->Value->ToString()), midleVal[0]);
+    listMain->Add(Convert::ToDouble(dataGridView4->Rows[0]->Cells[0]->Value->ToString()), 0.);
+    dataGridView5->Rows[0]->Cells[1]->Value = (myGirl->getZ(Convert::ToDouble(dataGridView5->Rows[0]->Cells[0]->Value->ToString())) /
+                                               Convert::ToDouble(dataGridView4->Rows[0]->Cells[0]->Value->ToString())).ToString();
+    dataGridView5->Rows[0]->Cells[2]->Value = (midleVal[0] / Convert::ToDouble(dataGridView4->Rows[0]->Cells[0]->Value->ToString())).ToString();
+    double MaxDef = abs(Convert::ToDouble(dataGridView5->Rows[0]->Cells[2]->Value->ToString()) - Convert::ToDouble(dataGridView5->Rows[0]->Cells[1]->Value->ToString()));
+
+    for (int k = 1; k < myGirl->getNumberBorders(); ++k)
+    {
+      listMain->Add(Convert::ToDouble(dataGridView4->Rows[k - 1]->Cells[0]->Value->ToString()), midleVal[k]);
+      listMain->Add(Convert::ToDouble(dataGridView4->Rows[k]->Cells[0]->Value->ToString()), midleVal[k]);
+      listMain->Add(Convert::ToDouble(dataGridView4->Rows[k]->Cells[0]->Value->ToString()), 0);
+      dataGridView5->Rows[k]->Cells[1]->Value = (myGirl->getZ(Convert::ToDouble(dataGridView5->Rows[k]->Cells[0]->Value->ToString())) / 
+                                                 (Convert::ToDouble(dataGridView4->Rows[k]->Cells[0]->Value->ToString()) -
+                                                 Convert::ToDouble(dataGridView4->Rows[k - 1]->Cells[0]->Value->ToString()))).ToString();
+      dataGridView5->Rows[k]->Cells[2]->Value = (midleVal[k] / 
+                                                 (Convert::ToDouble(dataGridView4->Rows[k]->Cells[0]->Value->ToString()) -
+                                                 Convert::ToDouble(dataGridView4->Rows[k - 1]->Cells[0]->Value->ToString()))).ToString();
+      double tmp = abs(Convert::ToDouble(dataGridView5->Rows[k]->Cells[2]->Value->ToString()) -
+                       Convert::ToDouble(dataGridView5->Rows[k]->Cells[1]->Value->ToString()));
+      if (tmp > MaxDef) { MaxDef = tmp; }
+    }
+    textBox4->Text = MaxDef.ToString();
+
+    paneFun->AddCurve("Histogramma", listMain, Color::Red, ZedGraph::SymbolType::None);
+    zedGraphControl3->AxisChange();
+    zedGraphControl3->Invalidate();
   }
 
   private: System::Void textBox1_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
