@@ -16,7 +16,6 @@ namespace overRelaxation {
   using namespace System::Windows::Forms;
   using namespace System::Data;
   using namespace System::Drawing;
-  using namespace ZedGraph;
 
   /// <summary>
   /// Summary for MyForm
@@ -101,6 +100,7 @@ namespace overRelaxation {
   private: System::Windows::Forms::DataGridView^  dataGridView6;
   private: System::Windows::Forms::Label^  label10;
   private: System::Windows::Forms::Label^  label6;
+  private: System::Windows::Forms::ComboBox^  comboBox1;
 
   protected:
   private: System::ComponentModel::IContainer^ components;
@@ -145,6 +145,7 @@ namespace overRelaxation {
       this->label4 = (gcnew System::Windows::Forms::Label());
       this->textBox3 = (gcnew System::Windows::Forms::TextBox());
       this->groupBox5 = (gcnew System::Windows::Forms::GroupBox());
+      this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
       this->label9 = (gcnew System::Windows::Forms::Label());
       this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
       this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
@@ -210,7 +211,7 @@ namespace overRelaxation {
       this->tabPage2->Padding = System::Windows::Forms::Padding(2);
       this->tabPage2->Size = System::Drawing::Size(1121, 440);
       this->tabPage2->TabIndex = 1;
-      this->tabPage2->Text = L"Метод верхней релаксации";
+      this->tabPage2->Text = L"Методы решения СЛАУ";
       this->tabPage2->UseVisualStyleBackColor = true;
       // 
       // label10
@@ -476,6 +477,7 @@ namespace overRelaxation {
       // groupBox5
       // 
       this->groupBox5->BackColor = System::Drawing::SystemColors::ButtonFace;
+      this->groupBox5->Controls->Add(this->comboBox1);
       this->groupBox5->Controls->Add(this->label9);
       this->groupBox5->Controls->Add(this->radioButton2);
       this->groupBox5->Controls->Add(this->radioButton1);
@@ -500,6 +502,18 @@ namespace overRelaxation {
       this->groupBox5->TabIndex = 22;
       this->groupBox5->TabStop = false;
       this->groupBox5->Text = L"Параметры";
+      // 
+      // comboBox1
+      // 
+      this->comboBox1->FormattingEnabled = true;
+      this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
+        L"Верхней релаксации", L"Простой итерации", L"Минимальных невязок",
+          L"С Чебышевскими параметрами"
+      });
+      this->comboBox1->Location = System::Drawing::Point(255, 18);
+      this->comboBox1->Name = L"comboBox1";
+      this->comboBox1->Size = System::Drawing::Size(135, 21);
+      this->comboBox1->TabIndex = 31;
       // 
       // label9
       // 
@@ -783,6 +797,7 @@ namespace overRelaxation {
     dataGridView6->ColumnHeadersVisible = false;
     checkBox1->Checked = true;
     radioButton1->Checked = true;
+    comboBox1->SelectedIndex = 0;
   }
   private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) {
     double a = 0.;
