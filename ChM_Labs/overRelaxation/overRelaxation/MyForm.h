@@ -3,9 +3,13 @@
 #define _USE_MATH_DEFINES
 
 #include "overRelax.h"
+#include "SimpleIteration.h"
 
 namespace overRelaxation {
 
+  //SimpleIteration testOver;
+  //SimpleIteration mainOver1;
+  //SimpleIteration mainOver2;
   OverRelax testOver;
   OverRelax mainOver1;
   OverRelax mainOver2;

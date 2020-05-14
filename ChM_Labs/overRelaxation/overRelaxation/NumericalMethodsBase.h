@@ -7,25 +7,31 @@ protected:
   void updateSteps();
 
 public:
-  int    getN() const;
-  double getEps() const;
-
   NumericalMethodsBase();
   NumericalMethodsBase(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega);
   NumericalMethodsBase(const NumericalMethodsBase& _instance);
   ~NumericalMethodsBase();
 
+  void setParameter(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega);
+  void resetParameter();
+
+  void initTest();
+  void initMain();
+
   virtual void solveDifferenceScheme(){}
-  void setOmega(double _omega) { omega = _omega; }
+  void setOmega(double _omega);
+
   double getX(int i);
   double getY(int J);
-  int getW() const;
-  int getH() const;
-  int getCountIt() const;
+  int    getN() const;
+  int    getW() const;
+  int    getH() const;
+  int    getCountIt() const;
   double getMaxR(int &x, int &y);
   double getMaxZ();
   double getV(int i, int j) const;
   double getU(int i, int j) const;
+  double getEps() const;
 
   // Functions of boundary and solucion
   double ft(double x, double y);
@@ -33,13 +39,6 @@ public:
   double mut(double _x, double _y);
   double muy(double _y);
   double mux(double _x);
-
-  void initTest();
-  void initMain();
-
-  void setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega);
-  void resetParameters();
-
 
 protected:
   int    xNumberStep;       // Number of partitions on the abscissa axis
@@ -54,5 +53,4 @@ protected:
 
   std::vector<std::vector<double> > v;  // Iterative solution
   std::vector<std::vector<double> > u;  // Exact solution
-
 };

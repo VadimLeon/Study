@@ -10,17 +10,6 @@ void OverRelax::solveDifferenceScheme(bool isTest)
   // Init v on the bord
   isTest ? initTest() : initMain();
 
-  // Interpolation along x
-  for (int j = 1; j < yNumberStep; j++)
-  {
-    double steph = (v[xNumberStep][j] - v[0][j]) / xNumberStep;
-
-    for (int i = 1; i < xNumberStep; i++)
-    {
-      v[i][j] = v[0][j] + steph * i;
-    }
-  }
-
   // Seidel Implemetation
   do {
     maxEps = 0.;
@@ -40,6 +29,11 @@ void OverRelax::solveDifferenceScheme(bool isTest)
     }
     ++countIteration;
   } while (maxEps >= eps && maxCountStep > countIteration);
+}
+
+void OverRelax::setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xRight, double _xLeft, double _yRight, double _yLeft, double _omega)
+{
+  NumericalMethodsBase::setParameter(_xNumberStep, _yNumberStep, _eps, _maxCountStep, _xRight, _xLeft, _yRight, _yLeft, _omega);
 }
 
 double OverRelax::getMaxR(const OverRelax& instance, int& x, int& y)
@@ -73,10 +67,10 @@ OverRelax::OverRelax() : NumericalMethodsBase()
 {}
 
 OverRelax::OverRelax(int _xNumberStep, int _yNumberStep,
-                       double _eps, double _maxCountStep,
-                       double _xRight, double _xLeft, double _yRight, double _yLeft,
-                       double _omega) :
-                       NumericalMethodsBase(_xNumberStep, _yNumberStep, _eps, _maxCountStep, _xRight, _xLeft, _yRight, _yLeft, _omega)
+                     double _eps, double _maxCountStep,
+                     double _xRight, double _xLeft, double _yRight, double _yLeft,
+                     double _omega) :
+                     NumericalMethodsBase(_xNumberStep, _yNumberStep, _eps, _maxCountStep, _xRight, _xLeft, _yRight, _yLeft, _omega)
 {}
 
 OverRelax::OverRelax(const OverRelax& _instance) : NumericalMethodsBase(_instance.xNumberStep, _instance.yNumberStep,

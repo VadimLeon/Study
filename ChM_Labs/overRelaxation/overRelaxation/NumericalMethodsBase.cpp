@@ -11,16 +11,6 @@ void NumericalMethodsBase::updateSteps()
   k = static_cast<double>(yRight - yLeft) / static_cast<double>(yNumberStep);
 }
 
-int NumericalMethodsBase::getN() const
-{
-  return countIteration;
-}
-
-double NumericalMethodsBase::getEps() const
-{
-  return maxEps;
-}
-
 NumericalMethodsBase::NumericalMethodsBase() : xNumberStep(-1), yNumberStep(-1),
 xRight(-1.), xLeft(-1.), yRight(-1.), yLeft(-1.),
 eps(1e-8), maxCountStep(-1.), omega(1.),
@@ -52,6 +42,59 @@ NumericalMethodsBase::~NumericalMethodsBase()
 {
 }
 
+
+void NumericalMethodsBase::resetParameter()
+{
+  if (!v.size())
+  {
+    for (int i = 0; i < v.size(); ++i)
+    {
+      v[i].clear();
+      u[i].clear();
+    }
+
+    v.clear();
+    u.clear();
+  }
+}
+
+void NumericalMethodsBase::setParameter(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega)
+{
+  xNumberStep = _xNumberStep;
+  yNumberStep = _yNumberStep;
+  xLeft = _xLeft;
+  yRight = _yRight;
+  yLeft = _yLeft;
+  xRight = _xRight;
+  eps = _eps;
+  omega = _omega;
+  maxCountStep = _maxCountStep;
+  countIteration = 0;
+
+  updateSteps();
+
+  if (!v.size()) resetParameter();
+
+  v = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
+  u = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
+}
+
+void NumericalMethodsBase::setOmega(double _omega)
+{
+  omega = _omega;
+}
+
+// Geter methods
+double NumericalMethodsBase::getV(int i, int j) const
+{
+  return v[i][j];
+}
+
+double NumericalMethodsBase::getU(int i, int j) const
+{
+  return u[i][j];
+}
+
 double NumericalMethodsBase::getX(int i)
 {
   return h * (double)i;
@@ -60,6 +103,16 @@ double NumericalMethodsBase::getX(int i)
 double NumericalMethodsBase::getY(int j)
 {
   return k * (double)j;
+}
+
+int NumericalMethodsBase::getN() const
+{
+  return countIteration;
+}
+
+double NumericalMethodsBase::getEps() const
+{
+  return maxEps;
 }
 
 int NumericalMethodsBase::getW() const
@@ -75,6 +128,48 @@ int NumericalMethodsBase::getH() const
 int NumericalMethodsBase::getCountIt() const
 {
   return countIteration;
+}
+
+double NumericalMethodsBase::getMaxR(int &x, int &y)
+{
+  double Rmax = 0., tmp;
+
+  for (int i = 0; i < xNumberStep; ++i)
+  {
+    for (int j = 0; j < yNumberStep; ++j)
+    {
+      tmp = std::fabs(u[i][j] - v[i][j]);
+      if (tmp > Rmax)
+      {
+        Rmax = tmp;
+        x = i;
+        y = j;
+      }
+    }
+  }
+
+  return Rmax;
+}
+
+double NumericalMethodsBase::getMaxZ()
+{
+  double h2 = 1 / sqr(h);
+  double k2 = 1 / sqr(k);
+  double a2 = 2 * (h2 + k2);
+  double Z2 = 0.0, Z;
+
+  for (int j = 1; j < yNumberStep; ++j)
+  {
+    for (int i = 1; i < xNumberStep; ++i)
+    {
+      Z = -a2 * v[i][j] + h2 * (v[i + 1][j] + v[i - 1][j]) + k2 * (v[i][j + 1] + v[i][j - 1]);
+      Z += u[i][j];
+      Z2 += sqr(Z);
+    }
+  }
+  Z2 = sqrt(Z2);
+
+  return Z2;
 }
 
 // Functions of boundary and solucion
@@ -109,7 +204,7 @@ double NumericalMethodsBase::mux(double _x)
 // Init solution
 void NumericalMethodsBase::initTest()
 {
-  for (int i = 0; i < xNumberStep + 1; i++)
+  for (int i = 0; i < xNumberStep + 1; ++i)
   {
     v[i][0] = mut(getX(i), xLeft);
     v[i][yNumberStep] = mut(getX(i), xRight);
@@ -117,7 +212,7 @@ void NumericalMethodsBase::initTest()
     u[i][yNumberStep] = mut(getX(i), xRight);
   }
 
-  for (int j = 0; j < yNumberStep + 1; j++)
+  for (int j = 0; j < yNumberStep + 1; ++j)
   {
     v[0][j] = mut(yLeft, getY(j));
     v[xNumberStep][j] = mut(yRight, getY(j));
@@ -125,9 +220,9 @@ void NumericalMethodsBase::initTest()
     u[xNumberStep][j] = mut(yRight, getY(j));
   }
 
-  for (int j = 1; j < yNumberStep; j++)
+  for (int j = 1; j < yNumberStep; ++j)
   {
-    for (int i = 1; i < xNumberStep; i++)
+    for (int i = 1; i < xNumberStep; ++i)
     {
       u[i][j] = mut(getX(i), getY(j));
     }
@@ -136,102 +231,23 @@ void NumericalMethodsBase::initTest()
 
 void NumericalMethodsBase::initMain()
 {
-  for (int i = 0; i < xNumberStep + 1; i++) {
+  for (int i = 0; i < xNumberStep + 1; ++i) {
     v[i][0] = mux(getX(i));
     v[i][yNumberStep] = mux(getX(i));
   }
-  for (int j = 0; j < yNumberStep + 1; j++) {
+  for (int j = 0; j < yNumberStep + 1; ++j) {
     v[0][j] = muy(getY(j));
     v[xNumberStep][j] = muy(getY(j));
   }
-}
 
-void NumericalMethodsBase::resetParameters()
-{
-  if (!v.size())
+  // Interpolation along y
+  for (int j = 1; j < yNumberStep; ++j)
   {
-    for (int i = 0; i < v.size(); ++i)
-    {
-      v[i].clear();
-      u[i].clear();
-    }
+    double steph = (v[xNumberStep][j] - v[0][j]) / xNumberStep;
 
-    v.clear();
-    u.clear();
-  }
-}
-
-void NumericalMethodsBase::setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega)
-{
-  xNumberStep = _xNumberStep;
-  yNumberStep = _yNumberStep;
-  xLeft = _xLeft;
-  yRight = _yRight;
-  yLeft = _yLeft;
-  xRight = _xRight;
-  eps = _eps;
-  omega = _omega;
-  maxCountStep = _maxCountStep;
-  countIteration = 0;
-
-  updateSteps();
-
-  if (!v.size()) resetParameters();
-
-  v = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
-  u = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
-}
-
-double NumericalMethodsBase::getMaxR(int &x, int &y)
-{
-  double Rmax = 0., tmp;
-
-  for (int i = 0; i < xNumberStep; ++i)
-  {
-    for (int j = 0; j < yNumberStep; ++j)
-    {
-      tmp = std::fabs(u[i][j] - v[i][j]);
-      if (tmp > Rmax)
-      {
-        Rmax = tmp;
-        x = i;
-        y = j;
-      }
-    }
-  }
-
-  return Rmax;
-}
-
-double NumericalMethodsBase::getMaxZ()
-{
-  double h2 = 1 / sqr(h);
-  double k2 = 1 / sqr(k);
-  double a2 = 2 * (h2 + k2);
-  double Z2 = 0.0, Z;
-
-  for (int j = 1; j < yNumberStep; j++)
-  {
     for (int i = 1; i < xNumberStep; i++)
     {
-      Z = -a2 * v[i][j] + h2 * (v[i + 1][j] + v[i - 1][j]) + k2 * (v[i][j + 1] + v[i][j - 1]);
-      Z += u[i][j];
-      Z2 += sqr(Z);
+      v[i][j] = v[0][j] + steph * i;
     }
   }
-  Z2 = sqrt(Z2);
-
-  return Z2;
 }
-
-// Geter methods
-double NumericalMethodsBase::getV(int i, int j) const
-{
-  return v[i][j];
-}
-
-double NumericalMethodsBase::getU(int i, int j) const
-{
-  return u[i][j];
-}
-
