@@ -1,11 +1,14 @@
 ﻿#pragma once
+#include <math.h>
+#define _USE_MATH_DEFINES
+
 #include "overRelax.h"
 
 namespace overRelaxation {
 
-  OverRelax test;
-  OverRelax main1;
-  OverRelax main2;
+  OverRelax testOver;
+  OverRelax mainOver1;
+  OverRelax mainOver2;
   int n, m;
   double omega = 1., h, k;
   bool isTests;
@@ -799,6 +802,7 @@ namespace overRelaxation {
     radioButton1->Checked = true;
     comboBox1->SelectedIndex = 0;
   }
+
   private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) {
     double a = 0.;
     double b = 1.;
@@ -815,28 +819,29 @@ namespace overRelaxation {
     isTests = radioButton1->Checked;
     if (isTests)
     {
-      test.setParameters(n, m, eps, countStep, a, b, c, d, omega);
-      test.solveDifferenceScheme(true);
+      testOver.setParameters(n, m, eps, countStep, a, b, c, d, omega);
+      testOver.solveDifferenceScheme(true);
       resetHedarsTableT();
       updateTable_t();
     }
     else
     {
-      main1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
-      main2.setParameters(2*n, 2*m, eps, countStep, a, b, c, d, omega);
-      main1.solveDifferenceScheme(false);
-      main2.solveDifferenceScheme(false);
+      mainOver1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
+      mainOver2.setParameters(2 * n, 2 * m, eps, countStep, a, b, c, d, omega);
+      mainOver1.solveDifferenceScheme(false);
+      mainOver2.solveDifferenceScheme(false);
       resetHedarsTableM();
       updateTable_m();
     }
 
     int rMaxX, rMaxY;
-    textBox3->Text = isTests ? test.getCountIt().ToString() : main1.getCountIt().ToString();
-    textBox4->Text = isTests ? test.getEps().ToString("E") : main1.getEps().ToString("E");
-    textBox6->Text = isTests ? (test.getMaxR(rMaxX, rMaxY)).ToString("E") : (main1.getMaxR(main2, rMaxX, rMaxY)).ToString("E");
+    textBox3->Text = isTests ? testOver.getCountIt().ToString() : mainOver1.getCountIt().ToString();
+    textBox4->Text = isTests ? testOver.getEps().ToString("E") : mainOver1.getEps().ToString("E");
+    textBox6->Text = isTests ? (testOver.getMaxR(rMaxX, rMaxY)).ToString("E") : (mainOver1.getMaxR(mainOver2, rMaxX, rMaxY)).ToString("E");
     label6->Text = ("x: " + rMaxX.ToString());
     label10->Text = ("y: " + rMaxY.ToString());
   }
+
   private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
     if (checkBox1->Checked)
     {
@@ -848,46 +853,7 @@ namespace overRelaxation {
       textBox7->ReadOnly = false;
     }
   }
-  private: System::Void textBox11_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
-  {
-    char number = (char)e->KeyChar;
-    if (!Char::IsDigit(number) && number != 8)
-    {
-      e->Handled = true;
-    }
-  }
-  private: System::Void textBox10_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
-  {
-    char number = (char)e->KeyChar;
-    if (!Char::IsDigit(number) && number != 8)
-    {
-      e->Handled = true;
-    }
-  }
-  private: System::Void textBox1_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
-  {
-    char number = (char)e->KeyChar;
-    if (!Char::IsDigit(number) && number != 8 && number != 44 && number != 45 && number != 46 && number != 101)
-    {
-      e->Handled = true;
-    }
-  }
-  private: System::Void textBox2_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
-  {
-    char number = (char)e->KeyChar;
-    if (!Char::IsDigit(number) && number != 8)
-    {
-      e->Handled = true;
-    }
-  }
-  private: System::Void textBox7_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
-  {
-    char number = (char)e->KeyChar;
-    if (!Char::IsDigit(number) && number != 8 && number != 44 && number != 45 && number != 46 && number != 101)
-    {
-      e->Handled = true;
-    }
-  }
+
   private: System::Void resetomega()
   {
     double h = 1. / (Convert::ToDouble(textBox11->Text));
@@ -895,9 +861,9 @@ namespace overRelaxation {
     omega = 2. / tmp;
     textBox7->Text = omega.ToString();
 
-    test.setOmega(omega);
-    main1.setOmega(omega);
-    main2.setOmega(omega);
+    testOver.setOmega(omega);
+    mainOver1.setOmega(omega);
+    mainOver2.setOmega(omega);
   }
   private: System::Void resetHedarsTableM()
   {
@@ -996,13 +962,13 @@ namespace overRelaxation {
     double tmpMaxR = 0., tmpR;
     int rMaxX, rMaxY;
 
-    for (int i = 2; i < main1.getW() + 3; i++)
+    for (int i = 2; i < mainOver1.getW() + 3; i++)
     {
-      for (int j = 2; j < main1.getH() + 3; j++)
+      for (int j = 2; j < mainOver1.getH() + 3; j++)
       {
-        dataGridView4->Rows[main1.getH() - j + 4]->Cells[i]->Value = main1.getV(i - 2, j - 2).ToString("E");
-        tmpR = abs(main2.getV(2 * i - 4, 2 * j - 4) - main1.getV(i - 2, j - 2));
-        dataGridView6->Rows[main1.getH() - j + 4]->Cells[i]->Value = tmpR.ToString("E");
+        dataGridView4->Rows[mainOver1.getH() - j + 4]->Cells[i]->Value = mainOver1.getV(i - 2, j - 2).ToString("E");
+        tmpR = abs(mainOver2.getV(2 * i - 4, 2 * j - 4) - mainOver1.getV(i - 2, j - 2));
+        dataGridView6->Rows[mainOver1.getH() - j + 4]->Cells[i]->Value = tmpR.ToString("E");
         if (tmpR > tmpMaxR)
         {
           tmpMaxR = tmpR;
@@ -1011,11 +977,11 @@ namespace overRelaxation {
         }
       }
     }
-    for (int i = 2; i < main2.getW() + 3; i++)
+    for (int i = 2; i < mainOver2.getW() + 3; i++)
     {
-      for (int j = 2; j < main2.getH() + 3; j++)
+      for (int j = 2; j < mainOver2.getH() + 3; j++)
       {
-        dataGridView5->Rows[main2.getH() - j + 4]->Cells[i]->Value = main2.getV(i - 2, j - 2).ToString("E");
+        dataGridView5->Rows[mainOver2.getH() - j + 4]->Cells[i]->Value = mainOver2.getV(i - 2, j - 2).ToString("E");
       }
     }
 
@@ -1025,14 +991,55 @@ namespace overRelaxation {
   }
   private: System::Void updateTable_t()
   {
-    for (int i = 2; i < test.getW() + 3; i++)
+    for (int i = 2; i < testOver.getW() + 3; i++)
     {
-      for (int j = 2; j < test.getH() + 3; j++)
+      for (int j = 2; j < testOver.getH() + 3; j++)
       {
-        dataGridView2->Rows[test.getH() - j + 4]->Cells[i]->Value = test.getV(i - 2, j - 2).ToString("E");
-        dataGridView1->Rows[test.getH() - j + 4]->Cells[i]->Value = test.getU(i - 2, j - 2).ToString("E");
-        dataGridView3->Rows[test.getH() - j + 4]->Cells[i]->Value = (abs(test.getU(i - 2, j - 2) - test.getV(i - 2, j - 2))).ToString("E");
+        dataGridView2->Rows[testOver.getH() - j + 4]->Cells[i]->Value = testOver.getV(i - 2, j - 2).ToString("E");
+        dataGridView1->Rows[testOver.getH() - j + 4]->Cells[i]->Value = testOver.getU(i - 2, j - 2).ToString("E");
+        dataGridView3->Rows[testOver.getH() - j + 4]->Cells[i]->Value = (abs(testOver.getU(i - 2, j - 2) - testOver.getV(i - 2, j - 2))).ToString("E");
       }
+    }
+  }
+
+  private: System::Void textBox11_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
+  {
+    char number = (char)e->KeyChar;
+    if (!Char::IsDigit(number) && number != 8)
+    {
+      e->Handled = true;
+    }
+  }
+  private: System::Void textBox10_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
+  {
+    char number = (char)e->KeyChar;
+    if (!Char::IsDigit(number) && number != 8)
+    {
+      e->Handled = true;
+    }
+  }
+  private: System::Void textBox1_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
+  {
+    char number = (char)e->KeyChar;
+    if (!Char::IsDigit(number) && number != 8 && number != 44 && number != 45 && number != 46 && number != 101)
+    {
+      e->Handled = true;
+    }
+  }
+  private: System::Void textBox2_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
+  {
+    char number = (char)e->KeyChar;
+    if (!Char::IsDigit(number) && number != 8)
+    {
+      e->Handled = true;
+    }
+  }
+  private: System::Void textBox7_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
+  {
+    char number = (char)e->KeyChar;
+    if (!Char::IsDigit(number) && number != 8 && number != 44 && number != 45 && number != 46 && number != 101)
+    {
+      e->Handled = true;
     }
   }
   };

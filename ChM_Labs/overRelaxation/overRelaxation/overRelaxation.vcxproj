@@ -162,6 +162,7 @@
     </ClCompile>
     <ClCompile Include="NumericalMethodsBase.cpp" />
     <ClCompile Include="overRelax.cpp" />
+    <ClCompile Include="SimpleIteration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Methods.h" />
@@ -170,6 +171,7 @@
     </ClInclude>
     <ClInclude Include="NumericalMethodsBase.h" />
     <ClInclude Include="overRelax.h" />
+    <ClInclude Include="SimpleIteration.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

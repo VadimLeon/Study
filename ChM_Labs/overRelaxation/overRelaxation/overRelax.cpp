@@ -42,57 +42,7 @@ void OverRelax::solveDifferenceScheme(bool isTest)
   } while (maxEps >= eps && maxCountStep > countIteration);
 }
 
-// Init solution
-void OverRelax::initTest()
-{
-  for (int i = 0; i < xNumberStep + 1; i++)
-  {
-    v[i][0]           = mut(getX(i), xLeft);
-    v[i][yNumberStep] = mut(getX(i), xRight);
-    u[i][0]           = mut(getX(i), xLeft);
-    u[i][yNumberStep] = mut(getX(i), xRight);
-  }
-
-  for (int j = 0; j < yNumberStep + 1; j++)
-  {
-    v[0][j]           = mut(yLeft,  getY(j));
-    v[xNumberStep][j] = mut(yRight, getY(j));
-    u[0][j]           = mut(yLeft,  getY(j));
-    u[xNumberStep][j] = mut(yRight, getY(j));
-  }
-
-  for (int j = 1; j < yNumberStep; j++)
-  {
-    for (int i = 1; i < xNumberStep; i++)
-    {
-      u[i][j] = mut(getX(i), getY(j));
-    }
-  }
-}
-
-void OverRelax::initMain()
-{
-  for (int i = 0; i < xNumberStep + 1; i++) {
-    v[i][0]           = mux(getX(i));
-    v[i][yNumberStep] = mux(getX(i));
-  }
-  for (int j = 0; j < yNumberStep + 1; j++) {
-    v[0][j]           = muy(getY(j));
-    v[xNumberStep][j] = muy(getY(j));
-  }
-}
-
 // Geter methods
-double OverRelax::getX(int i)
-{
-  return h * (double)i;
-}
-
-double OverRelax::getY(int j)
-{
-  return k * (double)j;
-}
-
 double OverRelax::getV(int i, int j) const
 {
   return v[i][j];
@@ -166,59 +116,6 @@ double OverRelax::getMaxZ()
   return Z2;
 }
 
-// Functions of boundary and solucion
-double OverRelax::ft(double x, double y)
-{
-  double addent1 = (2 * sin(M_PI*x*y)*sin(M_PI*x*y) + 1)*cos(M_PI*x*y)*cos(M_PI*x*y) - sin(M_PI*x*y)*sin(M_PI*x*y);
-  double addent2 = 2 * M_PI*M_PI*x*x*exp(sin(M_PI*x*y)*sin(M_PI*x*y))*addent1;
-  double addent3 = 2 * M_PI*M_PI*y*y*exp(sin(M_PI*x*y)*sin(M_PI*x*y))*addent1;
-  return -(addent2 + addent3);
-}
-
-double OverRelax::muu(double _x, double _y)
-{
-  return sqr(sin(M_PI * _x * _y));
-}
-
-double OverRelax::mut(double _x, double _y)
-{
-  return exp(sqr(sin(M_PI * _x * _y)));
-}
-
-double OverRelax::muy(double _y)
-{
-  return sin(M_PI * _y);
-}
-
-double OverRelax::mux(double _x)
-{
-  return _x - sqr(_x);
-}
-
-void OverRelax::resetParameters()
-{
-  if (!v.size())
-  {
-    for (int i = 0; i < v.size(); ++i)
-    {
-      v[i].clear();
-      u[i].clear();
-    }
-
-    v.clear();
-    u.clear();
-  }
-}
-
-void OverRelax::setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega)
-{
-  NumericalMethodsBase::setParameters(_xNumberStep, _yNumberStep, _eps, _maxCountStep, _xLeft, _xRight, _yLeft, _yRight, _omega);
-
-  if (!v.size()) resetParameters();
-
-  v = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
-  u = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
-}
 
 // Constructors
 OverRelax::OverRelax() : NumericalMethodsBase()
@@ -232,10 +129,10 @@ OverRelax::OverRelax(int _xNumberStep, int _yNumberStep,
 {}
 
 OverRelax::OverRelax(const OverRelax& _instance) : NumericalMethodsBase(_instance.xNumberStep, _instance.yNumberStep,
-                                                                           _instance.eps, _instance.maxCountStep,
-                                                                           _instance.xRight, _instance.xLeft,
-                                                                           _instance.yRight, _instance.yLeft,
-                                                                           _instance.omega)
+                                                                        _instance.eps,         _instance.maxCountStep,
+                                                                        _instance.xRight,      _instance.xLeft,
+                                                                        _instance.yRight,      _instance.yLeft,
+                                                                        _instance.omega)
 {}
 
 OverRelax::~OverRelax()
