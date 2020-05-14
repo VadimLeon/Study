@@ -86,6 +86,21 @@ namespace SolidVariable {
   private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column12;
   private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column13;
   private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column14;
+  private: System::Windows::Forms::TabPage^  tabPage7;
+  private: System::Windows::Forms::CheckBox^  checkBox5;
+  private: System::Windows::Forms::TextBox^  textBox5;
+  private: System::Windows::Forms::Label^  label7;
+  private: System::Windows::Forms::Button^  button3;
+
+  private: System::Windows::Forms::DataGridView^  dataGridView7;
+  private: System::Windows::Forms::DataGridView^  dataGridView6;
+  private: System::Windows::Forms::TabControl^  tabControl3;
+  private: System::Windows::Forms::TabPage^  tabPage8;
+  private: System::Windows::Forms::TabPage^  tabPage9;
+  private: System::Windows::Forms::DataGridView^  dataGridView8;
+  private: System::Windows::Forms::CheckBox^  checkBox6;
+  private: System::Windows::Forms::TextBox^  textBox6;
+  private: System::Windows::Forms::Label^  label8;
   private: System::ComponentModel::IContainer^  components;
 
   protected:
@@ -141,6 +156,20 @@ namespace SolidVariable {
       this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
       this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
       this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+      this->tabPage7 = (gcnew System::Windows::Forms::TabPage());
+      this->tabControl3 = (gcnew System::Windows::Forms::TabControl());
+      this->tabPage8 = (gcnew System::Windows::Forms::TabPage());
+      this->label7 = (gcnew System::Windows::Forms::Label());
+      this->button3 = (gcnew System::Windows::Forms::Button());
+      this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+      this->dataGridView6 = (gcnew System::Windows::Forms::DataGridView());
+      this->checkBox5 = (gcnew System::Windows::Forms::CheckBox());
+      this->dataGridView7 = (gcnew System::Windows::Forms::DataGridView());
+      this->tabPage9 = (gcnew System::Windows::Forms::TabPage());
+      this->checkBox6 = (gcnew System::Windows::Forms::CheckBox());
+      this->textBox6 = (gcnew System::Windows::Forms::TextBox());
+      this->label8 = (gcnew System::Windows::Forms::Label());
+      this->dataGridView8 = (gcnew System::Windows::Forms::DataGridView());
       this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
       this->tabControl2 = (gcnew System::Windows::Forms::TabControl());
       this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
@@ -157,6 +186,13 @@ namespace SolidVariable {
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView5))->BeginInit();
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->BeginInit();
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->BeginInit();
+      this->tabPage7->SuspendLayout();
+      this->tabControl3->SuspendLayout();
+      this->tabPage8->SuspendLayout();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->BeginInit();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView7))->BeginInit();
+      this->tabPage9->SuspendLayout();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView8))->BeginInit();
       this->tabPage3->SuspendLayout();
       this->tabControl2->SuspendLayout();
       this->tabPage4->SuspendLayout();
@@ -171,6 +207,7 @@ namespace SolidVariable {
         | System::Windows::Forms::AnchorStyles::Right));
       this->tabControl1->Controls->Add(this->tabPage1);
       this->tabControl1->Controls->Add(this->tabPage2);
+      this->tabControl1->Controls->Add(this->tabPage7);
       this->tabControl1->Controls->Add(this->tabPage3);
       this->tabControl1->Location = System::Drawing::Point(0, 0);
       this->tabControl1->Name = L"tabControl1";
@@ -319,7 +356,6 @@ namespace SolidVariable {
       this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->Column1 });
       this->dataGridView1->Location = System::Drawing::Point(6, 85);
       this->dataGridView1->Name = L"dataGridView1";
-      this->dataGridView1->ReadOnly = true;
       this->dataGridView1->Size = System::Drawing::Size(170, 213);
       this->dataGridView1->TabIndex = 2;
       // 
@@ -329,7 +365,6 @@ namespace SolidVariable {
       this->Column1->MaxInputLength = 20;
       this->Column1->MinimumWidth = 50;
       this->Column1->Name = L"Column1";
-      this->Column1->ReadOnly = true;
       // 
       // textBox1
       // 
@@ -395,9 +430,9 @@ namespace SolidVariable {
       this->label6->AutoSize = true;
       this->label6->Location = System::Drawing::Point(179, 321);
       this->label6->Name = L"label6";
-      this->label6->Size = System::Drawing::Size(115, 13);
+      this->label6->Size = System::Drawing::Size(116, 13);
       this->label6->TabIndex = 7;
-      this->label6->Text = L"max | nj/(n|^\'j|) - f(zj) | = ";
+      this->label6->Text = L"max | nj/(n|Δ\'j|) - f(zj) | = ";
       // 
       // label5
       // 
@@ -568,6 +603,177 @@ namespace SolidVariable {
       this->Column9->ReadOnly = true;
       this->Column9->Width = 42;
       // 
+      // tabPage7
+      // 
+      this->tabPage7->Controls->Add(this->tabControl3);
+      this->tabPage7->Location = System::Drawing::Point(4, 22);
+      this->tabPage7->Name = L"tabPage7";
+      this->tabPage7->Padding = System::Windows::Forms::Padding(3);
+      this->tabPage7->Size = System::Drawing::Size(443, 345);
+      this->tabPage7->TabIndex = 3;
+      this->tabPage7->Text = L"Decision-making";
+      this->tabPage7->UseVisualStyleBackColor = true;
+      // 
+      // tabControl3
+      // 
+      this->tabControl3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
+      this->tabControl3->Controls->Add(this->tabPage8);
+      this->tabControl3->Controls->Add(this->tabPage9);
+      this->tabControl3->Location = System::Drawing::Point(-4, 0);
+      this->tabControl3->Name = L"tabControl3";
+      this->tabControl3->SelectedIndex = 0;
+      this->tabControl3->Size = System::Drawing::Size(451, 349);
+      this->tabControl3->TabIndex = 7;
+      // 
+      // tabPage8
+      // 
+      this->tabPage8->Controls->Add(this->label7);
+      this->tabPage8->Controls->Add(this->button3);
+      this->tabPage8->Controls->Add(this->textBox5);
+      this->tabPage8->Controls->Add(this->dataGridView6);
+      this->tabPage8->Controls->Add(this->checkBox5);
+      this->tabPage8->Controls->Add(this->dataGridView7);
+      this->tabPage8->Location = System::Drawing::Point(4, 22);
+      this->tabPage8->Name = L"tabPage8";
+      this->tabPage8->Padding = System::Windows::Forms::Padding(3);
+      this->tabPage8->Size = System::Drawing::Size(443, 323);
+      this->tabPage8->TabIndex = 0;
+      this->tabPage8->Text = L"Enter";
+      this->tabPage8->UseVisualStyleBackColor = true;
+      // 
+      // label7
+      // 
+      this->label7->AutoSize = true;
+      this->label7->Location = System::Drawing::Point(6, 10);
+      this->label7->Name = L"label7";
+      this->label7->Size = System::Drawing::Size(82, 13);
+      this->label7->TabIndex = 0;
+      this->label7->Text = L"Number of splits";
+      // 
+      // button3
+      // 
+      this->button3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+      this->button3->Location = System::Drawing::Point(6, 297);
+      this->button3->Name = L"button3";
+      this->button3->Size = System::Drawing::Size(209, 23);
+      this->button3->TabIndex = 6;
+      this->button3->Text = L"OK";
+      this->button3->UseVisualStyleBackColor = true;
+      this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
+      // 
+      // textBox5
+      // 
+      this->textBox5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
+      this->textBox5->Location = System::Drawing::Point(94, 6);
+      this->textBox5->Name = L"textBox5";
+      this->textBox5->Size = System::Drawing::Size(321, 20);
+      this->textBox5->TabIndex = 1;
+      // 
+      // dataGridView6
+      // 
+      this->dataGridView6->AllowUserToAddRows = false;
+      this->dataGridView6->AllowUserToDeleteRows = false;
+      this->dataGridView6->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left));
+      this->dataGridView6->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+      this->dataGridView6->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+      this->dataGridView6->ColumnHeadersVisible = false;
+      this->dataGridView6->Location = System::Drawing::Point(6, 32);
+      this->dataGridView6->Name = L"dataGridView6";
+      this->dataGridView6->ReadOnly = true;
+      this->dataGridView6->Size = System::Drawing::Size(209, 259);
+      this->dataGridView6->TabIndex = 3;
+      // 
+      // checkBox5
+      // 
+      this->checkBox5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+      this->checkBox5->AutoSize = true;
+      this->checkBox5->Location = System::Drawing::Point(421, 9);
+      this->checkBox5->Name = L"checkBox5";
+      this->checkBox5->Size = System::Drawing::Size(15, 14);
+      this->checkBox5->TabIndex = 2;
+      this->checkBox5->UseVisualStyleBackColor = true;
+      this->checkBox5->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox5_CheckedChanged);
+      // 
+      // dataGridView7
+      // 
+      this->dataGridView7->AllowUserToAddRows = false;
+      this->dataGridView7->AllowUserToDeleteRows = false;
+      this->dataGridView7->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
+      this->dataGridView7->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+      this->dataGridView7->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+      this->dataGridView7->ColumnHeadersVisible = false;
+      this->dataGridView7->Location = System::Drawing::Point(221, 32);
+      this->dataGridView7->Name = L"dataGridView7";
+      this->dataGridView7->ReadOnly = true;
+      this->dataGridView7->Size = System::Drawing::Size(215, 285);
+      this->dataGridView7->TabIndex = 4;
+      // 
+      // tabPage9
+      // 
+      this->tabPage9->Controls->Add(this->checkBox6);
+      this->tabPage9->Controls->Add(this->textBox6);
+      this->tabPage9->Controls->Add(this->label8);
+      this->tabPage9->Controls->Add(this->dataGridView8);
+      this->tabPage9->Location = System::Drawing::Point(4, 22);
+      this->tabPage9->Name = L"tabPage9";
+      this->tabPage9->Padding = System::Windows::Forms::Padding(3);
+      this->tabPage9->Size = System::Drawing::Size(443, 323);
+      this->tabPage9->TabIndex = 1;
+      this->tabPage9->Text = L"Result";
+      this->tabPage9->UseVisualStyleBackColor = true;
+      // 
+      // checkBox6
+      // 
+      this->checkBox6->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+      this->checkBox6->AutoSize = true;
+      this->checkBox6->Location = System::Drawing::Point(418, 10);
+      this->checkBox6->Name = L"checkBox6";
+      this->checkBox6->Size = System::Drawing::Size(15, 14);
+      this->checkBox6->TabIndex = 9;
+      this->checkBox6->UseVisualStyleBackColor = true;
+      this->checkBox6->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox6_CheckedChanged);
+      // 
+      // textBox6
+      // 
+      this->textBox6->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
+      this->textBox6->Location = System::Drawing::Point(27, 8);
+      this->textBox6->Name = L"textBox6";
+      this->textBox6->Size = System::Drawing::Size(385, 20);
+      this->textBox6->TabIndex = 8;
+      // 
+      // label8
+      // 
+      this->label8->AutoSize = true;
+      this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+        static_cast<System::Byte>(204)));
+      this->label8->Location = System::Drawing::Point(4, 8);
+      this->label8->Name = L"label8";
+      this->label8->Size = System::Drawing::Size(16, 17);
+      this->label8->TabIndex = 7;
+      this->label8->Text = L"α";
+      // 
+      // dataGridView8
+      // 
+      this->dataGridView8->AllowUserToAddRows = false;
+      this->dataGridView8->AllowUserToDeleteRows = false;
+      this->dataGridView8->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left));
+      this->dataGridView8->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+      this->dataGridView8->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+      this->dataGridView8->ColumnHeadersVisible = false;
+      this->dataGridView8->Location = System::Drawing::Point(8, 34);
+      this->dataGridView8->Name = L"dataGridView8";
+      this->dataGridView8->ReadOnly = true;
+      this->dataGridView8->Size = System::Drawing::Size(212, 283);
+      this->dataGridView8->TabIndex = 6;
+      // 
       // tabPage3
       // 
       this->tabPage3->Controls->Add(this->tabControl2);
@@ -696,6 +902,15 @@ namespace SolidVariable {
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView5))->EndInit();
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->EndInit();
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->EndInit();
+      this->tabPage7->ResumeLayout(false);
+      this->tabControl3->ResumeLayout(false);
+      this->tabPage8->ResumeLayout(false);
+      this->tabPage8->PerformLayout();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->EndInit();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView7))->EndInit();
+      this->tabPage9->ResumeLayout(false);
+      this->tabPage9->PerformLayout();
+      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView8))->EndInit();
       this->tabPage3->ResumeLayout(false);
       this->tabControl2->ResumeLayout(false);
       this->tabPage4->ResumeLayout(false);
@@ -719,10 +934,14 @@ namespace SolidVariable {
     this->label5->Visible = false;
     this->button2->Visible = false;
     this->dataGridView4->Visible = false;
+    this->dataGridView6->Visible = false;
+    this->dataGridView7->Visible = false;
+    this->button3->Visible = false;
 
     textBox1->Text = "5";
     textBox2->Text = "15";
     textBox3->Text = "6";
+    textBox5->Text = "12";
 
     dataGridView1->RowHeadersWidth = 50;
     dataGridView2->RowHeadersWidth = 50;
@@ -735,6 +954,7 @@ namespace SolidVariable {
     checkBox4->Checked = true;
     checkBox1->Checked = true;
     checkBox3->Checked = true;
+    checkBox5->Checked = true;
     for (int i = 0; i < countN; ++i)
     {
       dataGridView1->Rows[i]->HeaderCell->Value = (i + 1).ToString();
@@ -742,7 +962,17 @@ namespace SolidVariable {
     }
     for (int i = 0; i < Convert::ToInt32(textBox3->Text); ++i)
     {
-      dataGridView4->Rows[i]->Cells[0]->Value = 0.1 + i * 0.1;
+      dataGridView4->Rows[i]->Cells[0]->Value = (0.1 + i * 0.1).ToString();
+    }
+    dataGridView6->RowCount = Convert::ToInt32(textBox5->Text) - 1;
+    dataGridView7->RowCount = Convert::ToInt32(textBox5->Text) - 1;
+    dataGridView6->RowHeadersWidth = 60;
+    dataGridView7->RowHeadersWidth = 60;
+    for (int i = 0; i < Convert::ToInt32(textBox5->Text) - 1; ++i)
+    {
+      dataGridView6->Rows[i]->HeaderCell->Value = "k_" + i.ToString();
+      dataGridView7->Rows[i]->HeaderCell->Value = "q_" + (i + 1).ToString();
+      dataGridView6->Rows[i]->Cells[0]->Value = 0.05 + i * 0.05;
     }
     //^^^^^^^^^^^^^^^^^^^^^^^
   }
@@ -820,6 +1050,42 @@ namespace SolidVariable {
       this->dataGridView5->Rows->Clear();
     }
   }
+  private: System::Void checkBox5_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+  {
+    this->textBox5->ReadOnly = checkBox5->Checked;
+
+    if (checkBox5->Checked)
+    {
+      if (textBox5->Text == "") { checkBox5->Checked = false; }
+      else
+      {
+        this->button3->Visible = true;
+        this->dataGridView6->Visible = true;
+        updateTableEnter();
+      }
+    }
+    else
+    {
+      this->dataGridView6->Visible = false;
+      this->dataGridView7->Visible = false;
+      this->button3->Visible = false;
+    }
+  }
+  private: System::Void checkBox6_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+  {
+    this->textBox6->ReadOnly = checkBox6->Checked;
+    if (checkBox6->Checked)
+    {
+      if (textBox6->Text)
+      {
+        myGirl->SetAlfa(Convert::ToDouble(textBox6->Text));
+      }
+      else
+      {
+        checkBox6->Checked = false;
+      }
+    }
+  }
 
   private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
   {
@@ -856,6 +1122,11 @@ namespace SolidVariable {
     this->label6->Visible = true;
     this->dataGridView5->Visible = true;
     this->label5->Visible = true;
+  }
+  private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e)
+  {
+    this->dataGridView7->Visible = true;
+    updateTableQ();
   }
 
   private: System::Void updateTableK()
@@ -899,6 +1170,10 @@ namespace SolidVariable {
     dataGridView3->Rows[0]->Cells[5]->Value = (std::abs(D - S2)).ToString();
     dataGridView3->Rows[0]->Cells[6]->Value = (myGirl->getMe()).ToString();
     dataGridView3->Rows[0]->Cells[7]->Value = (myGirl->getR()).ToString();
+
+    //---------------
+    textBox6->Text = (D + 0.001).ToString();
+    checkBox6->Checked = true;
   }
   private: System::Void updateTableBorder()
   {
@@ -921,6 +1196,30 @@ namespace SolidVariable {
       dataGridView5->Rows[i]->Cells[0]->Value = Convert::ToDouble(dataGridView4->Rows[i - 1]->Cells[0]->Value) +
         ((Convert::ToDouble(dataGridView4->Rows[i]->Cells[0]->Value) -
         Convert::ToDouble(dataGridView4->Rows[i - 1]->Cells[0]->Value)) / 2);
+    }
+  }
+  private: System::Void updateTableEnter()
+  {
+    dataGridView6->RowCount = Convert::ToInt32(textBox5->Text) - 1;
+    dataGridView7->RowCount = Convert::ToInt32(textBox5->Text) - 1;
+    dataGridView6->RowHeadersWidth = 60;
+    dataGridView7->RowHeadersWidth = 60;
+
+    for (int i = 0; i < Convert::ToInt32(textBox5->Text) - 1; ++i)
+    {
+      dataGridView6->Rows[i]->HeaderCell->Value = "k_" + i.ToString();
+      dataGridView7->Rows[i]->HeaderCell->Value = "q_" + (i + 1).ToString();
+    }
+  }
+  private: System::Void updateTableQ()
+  {
+    int n = Convert::ToInt32(textBox5->Text) - 1;
+    dataGridView7->Rows[0]->Cells[0]->Value = myGirl->getDefen(Convert::ToDouble(dataGridView6->Rows[0]->Cells[0]->Value->ToString()), 0.0);
+
+    for (int i = 1; i < n; ++i)
+    {
+      dataGridView7->Rows[i]->Cells[0]->Value = myGirl->getDefen(Convert::ToDouble(dataGridView6->Rows[i]->Cells[0]->Value->ToString()),
+                                                                 Convert::ToDouble(dataGridView6->Rows[i - 1]->Cells[0]->Value->ToString()));
     }
   }
 
@@ -1010,8 +1309,8 @@ namespace SolidVariable {
     }
 
     listMain->Add(0., 0.);
-    listMain->Add(0., midleVal[0]);
-    listMain->Add(Convert::ToDouble(dataGridView4->Rows[0]->Cells[0]->Value->ToString()), midleVal[0]);
+    listMain->Add(0., midleVal[0] / Convert::ToDouble(dataGridView4->Rows[0]->Cells[0]->Value->ToString()));
+    listMain->Add(Convert::ToDouble(dataGridView4->Rows[0]->Cells[0]->Value->ToString()), midleVal[0] / Convert::ToDouble(dataGridView4->Rows[0]->Cells[0]->Value->ToString()));
     listMain->Add(Convert::ToDouble(dataGridView4->Rows[0]->Cells[0]->Value->ToString()), 0.);
     dataGridView5->Rows[0]->Cells[1]->Value = (myGirl->getZ(Convert::ToDouble(dataGridView5->Rows[0]->Cells[0]->Value->ToString())) /
                                                Convert::ToDouble(dataGridView4->Rows[0]->Cells[0]->Value->ToString())).ToString();
@@ -1020,18 +1319,20 @@ namespace SolidVariable {
 
     for (int k = 1; k < myGirl->getNumberBorders(); ++k)
     {
-      listMain->Add(Convert::ToDouble(dataGridView4->Rows[k - 1]->Cells[0]->Value->ToString()), midleVal[k]);
-      listMain->Add(Convert::ToDouble(dataGridView4->Rows[k]->Cells[0]->Value->ToString()), midleVal[k]);
+      double tmp = midleVal[k] /
+                   (Convert::ToDouble(dataGridView4->Rows[k]->Cells[0]->Value->ToString()) -
+                    Convert::ToDouble(dataGridView4->Rows[k - 1]->Cells[0]->Value->ToString()));
+
+      listMain->Add(Convert::ToDouble(dataGridView4->Rows[k - 1]->Cells[0]->Value->ToString()), tmp);
+      listMain->Add(Convert::ToDouble(dataGridView4->Rows[k]->Cells[0]->Value->ToString()), tmp);
       listMain->Add(Convert::ToDouble(dataGridView4->Rows[k]->Cells[0]->Value->ToString()), 0);
       dataGridView5->Rows[k]->Cells[1]->Value = (myGirl->getZ(Convert::ToDouble(dataGridView5->Rows[k]->Cells[0]->Value->ToString())) / 
                                                  (Convert::ToDouble(dataGridView4->Rows[k]->Cells[0]->Value->ToString()) -
                                                  Convert::ToDouble(dataGridView4->Rows[k - 1]->Cells[0]->Value->ToString()))).ToString();
-      dataGridView5->Rows[k]->Cells[2]->Value = (midleVal[k] / 
-                                                 (Convert::ToDouble(dataGridView4->Rows[k]->Cells[0]->Value->ToString()) -
-                                                 Convert::ToDouble(dataGridView4->Rows[k - 1]->Cells[0]->Value->ToString()))).ToString();
-      double tmp = abs(Convert::ToDouble(dataGridView5->Rows[k]->Cells[2]->Value->ToString()) -
+      dataGridView5->Rows[k]->Cells[2]->Value = tmp.ToString();
+      double temp = abs(Convert::ToDouble(dataGridView5->Rows[k]->Cells[2]->Value->ToString()) -
                        Convert::ToDouble(dataGridView5->Rows[k]->Cells[1]->Value->ToString()));
-      if (tmp > MaxDef) { MaxDef = tmp; }
+      if (temp > MaxDef) { MaxDef = temp; }
     }
     textBox4->Text = MaxDef.ToString();
 
@@ -1064,5 +1365,5 @@ namespace SolidVariable {
       e->Handled = true;
     }
   }
-  };
+};
 }

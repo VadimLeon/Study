@@ -14,6 +14,8 @@ public:
   void SetMidTime(std::vector<double> ins, int n, bool isUpdate = false);
   void SetNumberBorders(int N);
   void SetBordersValue(std::vector<double> value);
+  void SetAlfa(double alfa) { alpfa = alfa; }
+  double GetAlfa() const { return alpfa; }
 
   std::multimap<double, int> getBestBoys() { return firstBoys; }
   std::vector<double> getBordersValue();
@@ -30,6 +32,7 @@ public:
   double getZ(double _x);
   double getY(double _x);
   double getY(double _x, double _mathWait);
+  double getDefen(double x1, double x2);
 
 private:
   void   getRand(bool isUpdate = false);
@@ -37,6 +40,7 @@ private:
   void   calculate();
 
 protected:
+  double alpfa;                         // a
   double sampleMean;                    // x'
   double sampleVariance;                // S^2
   double sampleRange;                   // R"
