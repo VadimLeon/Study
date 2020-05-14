@@ -84,6 +84,11 @@ double PossibilityMeeting::getY(double _x, double _mathWait)
   return (1. - exp(-(_x / _mathWait)));
 }
 
+double PossibilityMeeting::getDefen(double x1, double x2)
+{
+  return ((1. - exp(-(x1 / midleTime))) - (1. - exp(-(x2 / midleTime))));
+}
+
 void PossibilityMeeting::calculate()
 {
   double sum = 0.;
