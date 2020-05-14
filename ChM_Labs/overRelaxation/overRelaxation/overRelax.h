@@ -1,10 +1,6 @@
 #pragma once
-#include <vector>
 #include "NumericalMethodsBase.h"
 #include "Methods.h"
-#include <math.h>
-
-#define _USE_MATH_DEFINES
 
 class OverRelax : public NumericalMethodsBase
 {
@@ -16,13 +12,6 @@ public:
 
   void solveDifferenceScheme(bool isTest);
 
-
-  double getV(int i, int j) const;
-  double getU(int i, int j) const;
-
   double getMaxR(int &x, int &y);
   double getMaxR(const OverRelax& instance, int& x, int& y);
-  double getMaxZ();
-
 };
-

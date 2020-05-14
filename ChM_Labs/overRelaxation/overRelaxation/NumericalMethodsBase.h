@@ -22,6 +22,10 @@ public:
   int getW() const;
   int getH() const;
   int getCountIt() const;
+  double getMaxR(int &x, int &y);
+  double getMaxZ();
+  double getV(int i, int j) const;
+  double getU(int i, int j) const;
 
   // Functions of boundary and solucion
   double ft(double x, double y);

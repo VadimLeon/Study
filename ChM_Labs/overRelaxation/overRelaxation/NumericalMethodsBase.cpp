@@ -182,3 +182,56 @@ void NumericalMethodsBase::setParameters(int _xNumberStep, int _yNumberStep, dou
   u = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
 }
 
+double NumericalMethodsBase::getMaxR(int &x, int &y)
+{
+  double Rmax = 0., tmp;
+
+  for (int i = 0; i < xNumberStep; ++i)
+  {
+    for (int j = 0; j < yNumberStep; ++j)
+    {
+      tmp = std::fabs(u[i][j] - v[i][j]);
+      if (tmp > Rmax)
+      {
+        Rmax = tmp;
+        x = i;
+        y = j;
+      }
+    }
+  }
+
+  return Rmax;
+}
+
+double NumericalMethodsBase::getMaxZ()
+{
+  double h2 = 1 / sqr(h);
+  double k2 = 1 / sqr(k);
+  double a2 = 2 * (h2 + k2);
+  double Z2 = 0.0, Z;
+
+  for (int j = 1; j < yNumberStep; j++)
+  {
+    for (int i = 1; i < xNumberStep; i++)
+    {
+      Z = -a2 * v[i][j] + h2 * (v[i + 1][j] + v[i - 1][j]) + k2 * (v[i][j + 1] + v[i][j - 1]);
+      Z += u[i][j];
+      Z2 += sqr(Z);
+    }
+  }
+  Z2 = sqrt(Z2);
+
+  return Z2;
+}
+
+// Geter methods
+double NumericalMethodsBase::getV(int i, int j) const
+{
+  return v[i][j];
+}
+
+double NumericalMethodsBase::getU(int i, int j) const
+{
+  return u[i][j];
+}
+
