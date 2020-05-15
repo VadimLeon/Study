@@ -1,3 +1,4 @@
+#include <iostream>
 #include "SimpleIteration.h"
 #include "Methods.h"
 
@@ -6,14 +7,14 @@ SimpleIteration::SimpleIteration() : NumericalMethodsBase()
 {}
 
 SimpleIteration::SimpleIteration(const SimpleIteration& _instance) : NumericalMethodsBase(_instance.xNumberStep, _instance.yNumberStep,
-                                                                                          _instance.eps,         _instance.maxCountStep,
-                                                                                          _instance.xRight,      _instance.xLeft,
-                                                                                          _instance.yRight,      _instance.yLeft,
+                                                                                          _instance.eps, _instance.maxCountStep,
+                                                                                          _instance.xRight, _instance.xLeft,
+                                                                                          _instance.yRight, _instance.yLeft,
                                                                                           _instance.omega)
 {}
 
 SimpleIteration::SimpleIteration(int _xNumberStep, int _yNumberStep,
-                                 double _eps,    double _maxCountStep,
+                                 double _eps, double _maxCountStep,
                                  double _xRight, double _xLeft, double _yRight, double _yLeft,
                                  double _omega) :
                                  NumericalMethodsBase(_xNumberStep, _yNumberStep, _eps, _maxCountStep, _xRight, _xLeft, _yRight, _yLeft, _omega)
@@ -41,11 +42,11 @@ void SimpleIteration::solveDifferenceScheme(bool isTest)
     {
       for (int i = 1; i < xNumberStep; ++i)
       {
-        newv[i][j] = (h2 * (v[i + 1][j] + v[i - 1][j]) + k2 * (v[i][j + 1] + v[i][j - 1]));
+        newv[i][j] = (h2 * (v[i + 1][j] - 2 * v[i][j] + v[i - 1][j]) + k2 * (v[i][j + 1] - 2 * v[i][j] + v[i][j - 1]));
         newv[i][j] += isTest ? ft(getX(i), getY(j)) :
                                muu(getX(i), getY(j));
-        newv[i][j] *= omega / a2;
-        newv[i][j] += (1 - omega) * v[i][j];
+        newv[i][j] *= omega;
+        newv[i][j] += v[i][j];
         double currEps = std::fabs(newv[i][j] - v[i][j]);
         if (currEps > maxEps) maxEps = currEps;
       }
@@ -57,9 +58,9 @@ void SimpleIteration::solveDifferenceScheme(bool isTest)
 
 void SimpleIteration::revertv()
 {
-  for (int j = 1; j < yNumberStep; ++j)
+  for (int i = 1; i < xNumberStep; ++i)
   {
-    for (int i = 1; i < xNumberStep; ++i)
+    for (int j = 1; j < yNumberStep; ++j)
     {
       v[i][j] = newv[i][j];
     }
@@ -111,7 +112,7 @@ void SimpleIteration::setParameters(int _xNumberStep, int _yNumberStep, double _
 
   if (!newv.size()) resetParameters();
 
-  newv = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
+  newv = (std::vector<std::vector<double>>(_xNumberStep + 1, std::vector<double>(_yNumberStep + 1)));
 }
 
 void SimpleIteration::setOmega(double _omega, bool isNorm)

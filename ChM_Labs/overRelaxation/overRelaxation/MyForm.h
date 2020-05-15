@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <math.h>
+#include <iostream>
 #define _USE_MATH_DEFINES
 
 #include "overRelax.h"
@@ -806,7 +807,7 @@ namespace overRelaxation {
     dataGridView6->ColumnHeadersVisible = false;
     checkBox1->Checked = true;
     radioButton1->Checked = true;
-    comboBox1->SelectedIndex = 0;
+    comboBox1->SelectedIndex = 1;
   }
 
   private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -867,8 +868,8 @@ namespace overRelaxation {
       {
         case 0:
           mainOver1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
-          mainOver2.setParameters(2 * n, 2 * m, eps, countStep, a, b, c, d, omega);
           mainOver1.solveDifferenceScheme(false);
+          mainOver2.setParameters(2 * n, 2 * m, eps, countStep, a, b, c, d, omega);
           mainOver2.solveDifferenceScheme(false);
           resetHedarsTableM();
           updateTableOver_m();
@@ -879,8 +880,8 @@ namespace overRelaxation {
         
         case 1:
           mainSIt1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
-          mainSIt2.setParameters(2 * n, 2 * m, eps, countStep, a, b, c, d, omega);
           mainSIt1.solveDifferenceScheme(false);
+          mainSIt2.setParameters((2 * n), (2 * m), eps, countStep, a, b, c, d, omega);
           mainSIt2.solveDifferenceScheme(false);
           resetHedarsTableM();
           updateTableSit_m();

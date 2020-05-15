@@ -60,13 +60,14 @@ void NumericalMethodsBase::setParameter(int _xNumberStep, int _yNumberStep, doub
 {
   xNumberStep = _xNumberStep;
   yNumberStep = _yNumberStep;
-  xLeft = _xLeft;
-  yRight = _yRight;
-  yLeft = _yLeft;
+  xLeft  = _xLeft;
   xRight = _xRight;
+  yLeft  = _yLeft;
+  yRight = _yRight;
   eps = _eps;
   omega = _omega;
   maxCountStep = _maxCountStep;
+  maxEps = 0.0;
   countIteration = 0;
 
   updateSteps();

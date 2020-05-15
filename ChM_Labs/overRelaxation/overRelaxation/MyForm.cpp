@@ -1,5 +1,7 @@
 #include "MyForm.h"
 
+#include "SimpleIteration.h"
+
 using namespace System;
 using namespace System::Windows::Forms;
 

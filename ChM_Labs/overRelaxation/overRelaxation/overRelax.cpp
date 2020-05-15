@@ -24,7 +24,7 @@ void OverRelax::solveDifferenceScheme(bool isTest)
         v[i][j] += isTest ? ft(getX(i), getY(j)) :
                             muu(getX(i), getY(j));
         v[i][j] *= omega / a2;
-        v[i][j] += (1 - omega) * oldV;
+        v[i][j] += (1.0 - omega) * oldV;
         double currEps = std::fabs(oldV - v[i][j]);
         if (currEps > maxEps) maxEps = currEps;
       }
