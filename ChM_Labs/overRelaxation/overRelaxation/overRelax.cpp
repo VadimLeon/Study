@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+
 #include "overRelax.h"
 
 // Solving difference scheme
@@ -34,6 +36,19 @@ void OverRelax::solveDifferenceScheme(bool isTest)
 void OverRelax::setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xRight, double _xLeft, double _yRight, double _yLeft, double _omega)
 {
   NumericalMethodsBase::setParameter(_xNumberStep, _yNumberStep, _eps, _maxCountStep, _xRight, _xLeft, _yRight, _yLeft, _omega);
+}
+
+void OverRelax::setOmega(double _omega, bool isNorm)
+{
+  if (isNorm)
+  {
+    double tmp = 1. + sqrt(4 * sqr(sin(M_PI * h * 0.5)));
+    NumericalMethodsBase::setOmeg(2.0 / tmp);
+  }
+  else
+  {
+    NumericalMethodsBase::setOmeg(_omega);
+  }
 }
 
 double OverRelax::getMaxR(const OverRelax& instance, int& x, int& y)

@@ -5,6 +5,7 @@ class NumericalMethodsBase
 {
 protected:
   void updateSteps();
+  void setOmeg(double _omega);
 
 public:
   NumericalMethodsBase();
@@ -13,13 +14,11 @@ public:
   ~NumericalMethodsBase();
 
   void setParameter(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega);
+  void setH(double _h);
   void resetParameter();
 
   void initTest();
   void initMain();
-
-  virtual void solveDifferenceScheme(){}
-  void setOmega(double _omega);
 
   double getX(int i);
   double getY(int J);
@@ -27,6 +26,7 @@ public:
   int    getW() const;
   int    getH() const;
   int    getCountIt() const;
+  double getOmega() const;
   double getMaxR(int &x, int &y);
   double getMaxZ();
   double getV(int i, int j) const;

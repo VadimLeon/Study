@@ -10,9 +10,11 @@ public:
   OverRelax(const OverRelax& _instance);
   ~OverRelax();
 
-  void solveDifferenceScheme(bool isTest);
+  virtual void solveDifferenceScheme(bool isTest);
 
-  void   setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xRight, double _xLeft, double _yRight, double _yLeft, double _omega = 1.0);
+  void setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xRight, double _xLeft, double _yRight, double _yLeft, double _omega = 1.0);
+  virtual void setOmega(double _omega, bool isNorm = false);
+    
   double getMaxR(int &x, int &y);
   double getMaxR(const OverRelax& instance, int& x, int& y);
 };

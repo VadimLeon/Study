@@ -1,9 +1,7 @@
 #define _USE_MATH_DEFINES
-
 #include "NumericalMethodsBase.h"
 #include "Methods.h"
 #include <math.h>
-
 
 void NumericalMethodsBase::updateSteps()
 {
@@ -79,9 +77,14 @@ void NumericalMethodsBase::setParameter(int _xNumberStep, int _yNumberStep, doub
   u = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
 }
 
-void NumericalMethodsBase::setOmega(double _omega)
+void NumericalMethodsBase::setOmeg(double _omega)
 {
   omega = _omega;
+}
+
+void NumericalMethodsBase::setH(double _h)
+{
+  h = _h;
 }
 
 // Geter methods
@@ -128,6 +131,11 @@ int NumericalMethodsBase::getH() const
 int NumericalMethodsBase::getCountIt() const
 {
   return countIteration;
+}
+
+double NumericalMethodsBase::getOmega() const
+{
+  return omega;
 }
 
 double NumericalMethodsBase::getMaxR(int &x, int &y)
