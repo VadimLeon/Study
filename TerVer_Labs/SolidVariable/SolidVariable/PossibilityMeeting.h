@@ -45,7 +45,7 @@ protected:
   double sampleVariance;                // S^2
   double sampleRange;                   // R"
   double sampleMedian;                  // Me"
-  double midleTime;                     // Middle math waiting
+  double minTime;                       // Minimum math waiting
   int N;                                // Number of boyfriend
   int count;                            // Count of experiments
   int numberBorders;                    // Number of Gap Boundaries

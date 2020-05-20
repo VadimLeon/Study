@@ -43,13 +43,12 @@ void PossibilityMeeting::SetMidTime(std::vector<double> ins, int n, bool isUpdat
   if (!midTime.empty()) midTime.clear();
   if (!firstBoys.empty()) firstBoys.clear();
 
-  midleTime = 0.;
+  minTime = 1000.0;
   for (int i = 0; i < N; ++i)
   {
     midTime.push_back(ins[i]);
-    midleTime += ins[i];
+    if (ins[i] < minTime) minTime = ins[i];
   }
-  midleTime /= N;
 
   getRand(isUpdate);
 }
@@ -71,12 +70,12 @@ void PossibilityMeeting::SetBordersValue(std::vector<double> value)
 
 double PossibilityMeeting::getY(double _x)
 {
-  return (1. - exp(-(_x / midleTime)));
+  return (1. - exp(-(_x / minTime)));
 }
 
 double PossibilityMeeting::getZ(double _x)
 {
-  return (exp(-(_x / midleTime)));
+  return (exp(-(_x / minTime)));
 }
 
 double PossibilityMeeting::getY(double _x, double _mathWait)
@@ -86,7 +85,7 @@ double PossibilityMeeting::getY(double _x, double _mathWait)
 
 double PossibilityMeeting::getDefen(double x1, double x2)
 {
-  return ((1. - exp(-(x1 / midleTime))) - (1. - exp(-(x2 / midleTime))));
+  return ((1. - exp(-(x1 / minTime))) - (1. - exp(-(x2 / minTime))));
 }
 
 void PossibilityMeeting::calculate()
@@ -133,7 +132,7 @@ int  PossibilityMeeting::getCount() const
 
 double PossibilityMeeting::getE()  const
 {
-  return midleTime;
+  return minTime;
 }
 
 double PossibilityMeeting::getR() const

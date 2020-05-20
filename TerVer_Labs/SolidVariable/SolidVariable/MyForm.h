@@ -101,6 +101,10 @@ namespace SolidVariable {
   private: System::Windows::Forms::CheckBox^  checkBox6;
   private: System::Windows::Forms::TextBox^  textBox6;
   private: System::Windows::Forms::Label^  label8;
+  private: System::Windows::Forms::TextBox^  textBox8;
+  private: System::Windows::Forms::TextBox^  textBox7;
+  private: System::Windows::Forms::Label^  label9;
+  private: System::Windows::Forms::Label^  label10;
   private: System::ComponentModel::IContainer^  components;
 
   protected:
@@ -178,6 +182,10 @@ namespace SolidVariable {
       this->zedGraphControl2 = (gcnew ZedGraph::ZedGraphControl());
       this->tabPage6 = (gcnew System::Windows::Forms::TabPage());
       this->zedGraphControl3 = (gcnew ZedGraph::ZedGraphControl());
+      this->label9 = (gcnew System::Windows::Forms::Label());
+      this->textBox7 = (gcnew System::Windows::Forms::TextBox());
+      this->textBox8 = (gcnew System::Windows::Forms::TextBox());
+      this->label10 = (gcnew System::Windows::Forms::Label());
       this->tabControl1->SuspendLayout();
       this->tabPage1->SuspendLayout();
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
@@ -715,6 +723,10 @@ namespace SolidVariable {
       // 
       // tabPage9
       // 
+      this->tabPage9->Controls->Add(this->label10);
+      this->tabPage9->Controls->Add(this->textBox8);
+      this->tabPage9->Controls->Add(this->textBox7);
+      this->tabPage9->Controls->Add(this->label9);
       this->tabPage9->Controls->Add(this->checkBox6);
       this->tabPage9->Controls->Add(this->textBox6);
       this->tabPage9->Controls->Add(this->label8);
@@ -767,181 +779,10 @@ namespace SolidVariable {
       this->dataGridView8->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
       this->dataGridView8->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
       this->dataGridView8->ColumnHeadersVisible = false;
-      this->dataGridView8->Location = System::Drawing::Point(8, 34);
+      this->dataGridView8->Location = System::Drawing::Point(8, 139);
       this->dataGridView8->Name = L"dataGridView8";
       this->dataGridView8->ReadOnly = true;
-      this->dataGridView8->Size = System::Drawing::Size(212, 283);
-      this->dataGridView8->TabIndex = 6;
-      // 
-      // tabPage7
-      // 
-      this->tabPage7->Controls->Add(this->tabControl3);
-      this->tabPage7->Location = System::Drawing::Point(4, 22);
-      this->tabPage7->Name = L"tabPage7";
-      this->tabPage7->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage7->Size = System::Drawing::Size(443, 345);
-      this->tabPage7->TabIndex = 3;
-      this->tabPage7->Text = L"Decision-making";
-      this->tabPage7->UseVisualStyleBackColor = true;
-      // 
-      // tabControl3
-      // 
-      this->tabControl3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-        | System::Windows::Forms::AnchorStyles::Left)
-        | System::Windows::Forms::AnchorStyles::Right));
-      this->tabControl3->Controls->Add(this->tabPage8);
-      this->tabControl3->Controls->Add(this->tabPage9);
-      this->tabControl3->Location = System::Drawing::Point(-4, 0);
-      this->tabControl3->Name = L"tabControl3";
-      this->tabControl3->SelectedIndex = 0;
-      this->tabControl3->Size = System::Drawing::Size(451, 349);
-      this->tabControl3->TabIndex = 7;
-      // 
-      // tabPage8
-      // 
-      this->tabPage8->Controls->Add(this->label7);
-      this->tabPage8->Controls->Add(this->button3);
-      this->tabPage8->Controls->Add(this->textBox5);
-      this->tabPage8->Controls->Add(this->dataGridView6);
-      this->tabPage8->Controls->Add(this->checkBox5);
-      this->tabPage8->Controls->Add(this->dataGridView7);
-      this->tabPage8->Location = System::Drawing::Point(4, 22);
-      this->tabPage8->Name = L"tabPage8";
-      this->tabPage8->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage8->Size = System::Drawing::Size(443, 323);
-      this->tabPage8->TabIndex = 0;
-      this->tabPage8->Text = L"Enter";
-      this->tabPage8->UseVisualStyleBackColor = true;
-      // 
-      // label7
-      // 
-      this->label7->AutoSize = true;
-      this->label7->Location = System::Drawing::Point(6, 10);
-      this->label7->Name = L"label7";
-      this->label7->Size = System::Drawing::Size(82, 13);
-      this->label7->TabIndex = 0;
-      this->label7->Text = L"Number of splits";
-      // 
-      // button3
-      // 
-      this->button3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-      this->button3->Location = System::Drawing::Point(6, 297);
-      this->button3->Name = L"button3";
-      this->button3->Size = System::Drawing::Size(209, 23);
-      this->button3->TabIndex = 6;
-      this->button3->Text = L"OK";
-      this->button3->UseVisualStyleBackColor = true;
-      this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
-      // 
-      // textBox5
-      // 
-      this->textBox5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-        | System::Windows::Forms::AnchorStyles::Right));
-      this->textBox5->Location = System::Drawing::Point(94, 6);
-      this->textBox5->Name = L"textBox5";
-      this->textBox5->Size = System::Drawing::Size(321, 20);
-      this->textBox5->TabIndex = 1;
-      // 
-      // dataGridView6
-      // 
-      this->dataGridView6->AllowUserToAddRows = false;
-      this->dataGridView6->AllowUserToDeleteRows = false;
-      this->dataGridView6->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-        | System::Windows::Forms::AnchorStyles::Left));
-      this->dataGridView6->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-      this->dataGridView6->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView6->ColumnHeadersVisible = false;
-      this->dataGridView6->Location = System::Drawing::Point(6, 32);
-      this->dataGridView6->Name = L"dataGridView6";
-      this->dataGridView6->ReadOnly = true;
-      this->dataGridView6->Size = System::Drawing::Size(209, 259);
-      this->dataGridView6->TabIndex = 3;
-      // 
-      // checkBox5
-      // 
-      this->checkBox5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-      this->checkBox5->AutoSize = true;
-      this->checkBox5->Location = System::Drawing::Point(421, 9);
-      this->checkBox5->Name = L"checkBox5";
-      this->checkBox5->Size = System::Drawing::Size(15, 14);
-      this->checkBox5->TabIndex = 2;
-      this->checkBox5->UseVisualStyleBackColor = true;
-      this->checkBox5->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox5_CheckedChanged);
-      // 
-      // dataGridView7
-      // 
-      this->dataGridView7->AllowUserToAddRows = false;
-      this->dataGridView7->AllowUserToDeleteRows = false;
-      this->dataGridView7->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-        | System::Windows::Forms::AnchorStyles::Left)
-        | System::Windows::Forms::AnchorStyles::Right));
-      this->dataGridView7->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-      this->dataGridView7->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView7->ColumnHeadersVisible = false;
-      this->dataGridView7->Location = System::Drawing::Point(221, 32);
-      this->dataGridView7->Name = L"dataGridView7";
-      this->dataGridView7->ReadOnly = true;
-      this->dataGridView7->Size = System::Drawing::Size(215, 285);
-      this->dataGridView7->TabIndex = 4;
-      // 
-      // tabPage9
-      // 
-      this->tabPage9->Controls->Add(this->checkBox6);
-      this->tabPage9->Controls->Add(this->textBox6);
-      this->tabPage9->Controls->Add(this->label8);
-      this->tabPage9->Controls->Add(this->dataGridView8);
-      this->tabPage9->Location = System::Drawing::Point(4, 22);
-      this->tabPage9->Name = L"tabPage9";
-      this->tabPage9->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage9->Size = System::Drawing::Size(443, 323);
-      this->tabPage9->TabIndex = 1;
-      this->tabPage9->Text = L"Result";
-      this->tabPage9->UseVisualStyleBackColor = true;
-      // 
-      // checkBox6
-      // 
-      this->checkBox6->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-      this->checkBox6->AutoSize = true;
-      this->checkBox6->Location = System::Drawing::Point(418, 10);
-      this->checkBox6->Name = L"checkBox6";
-      this->checkBox6->Size = System::Drawing::Size(15, 14);
-      this->checkBox6->TabIndex = 9;
-      this->checkBox6->UseVisualStyleBackColor = true;
-      this->checkBox6->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox6_CheckedChanged);
-      // 
-      // textBox6
-      // 
-      this->textBox6->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-        | System::Windows::Forms::AnchorStyles::Right));
-      this->textBox6->Location = System::Drawing::Point(27, 8);
-      this->textBox6->Name = L"textBox6";
-      this->textBox6->Size = System::Drawing::Size(385, 20);
-      this->textBox6->TabIndex = 8;
-      // 
-      // label8
-      // 
-      this->label8->AutoSize = true;
-      this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-        static_cast<System::Byte>(204)));
-      this->label8->Location = System::Drawing::Point(4, 8);
-      this->label8->Name = L"label8";
-      this->label8->Size = System::Drawing::Size(16, 17);
-      this->label8->TabIndex = 7;
-      this->label8->Text = L"α";
-      // 
-      // dataGridView8
-      // 
-      this->dataGridView8->AllowUserToAddRows = false;
-      this->dataGridView8->AllowUserToDeleteRows = false;
-      this->dataGridView8->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-        | System::Windows::Forms::AnchorStyles::Left));
-      this->dataGridView8->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-      this->dataGridView8->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView8->ColumnHeadersVisible = false;
-      this->dataGridView8->Location = System::Drawing::Point(8, 34);
-      this->dataGridView8->Name = L"dataGridView8";
-      this->dataGridView8->ReadOnly = true;
-      this->dataGridView8->Size = System::Drawing::Size(212, 283);
+      this->dataGridView8->Size = System::Drawing::Size(212, 178);
       this->dataGridView8->TabIndex = 6;
       // 
       // tabPage3
@@ -1052,6 +893,44 @@ namespace SolidVariable {
       this->zedGraphControl3->ScrollMinY2 = 0;
       this->zedGraphControl3->Size = System::Drawing::Size(437, 317);
       this->zedGraphControl3->TabIndex = 0;
+      // 
+      // label9
+      // 
+      this->label9->AutoSize = true;
+      this->label9->Location = System::Drawing::Point(3, 41);
+      this->label9->Name = L"label9";
+      this->label9->Size = System::Drawing::Size(39, 13);
+      this->label9->TabIndex = 10;
+      this->label9->Text = L"F(R_0)";
+      // 
+      // textBox7
+      // 
+      this->textBox7->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
+      this->textBox7->Location = System::Drawing::Point(50, 38);
+      this->textBox7->Name = L"textBox7";
+      this->textBox7->ReadOnly = true;
+      this->textBox7->Size = System::Drawing::Size(362, 20);
+      this->textBox7->TabIndex = 11;
+      // 
+      // textBox8
+      // 
+      this->textBox8->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
+      this->textBox8->Location = System::Drawing::Point(50, 65);
+      this->textBox8->Name = L"textBox8";
+      this->textBox8->ReadOnly = true;
+      this->textBox8->Size = System::Drawing::Size(362, 20);
+      this->textBox8->TabIndex = 12;
+      // 
+      // label10
+      // 
+      this->label10->AutoSize = true;
+      this->label10->Location = System::Drawing::Point(3, 68);
+      this->label10->Name = L"label10";
+      this->label10->Size = System::Drawing::Size(27, 13);
+      this->label10->TabIndex = 13;
+      this->label10->Text = L"H_0";
       // 
       // MyForm
       // 
