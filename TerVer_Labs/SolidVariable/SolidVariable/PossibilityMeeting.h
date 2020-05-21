@@ -34,6 +34,10 @@ public:
   double getY(double _x, double _mathWait);
   double getDefen(double x1, double x2);
 
+
+  std::multimap<double, int> getTimeMup() { return timeMap; }
+  std::multimap<double, int> getChanceMup() { return chanceMup; }
+
 private:
   void   getRand(bool isUpdate = false);
   double getTime(double ran, int k);
@@ -52,5 +56,8 @@ protected:
   std::vector<double> borders;          // Values of Gap Boundaries
   std::vector<double> midTime;          // Arrays: middle value distribution
   std::multimap<double, int> firstBoys; // All boyfrends in first position in 'count' experiments
+
+  std::multimap<double, int> timeMap;   // First time guys
+  std::multimap<double, int> chanceMup; // Uniform distribution from 0 to 1
 };
 
