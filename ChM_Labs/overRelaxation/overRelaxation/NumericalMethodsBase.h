@@ -52,5 +52,6 @@ protected:
   double omega;             // Parameter of method
 
   std::vector<std::vector<double> > v;  // Iterative solution
+  std::vector<std::vector<double> > v2;  // Iterative solution
   std::vector<std::vector<double> > u;  // Exact solution
 };

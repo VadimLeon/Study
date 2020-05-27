@@ -75,6 +75,7 @@ void NumericalMethodsBase::setParameter(int _xNumberStep, int _yNumberStep, doub
   if (!v.size()) resetParameter();
 
   v = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
+  v2 = (std::vector<std::vector<double>>((xNumberStep * 2) + 1, std::vector<double>((yNumberStep * 2) + 1)));
   u = (std::vector<std::vector<double>>(xNumberStep + 1, std::vector<double>(yNumberStep + 1)));
 }
 
@@ -257,6 +258,23 @@ void NumericalMethodsBase::initMain()
     for (int i = 1; i < xNumberStep; i++)
     {
       v[i][j] = v[0][j] + steph * i;
+    }
+  }
+
+  for (int i = 0, j = 0; i < 2 * xNumberStep + 1 || j < 2 * yNumberStep + 1; ++i, ++j)
+  {
+    v2[i][0] = mux(0.5 * h);
+    v2[i][2 * yNumberStep] = mux(0.5 * h);
+    v2[0][j] = muy(0.5 * k);
+    v2[2 * xNumberStep][j] = muy(0.5 * k);
+  }
+  for (int j = 1; j < 2 * yNumberStep; ++j)
+  {
+    double steph = (v2[2 * xNumberStep][j] - v2[0][j]) / (2 * xNumberStep);
+
+    for (int i = 1; i < 2 * xNumberStep; i++)
+    {
+      v2[i][j] = v2[0][j] + steph * i;
     }
   }
 }

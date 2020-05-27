@@ -10,7 +10,7 @@ namespace overRelaxation {
 
   SimpleIteration testSIt;
   SimpleIteration mainSIt1;
-//  SimpleIteration mainSIt2;
+  SimpleIteration mainSIt2;
   OverRelax testOver;
   OverRelax mainOver1;
   OverRelax mainOver2;
@@ -807,7 +807,7 @@ namespace overRelaxation {
     dataGridView6->ColumnHeadersVisible = false;
     checkBox1->Checked = true;
     radioButton1->Checked = true;
-    comboBox1->SelectedIndex = 1;
+    comboBox1->SelectedIndex = 3;
   }
 
   private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -881,8 +881,8 @@ namespace overRelaxation {
         case 1:
           mainSIt1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
           mainSIt1.solveDifferenceScheme(false);
-          //mainSIt2.setParameters((2 * n), (2 * m), eps, countStep, a, b, c, d, omega);
-          //mainSIt2.solveDifferenceScheme(false);
+          mainSIt2.setParameters((2 * n), (2 * m), eps, countStep, a, b, c, d, sqr(0.5 * h) * 0.25);
+          mainSIt2.solveDifferenceScheme(false);
           resetHedarsTableM();
           updateTableSit_m();
           textBox3->Text = mainSIt1.getCountIt().ToString();
@@ -937,11 +937,11 @@ namespace overRelaxation {
 
         testSIt.setH(h);
         mainSIt1.setH(h);
-//        mainSIt2.setH(h);
+        mainSIt2.setH(h);
 
         testSIt.setOmega(0.0, true);
         mainSIt1.setOmega(0.0, true);
- //       mainSIt2.setOmega(0.0, true);
+        mainSIt2.set2Omega(0.0, true);
 
         omega = testSIt.getOmega();
 
@@ -973,7 +973,7 @@ namespace overRelaxation {
 
         testSIt.setOmega(omega);
         mainSIt1.setOmega(omega);
-//        mainSIt2.setOmega(omega);
+        mainSIt2.set2Omega(omega, true);
         break;
 
       case 2:
@@ -1028,7 +1028,7 @@ namespace overRelaxation {
       dataGridView6->Rows[i]->Cells[0]->Value = n - i + 2;
     }
     for (int i = (int)n * 2 + 2; i > 1; i--) {
-      dataGridView5->Rows[i]->Cells[1]->Value = k * 0.5 * (n - i + 2);
+      dataGridView5->Rows[i]->Cells[1]->Value = k * 0.5 * (n * 2 - i + 2);
       dataGridView5->Rows[i]->Cells[0]->Value = n * 2 - i + 2;
     }
   }
@@ -1131,7 +1131,7 @@ namespace overRelaxation {
       for (int j = 2; j < mainSIt1.getH() + 3; j++)
       {
         dataGridView4->Rows[mainSIt1.getH() - j + 4]->Cells[i]->Value = mainSIt1.getV(i - 2, j - 2).ToString("E");
-        tmpR = abs(mainSIt1.get2V(2 * i - 4, 2 * j - 4) - mainSIt1.getV(i - 2, j - 2));
+        tmpR = abs(mainSIt2.getV(2 * i - 4, 2 * j - 4) - mainSIt1.getV(i - 2, j - 2));
         dataGridView6->Rows[mainSIt1.getH() - j + 4]->Cells[i]->Value = tmpR.ToString("E");
         if (tmpR > tmpMaxR)
         {
@@ -1141,11 +1141,11 @@ namespace overRelaxation {
         }
       }
     }
-    for (int i = 2; i < mainSIt1.getW() * 2 + 3; i++)
+    for (int i = 2; i < mainSIt2.getW() + 3; i++)
     {
-      for (int j = 2; j < mainSIt1.getH() * 2 + 3; j++)
+      for (int j = 2; j < mainSIt2.getH() + 3; j++)
       {
-        dataGridView5->Rows[mainSIt1.getH() * 2 - j + 4]->Cells[i]->Value = mainSIt1.get2V(i - 2, j - 2).ToString("E");
+        dataGridView5->Rows[mainSIt2.getH() - j + 4]->Cells[i]->Value = (mainSIt2.getV(i - 2, j - 2)).ToString("E");
       }
     }
 
