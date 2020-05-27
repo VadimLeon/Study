@@ -5,9 +5,13 @@
 
 #include "overRelax.h"
 #include "SimpleIteration.h"
+#include "ChebishevMethod.h"
 
 namespace overRelaxation {
 
+  ChebishevMethod testCh;
+  ChebishevMethod mainCh1;
+  ChebishevMethod mainCh2;
   SimpleIteration testSIt;
   SimpleIteration mainSIt1;
   SimpleIteration mainSIt2;
@@ -856,7 +860,13 @@ namespace overRelaxation {
           break;
 
         case 3:
-
+          testCh.setParameters(n, m, eps, countStep, a, b, c, d);
+          testCh.solveDifferenceScheme(true);
+          resetHedarsTableT();
+          updateTableCh_t();
+          textBox3->Text = testCh.getCountIt().ToString();
+          textBox4->Text = testCh.getEps().ToString("E");
+          textBox6->Text = (testCh.getMaxR(rMaxX, rMaxY)).ToString("E");
           break;
 
         default: break;
@@ -895,7 +905,15 @@ namespace overRelaxation {
           break;
 
         case 3:
-
+          mainCh1.setParameters(n, m, eps, countStep, a, b, c, d);
+          mainCh1.solveDifferenceScheme(false);
+          mainCh2.setParameters(2 * n, 2 * m, eps, countStep, a, b, c, d);
+          mainCh2.solveDifferenceScheme(false);
+          resetHedarsTableM();
+          updateTableCh_m();
+          textBox3->Text = mainCh1.getCountIt().ToString();
+          textBox4->Text = mainCh1.getEps().ToString("E");
+          textBox6->Text =(mainCh1.getMaxR(mainCh2, rMaxX, rMaxY)).ToString("E");
           break;
 
         default: break;
@@ -1162,6 +1180,50 @@ namespace overRelaxation {
         dataGridView2->Rows[testSIt.getH() - j + 4]->Cells[i]->Value = testSIt.getV(i - 2, j - 2).ToString("E");
         dataGridView1->Rows[testSIt.getH() - j + 4]->Cells[i]->Value = testSIt.getU(i - 2, j - 2).ToString("E");
         dataGridView3->Rows[testSIt.getH() - j + 4]->Cells[i]->Value = (abs(testSIt.getU(i - 2, j - 2) - testSIt.getV(i - 2, j - 2))).ToString("E");
+      }
+    }
+  }
+  private: System::Void updateTableCh_m()
+  {
+    double tmpMaxR = 0., tmpR;
+    int rMaxX, rMaxY;
+
+    for (int i = 2; i < mainCh1.getW() + 3; i++)
+    {
+      for (int j = 2; j < mainCh1.getH() + 3; j++)
+      {
+        dataGridView4->Rows[mainCh1.getH() - j + 4]->Cells[i]->Value = mainCh1.getV(i - 2, j - 2).ToString("E");
+        tmpR = abs(mainCh2.getV(2 * i - 4, 2 * j - 4) - mainCh1.getV(i - 2, j - 2));
+        dataGridView6->Rows[mainCh1.getH() - j + 4]->Cells[i]->Value = tmpR.ToString("E");
+        if (tmpR > tmpMaxR)
+        {
+          tmpMaxR = tmpR;
+          rMaxX = i - 2;
+          rMaxY = j - 2;
+        }
+      }
+    }
+    for (int i = 2; i < mainCh2.getW() + 3; i++)
+    {
+      for (int j = 2; j < mainCh2.getH() + 3; j++)
+      {
+        dataGridView5->Rows[mainCh2.getH() - j + 4]->Cells[i]->Value = (mainCh2.getV(i - 2, j - 2)).ToString("E");
+      }
+    }
+
+    textBox6->Text = tmpMaxR.ToString("E");
+    label6->Text = ("x: " + rMaxX.ToString());
+    label10->Text = ("y: " + rMaxY.ToString());
+  }
+  private: System::Void updateTableCh_t()
+  {
+    for (int i = 2; i < testCh.getW() + 3; i++)
+    {
+      for (int j = 2; j < testCh.getH() + 3; j++)
+      {
+        dataGridView2->Rows[testCh.getH() - j + 4]->Cells[i]->Value = testCh.getV(i - 2, j - 2).ToString("E");
+        dataGridView1->Rows[testCh.getH() - j + 4]->Cells[i]->Value = testCh.getU(i - 2, j - 2).ToString("E");
+        dataGridView3->Rows[testCh.getH() - j + 4]->Cells[i]->Value = (abs(testCh.getU(i - 2, j - 2) - testCh.getV(i - 2, j - 2))).ToString("E");
       }
     }
   }

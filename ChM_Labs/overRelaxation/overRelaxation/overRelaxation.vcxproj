@@ -133,6 +133,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ChebishevMethod.cpp" />
     <ClCompile Include="MyForm.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</CompileAsManaged>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
@@ -168,6 +169,7 @@
     <ClCompile Include="SimpleIteration.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ChebishevMethod.h" />
     <ClInclude Include="Methods.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
