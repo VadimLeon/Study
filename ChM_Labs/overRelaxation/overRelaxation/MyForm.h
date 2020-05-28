@@ -526,6 +526,7 @@ namespace overRelaxation {
       this->comboBox1->Name = L"comboBox1";
       this->comboBox1->Size = System::Drawing::Size(135, 21);
       this->comboBox1->TabIndex = 31;
+      this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::comboBox1_SelectedIndexChanged);
       // 
       // label9
       // 
@@ -835,88 +836,88 @@ namespace overRelaxation {
     {
       switch (comboBox1->SelectedIndex)
       {
-        case 0:
-          testOver.setParameters(n, m, eps, countStep, a, b, c, d, omega);
-          testOver.solveDifferenceScheme(true);
-          resetHedarsTableT();
-          updateTableOver_t();
-          textBox3->Text = testOver.getCountIt().ToString();
-          textBox4->Text = testOver.getEps().ToString("E");
-          textBox6->Text = (testOver.getMaxR(rMaxX, rMaxY)).ToString("E");
-          break;
-        
-        case 1:
-          testSIt.setParameters(n, m, eps, countStep, a, b, c, d, omega);
-          testSIt.solveDifferenceScheme(true);
-          resetHedarsTableT();
-          updateTableSit_t();
-          textBox3->Text = testSIt.getCountIt().ToString();
-          textBox4->Text = testSIt.getEps().ToString("E");
-          textBox6->Text = (testSIt.getMaxR(rMaxX, rMaxY)).ToString("E");
-          break;
+      case 0:
+        testOver.setParameters(n, m, eps, countStep, a, b, c, d, omega);
+        testOver.solveDifferenceScheme(true);
+        resetHedarsTableT();
+        updateTableOver_t();
+        textBox3->Text = testOver.getCountIt().ToString();
+        textBox4->Text = testOver.getEps().ToString("E");
+        textBox6->Text = (testOver.getMaxR(rMaxX, rMaxY)).ToString("E");
+        break;
 
-        case 2:
+      case 1:
+        testSIt.setParameters(n, m, eps, countStep, a, b, c, d, omega);
+        testSIt.solveDifferenceScheme(true);
+        resetHedarsTableT();
+        updateTableSit_t();
+        textBox3->Text = testSIt.getCountIt().ToString();
+        textBox4->Text = testSIt.getEps().ToString("E");
+        textBox6->Text = (testSIt.getMaxR(rMaxX, rMaxY)).ToString("E");
+        break;
 
-          break;
+      case 2:
 
-        case 3:
-          testCh.setParameters(n, m, eps, countStep, a, b, c, d);
-          testCh.solveDifferenceScheme(true);
-          resetHedarsTableT();
-          updateTableCh_t();
-          textBox3->Text = testCh.getCountIt().ToString();
-          textBox4->Text = testCh.getEps().ToString("E");
-          textBox6->Text = (testCh.getMaxR(rMaxX, rMaxY)).ToString("E");
-          break;
+        break;
 
-        default: break;
+      case 3:
+        testCh.setParameters(n, m, eps, countStep, a, b, c, d);
+        testCh.solveDifferenceScheme(true);
+        resetHedarsTableT();
+        updateTableCh_t();
+        textBox3->Text = testCh.getCountIt().ToString();
+        textBox4->Text = testCh.getEps().ToString("E");
+        textBox6->Text = (testCh.getMaxR(rMaxX, rMaxY)).ToString("E");
+        break;
+
+      default: break;
       }
     }
     else
     {
       switch (comboBox1->SelectedIndex)
       {
-        case 0:
-          mainOver1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
-          mainOver1.solveDifferenceScheme(false);
-          mainOver2.setParameters(2 * n, 2 * m, eps, countStep, a, b, c, d, omega);
-          mainOver2.solveDifferenceScheme(false);
-          resetHedarsTableM();
-          updateTableOver_m();
-          textBox3->Text = mainOver1.getCountIt().ToString();
-          textBox4->Text = mainOver1.getEps().ToString("E");
-          textBox6->Text = (mainOver1.getMaxR(mainOver2, rMaxX, rMaxY)).ToString("E");
-          break;
-        
-        case 1:
-          mainSIt1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
-          mainSIt1.solveDifferenceScheme(false);
-          mainSIt2.setParameters((2 * n), (2 * m), eps, countStep, a, b, c, d, sqr(0.5 * h) * 0.25);
-          mainSIt2.solveDifferenceScheme(false);
-          resetHedarsTableM();
-          updateTableSit_m();
-          textBox3->Text = mainSIt1.getCountIt().ToString();
-          textBox4->Text = mainSIt1.getEps().ToString("E");
-          textBox6->Text = (mainSIt1.getMaxR(SimpleIteration(), rMaxX, rMaxY)).ToString("E");
-          break;
+      case 0:
+        mainOver1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
+        mainOver1.solveDifferenceScheme(false);
+        mainOver2.setParameters(2 * n, 2 * m, eps, countStep, a, b, c, d, omega);
+        mainOver2.solveDifferenceScheme(false);
+        resetHedarsTableM();
+        updateTableOver_m();
+        textBox3->Text = mainOver1.getCountIt().ToString();
+        textBox4->Text = mainOver1.getEps().ToString("E");
+        textBox6->Text = (mainOver1.getMaxR(mainOver2, rMaxX, rMaxY)).ToString("E");
+        break;
 
-        case 2:
+      case 1:
+        mainSIt1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
+        mainSIt1.solveDifferenceScheme(false);
+        mainSIt2.setParameters((2 * n), (2 * m), eps, countStep, a, b, c, d, sqr(0.5 * h) * 0.25);
+        mainSIt2.solveDifferenceScheme(false);
+        resetHedarsTableM();
+        updateTableSit_m();
+        textBox3->Text = mainSIt1.getCountIt().ToString();
+        textBox4->Text = mainSIt1.getEps().ToString("E");
+        textBox6->Text = (mainSIt1.getMaxR(SimpleIteration(), rMaxX, rMaxY)).ToString("E");
+        break;
 
-          break;
+      case 2:
 
-        case 3:
-          mainCh1.setParameters(n, m, eps, countStep, a, b, c, d);
-          mainCh1.solveDifferenceScheme(false);
-          mainCh2.setParameters(2 * n, 2 * m, eps, countStep, a, b, c, d);
-          mainCh2.solveDifferenceScheme(false);
-          resetHedarsTableM();
-          updateTableCh_m();
-          textBox3->Text = mainCh1.getCountIt().ToString();
-          textBox4->Text = mainCh1.getEps().ToString("E");
-          textBox6->Text =(mainCh1.getMaxR(mainCh2, rMaxX, rMaxY)).ToString("E");
-          break;
+        break;
 
-        default: break;
+      case 3:
+        mainCh1.setParameters(n, m, eps, countStep, a, b, c, d);
+        mainCh1.solveDifferenceScheme(false);
+        mainCh2.setParameters(2 * n, 2 * m, eps, countStep, a, b, c, d);
+        mainCh2.solveDifferenceScheme(false);
+        resetHedarsTableM();
+        updateTableCh_m();
+        textBox3->Text = mainCh1.getCountIt().ToString();
+        textBox4->Text = mainCh1.getEps().ToString("E");
+        textBox6->Text = (mainCh1.getMaxR(mainCh2, rMaxX, rMaxY)).ToString("E");
+        break;
+
+      default: break;
       }
     }
 
@@ -926,80 +927,80 @@ namespace overRelaxation {
 
   private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
   {
-      textBox7->ReadOnly = checkBox1->Checked;
-      if (checkBox1->Checked) SetOmegaTrue();
+    textBox7->ReadOnly = checkBox1->Checked;
+    if (checkBox1->Checked) SetOmegaTrue();
   }
 
   private: System::Void SetOmegaTrue()
   {
     switch (comboBox1->SelectedIndex)
     {
-      case 0:
-        h = 1.0 / Convert::ToDouble(textBox11->Text);
+    case 0:
+      h = 1.0 / Convert::ToDouble(textBox11->Text);
 
-        testOver.setH(h);
-        mainOver1.setH(h);
-        mainOver2.setH(h);
+      testOver.setH(h);
+      mainOver1.setH(h);
+      mainOver2.setH(h);
 
-        testOver.setOmega(0.0, true);
-        mainOver1.setOmega(0.0, true);
-        mainOver2.setOmega(0.0, true);
+      testOver.setOmega(0.0, true);
+      mainOver1.setOmega(0.0, true);
+      mainOver2.setOmega(0.0, true);
 
-        omega = testOver.getOmega();
+      omega = testOver.getOmega();
 
-        textBox7->Text = omega.ToString();
-        break;
+      textBox7->Text = omega.ToString();
+      break;
 
-      case 1:
-        h = 1.0 / Convert::ToDouble(textBox11->Text);
+    case 1:
+      h = 1.0 / Convert::ToDouble(textBox11->Text);
 
-        testSIt.setH(h);
-        mainSIt1.setH(h);
-        mainSIt2.setH(h);
+      testSIt.setH(h);
+      mainSIt1.setH(h);
+      mainSIt2.setH(h);
 
-        testSIt.setOmega(0.0, true);
-        mainSIt1.setOmega(0.0, true);
-        mainSIt2.set2Omega(0.0, true);
+      testSIt.setOmega(0.0, true);
+      mainSIt1.setOmega(0.0, true);
+      mainSIt2.set2Omega(0.0, true);
 
-        omega = testSIt.getOmega();
+      omega = testSIt.getOmega();
 
-        textBox7->Text = omega.ToString();
-        break;
+      textBox7->Text = omega.ToString();
+      break;
 
-      case 2:
-        break;
+    case 2:
+      break;
 
-      case 3:
-        break;
-      default: break;
+    case 3:
+      break;
+    default: break;
     }
   }
   private: System::Void SetOmegaFalse()
   {
     switch (comboBox1->SelectedIndex)
     {
-      case 0:
-        omega = Convert::ToDouble(textBox7->Text);
+    case 0:
+      omega = Convert::ToDouble(textBox7->Text);
 
-        testOver.setOmega(omega);
-        mainOver1.setOmega(omega);
-        mainOver2.setOmega(omega);
-        break;
+      testOver.setOmega(omega);
+      mainOver1.setOmega(omega);
+      mainOver2.setOmega(omega);
+      break;
 
-      case 1:
-        omega = Convert::ToDouble(textBox7->Text);
+    case 1:
+      omega = Convert::ToDouble(textBox7->Text);
 
-        testSIt.setOmega(omega);
-        mainSIt1.setOmega(omega);
-        mainSIt2.set2Omega(omega, true);
-        break;
+      testSIt.setOmega(omega);
+      mainSIt1.setOmega(omega);
+      mainSIt2.set2Omega(omega, true);
+      break;
 
-      case 2:
-        break;
+    case 2:
+      break;
 
-      case 3:
-        break;
-      default: break;
+    case 3:
+      break;
+    default: break;
     }
   }
 
@@ -1266,6 +1267,21 @@ namespace overRelaxation {
     if (!Char::IsDigit(number) && number != 8 && number != 44 && number != 45 && number != 46 && number != 101)
     {
       e->Handled = true;
+    }
+  }
+  private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+  {
+    if (comboBox1->SelectedIndex == 3)
+    {
+      textBox7->Text = "-";
+      textBox7->Enabled = false;
+      checkBox1->Enabled = false;
+    }
+    else
+    {
+      textBox7->Text = "1";
+      textBox7->Enabled = true;
+      checkBox1->Enabled = true;
     }
   }
   };

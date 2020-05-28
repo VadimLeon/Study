@@ -12,38 +12,34 @@ void ChebishevMethod::solveDifferenceScheme(bool isTest)
   lambdaMin -= sqr(sin(M_PI * k / 2.0)) * (4.0 * k2);
 
   lambdaMax = 0;
-  lambdaMax -= sqr(cos(M_PI * h / 2.L)) * (4.0 * h2);
-  lambdaMax -= sqr(cos(M_PI * k / 2.L)) * (4.0 * k2);
+  lambdaMax -= sqr(cos(M_PI * h / 2.0)) * (4.0 * h2);
+  lambdaMax -= sqr(cos(M_PI * k / 2.0)) * (4.0 * k2);
 
   int K = 0;
   int K_MAX = 35;
 
   // Seidel Implemetation
   do {
-    revertv();
     maxEps = 0;
     normR = 0;
 
-    long double ltau = 2.0L / (lambdaMax + lambdaMin + (lambdaMax - lambdaMin) * cos(M_PI * (2.0L * K - 1) / (2.L * K_MAX)));
+    long double ltau = 2.0 / (lambdaMax + lambdaMin + (lambdaMax - lambdaMin) * cos(M_PI * (2.0 * K - 1) / (2.0 * K_MAX)));
 
     for (int j = 1; j < yNumberStep; ++j)
     {
       for (int i = 1; i < xNumberStep; ++i)
       {
-        double Vs = 0;
-        Vs -= a2 * newv[i][j];
-        Vs -= h2 * (newv[i + 1][j] + newv[i - 1][j]);
-        Vs -= k2 * (newv[i][j + 1] + newv[i][j - 1]);
-        Vs -= isTest ? ft(getX(i), getY(j)) :
-                         muu(getX(i), getY(j));;
-        Vs *= ltau;
-        v[i][j] += Vs;
-
-        if (maxEps < abs(v[i][j] - newv[i][j])) { maxEps = abs(v[i][j] - newv[i][j]); }
-        if (normR < abs(v[i][j] - u[i][j])) { normR = abs(v[i][j] - u[i][j]); _x = i; _y = j; }
+        newv[i][j] = (h2 * (v[i + 1][j] - 2 * v[i][j] + v[i - 1][j]) + k2 * (v[i][j + 1] - 2 * v[i][j] + v[i][j - 1]));
+        newv[i][j] += isTest ? ft(getX(i), getY(j)) :
+                               muu(getX(i), getY(j));
+        newv[i][j] *= -ltau;
+        newv[i][j] += v[i][j];
+        double currEps = std::fabs(newv[i][j] - v[i][j]);
+        if (currEps > maxEps) maxEps = currEps;
       }
     }
     K = ++K % K_MAX;
+    revertv();
     ++countIteration;
   } while (maxEps >= eps && maxCountStep > countIteration);
 }
@@ -54,18 +50,19 @@ void ChebishevMethod::revertv()
   {
     for (int j = 1; j < yNumberStep; ++j)
     {
-      newv[i][j] = v[i][j];
+      v[i][j] = newv[i][j];
     }
   }
 }
 
 void ChebishevMethod::setParameters(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight)
 {
-  NumericalMethodsBase::setParameter(_xNumberStep, _yNumberStep, _eps, _maxCountStep, _xLeft, _xRight, _yLeft, _yRight, 0.0);
+  NumericalMethodsBase::setParameter(_xNumberStep, _yNumberStep, _eps, _maxCountStep, _xLeft, _xRight, _yLeft, _yRight, 1.0);
 
-  h2 = -sqr(xNumberStep);
-  k2 = -sqr(yNumberStep);
-  a2 = -2 * (h2 + k2);
+  h2 = 1 / sqr(h);
+  k2 = 1 / sqr(k);
+  a2 = 2 * (h2 + k2);
+ 
   lambdaMin = 0;
   lambdaMax = 0;
 
@@ -74,19 +71,38 @@ void ChebishevMethod::setParameters(int _xNumberStep, int _yNumberStep, double _
 
 double ChebishevMethod::getMaxR(int& x, int& y)
 {
-  x = _x;
-  y = _y;
-  return normR;
+  double maxR_ = 0.0;
+
+  for (int j = 0; j < yNumberStep; ++j)
+  {
+    for (int i = 0; i < xNumberStep; ++i)
+    {
+      if (maxR_ < abs(v[i][j] - u[i][j]))
+      {
+        maxR_ = abs(v[i][j] - u[i][j]);
+        x = i;
+        y = j;
+      }
+    }
+  }
+
+  return maxR_;
 }
 
 double ChebishevMethod::getMaxR(const ChebishevMethod& instance, int & x, int & y)
 {
   double maxR_ = 0.0;
+
   for (int j = 1; j < yNumberStep; ++j)
   {
     for (int i = 1; i < xNumberStep; ++i)
     {
-      if (maxR_ < abs(v[i][j] - instance.v[2 * i][2 * j])) { maxR_ = abs(v[i][j] - instance.v[2 * i][2 * j]); }
+      if (maxR_ < abs(v[i][j] - instance.v[2 * i][2 * j]))
+      {
+        maxR_ = abs(v[i][j] - instance.v[2 * i][2 * j]);
+        x = i;
+        y = j;
+      }
     }
   }
 
