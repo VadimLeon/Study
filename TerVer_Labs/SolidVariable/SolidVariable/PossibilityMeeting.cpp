@@ -1,4 +1,6 @@
+#define _USE_MATH_DEFINES
 #include "PossibilityMeeting.h"
+#include <math.h>
 #include <iostream>
 #include <ctime>
 
@@ -26,6 +28,7 @@ void PossibilityMeeting::getRand(bool isUpdate)
     }
 
     firstBoys.insert(std::make_pair(possibles.begin()->first, possibles.begin()->second));
+    chanceMup.insert(std::make_pair(getY(possibles.begin()->first, midTime[possibles.begin()->second]), possibles.begin()->second));
   }
 
   calculate();
@@ -190,5 +193,66 @@ std::vector<double> getMidBorders()
 
 
   return res;
+}
+
+double PossibilityMeeting::getR_0()
+{
+  R_0 = 0.0;
+  std::vector<int> numberCount;
+  int prevCount = 0;
+
+  for (int i = 0; i < k_i.size(); ++i)
+  {
+    numberCount.push_back(0);
+    for (const auto &x : chanceMup)
+    {
+      if (x.first < k_i[i]) { numberCount[i] += 1; }
+    }
+
+    if (i != 0) { numberCount[i] -= prevCount; }
+
+    prevCount += numberCount[i];
+  }
+
+  for (int i = 0; i < k_i.size(); ++i)
+  {
+    R_0 += sqr((numberCount[i] - q_i[i] * k_i.size())) / (q_i[i] * k_i.size());
+  }
+
+  return R_0;
+}
+
+double PossibilityMeeting::getFR0()
+{
+  getR_0();
+
+  double gamma, tmp = 0.0;
+  if (k_i.size() % 2) { gamma = sqrt(M_PI) * ((int)(k_i.size() * 0.5)); }
+  else { gamma = (int)(k_i.size() * 0.5); }
+
+  for (int i = 0; i < k_i.size(); ++i)
+  {
+    double a = i ? k_i[i - 1] : 0;
+    double b = k_i[i];
+    double X1 = a + (b - a) * (i - 1) / k_i.size();
+    double X2 = a + (b - a) * i / k_i.size();
+
+    tmp += (pow(2, (k_i.size() * (-0.5))) * gamma * exp(-0.5 * X1) * pow(X1, k_i.size() * 0.5 - 1.0) +
+            pow(2, (k_i.size() * (-0.5))) * gamma * exp(-0.5 * X2) * pow(X2, k_i.size() * 0.5 - 1.0)) *
+            (b - a) / (2.0 * k_i.size());
+  }
+
+  FR0 = 1.0 - tmp;
+
+  return tmp;
+}
+
+void PossibilityMeeting::SetGQ(std::vector<double> k, std::vector<double> q, int size)
+{
+  for (int i = 0; i < size; ++i)
+  {
+    q_i.push_back(q[i]);
+    k_i.push_back(k[i]);
+  }
 }
 

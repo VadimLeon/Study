@@ -91,13 +91,12 @@ namespace SolidVariable {
   private: System::Windows::Forms::TextBox^  textBox5;
   private: System::Windows::Forms::Label^  label7;
   private: System::Windows::Forms::Button^  button3;
-
   private: System::Windows::Forms::DataGridView^  dataGridView7;
   private: System::Windows::Forms::DataGridView^  dataGridView6;
   private: System::Windows::Forms::TabControl^  tabControl3;
   private: System::Windows::Forms::TabPage^  tabPage8;
   private: System::Windows::Forms::TabPage^  tabPage9;
-  private: System::Windows::Forms::DataGridView^  dataGridView8;
+
   private: System::Windows::Forms::CheckBox^  checkBox6;
   private: System::Windows::Forms::TextBox^  textBox6;
   private: System::Windows::Forms::Label^  label8;
@@ -170,10 +169,13 @@ namespace SolidVariable {
       this->checkBox5 = (gcnew System::Windows::Forms::CheckBox());
       this->dataGridView7 = (gcnew System::Windows::Forms::DataGridView());
       this->tabPage9 = (gcnew System::Windows::Forms::TabPage());
+      this->label10 = (gcnew System::Windows::Forms::Label());
+      this->textBox8 = (gcnew System::Windows::Forms::TextBox());
+      this->textBox7 = (gcnew System::Windows::Forms::TextBox());
+      this->label9 = (gcnew System::Windows::Forms::Label());
       this->checkBox6 = (gcnew System::Windows::Forms::CheckBox());
       this->textBox6 = (gcnew System::Windows::Forms::TextBox());
       this->label8 = (gcnew System::Windows::Forms::Label());
-      this->dataGridView8 = (gcnew System::Windows::Forms::DataGridView());
       this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
       this->tabControl2 = (gcnew System::Windows::Forms::TabControl());
       this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
@@ -182,10 +184,6 @@ namespace SolidVariable {
       this->zedGraphControl2 = (gcnew ZedGraph::ZedGraphControl());
       this->tabPage6 = (gcnew System::Windows::Forms::TabPage());
       this->zedGraphControl3 = (gcnew ZedGraph::ZedGraphControl());
-      this->label9 = (gcnew System::Windows::Forms::Label());
-      this->textBox7 = (gcnew System::Windows::Forms::TextBox());
-      this->textBox8 = (gcnew System::Windows::Forms::TextBox());
-      this->label10 = (gcnew System::Windows::Forms::Label());
       this->tabControl1->SuspendLayout();
       this->tabPage1->SuspendLayout();
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
@@ -200,7 +198,6 @@ namespace SolidVariable {
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->BeginInit();
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView7))->BeginInit();
       this->tabPage9->SuspendLayout();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView8))->BeginInit();
       this->tabPage3->SuspendLayout();
       this->tabControl2->SuspendLayout();
       this->tabPage4->SuspendLayout();
@@ -730,7 +727,6 @@ namespace SolidVariable {
       this->tabPage9->Controls->Add(this->checkBox6);
       this->tabPage9->Controls->Add(this->textBox6);
       this->tabPage9->Controls->Add(this->label8);
-      this->tabPage9->Controls->Add(this->dataGridView8);
       this->tabPage9->Location = System::Drawing::Point(4, 22);
       this->tabPage9->Name = L"tabPage9";
       this->tabPage9->Padding = System::Windows::Forms::Padding(3);
@@ -738,6 +734,44 @@ namespace SolidVariable {
       this->tabPage9->TabIndex = 1;
       this->tabPage9->Text = L"Result";
       this->tabPage9->UseVisualStyleBackColor = true;
+      // 
+      // label10
+      // 
+      this->label10->AutoSize = true;
+      this->label10->Location = System::Drawing::Point(3, 68);
+      this->label10->Name = L"label10";
+      this->label10->Size = System::Drawing::Size(27, 13);
+      this->label10->TabIndex = 13;
+      this->label10->Text = L"H_0";
+      // 
+      // textBox8
+      // 
+      this->textBox8->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
+      this->textBox8->Location = System::Drawing::Point(50, 65);
+      this->textBox8->Name = L"textBox8";
+      this->textBox8->ReadOnly = true;
+      this->textBox8->Size = System::Drawing::Size(362, 20);
+      this->textBox8->TabIndex = 12;
+      // 
+      // textBox7
+      // 
+      this->textBox7->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
+      this->textBox7->Location = System::Drawing::Point(50, 38);
+      this->textBox7->Name = L"textBox7";
+      this->textBox7->ReadOnly = true;
+      this->textBox7->Size = System::Drawing::Size(362, 20);
+      this->textBox7->TabIndex = 11;
+      // 
+      // label9
+      // 
+      this->label9->AutoSize = true;
+      this->label9->Location = System::Drawing::Point(3, 41);
+      this->label9->Name = L"label9";
+      this->label9->Size = System::Drawing::Size(39, 13);
+      this->label9->TabIndex = 10;
+      this->label9->Text = L"F(R_0)";
       // 
       // checkBox6
       // 
@@ -769,21 +803,6 @@ namespace SolidVariable {
       this->label8->Size = System::Drawing::Size(16, 17);
       this->label8->TabIndex = 7;
       this->label8->Text = L"α";
-      // 
-      // dataGridView8
-      // 
-      this->dataGridView8->AllowUserToAddRows = false;
-      this->dataGridView8->AllowUserToDeleteRows = false;
-      this->dataGridView8->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-        | System::Windows::Forms::AnchorStyles::Left));
-      this->dataGridView8->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-      this->dataGridView8->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-      this->dataGridView8->ColumnHeadersVisible = false;
-      this->dataGridView8->Location = System::Drawing::Point(8, 139);
-      this->dataGridView8->Name = L"dataGridView8";
-      this->dataGridView8->ReadOnly = true;
-      this->dataGridView8->Size = System::Drawing::Size(212, 178);
-      this->dataGridView8->TabIndex = 6;
       // 
       // tabPage3
       // 
@@ -894,44 +913,6 @@ namespace SolidVariable {
       this->zedGraphControl3->Size = System::Drawing::Size(437, 317);
       this->zedGraphControl3->TabIndex = 0;
       // 
-      // label9
-      // 
-      this->label9->AutoSize = true;
-      this->label9->Location = System::Drawing::Point(3, 41);
-      this->label9->Name = L"label9";
-      this->label9->Size = System::Drawing::Size(39, 13);
-      this->label9->TabIndex = 10;
-      this->label9->Text = L"F(R_0)";
-      // 
-      // textBox7
-      // 
-      this->textBox7->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-        | System::Windows::Forms::AnchorStyles::Right));
-      this->textBox7->Location = System::Drawing::Point(50, 38);
-      this->textBox7->Name = L"textBox7";
-      this->textBox7->ReadOnly = true;
-      this->textBox7->Size = System::Drawing::Size(362, 20);
-      this->textBox7->TabIndex = 11;
-      // 
-      // textBox8
-      // 
-      this->textBox8->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-        | System::Windows::Forms::AnchorStyles::Right));
-      this->textBox8->Location = System::Drawing::Point(50, 65);
-      this->textBox8->Name = L"textBox8";
-      this->textBox8->ReadOnly = true;
-      this->textBox8->Size = System::Drawing::Size(362, 20);
-      this->textBox8->TabIndex = 12;
-      // 
-      // label10
-      // 
-      this->label10->AutoSize = true;
-      this->label10->Location = System::Drawing::Point(3, 68);
-      this->label10->Name = L"label10";
-      this->label10->Size = System::Drawing::Size(27, 13);
-      this->label10->TabIndex = 13;
-      this->label10->Text = L"H_0";
-      // 
       // MyForm
       // 
       this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -959,7 +940,6 @@ namespace SolidVariable {
       (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView7))->EndInit();
       this->tabPage9->ResumeLayout(false);
       this->tabPage9->PerformLayout();
-      (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView8))->EndInit();
       this->tabPage3->ResumeLayout(false);
       this->tabControl2->ResumeLayout(false);
       this->tabPage4->ResumeLayout(false);
@@ -990,7 +970,7 @@ namespace SolidVariable {
     textBox1->Text = "5";
     textBox2->Text = "15";
     textBox3->Text = "6";
-    textBox5->Text = "12";
+    textBox5->Text = "5";
 
     dataGridView1->RowHeadersWidth = 50;
     dataGridView2->RowHeadersWidth = 50;
@@ -1013,16 +993,19 @@ namespace SolidVariable {
     {
       dataGridView4->Rows[i]->Cells[0]->Value = (0.1 + i * 0.1).ToString();
     }
-    dataGridView6->RowCount = Convert::ToInt32(textBox5->Text) - 1;
-    dataGridView7->RowCount = Convert::ToInt32(textBox5->Text) - 1;
+    dataGridView6->RowCount = 4;
+    dataGridView7->RowCount = 4;
     dataGridView6->RowHeadersWidth = 60;
     dataGridView7->RowHeadersWidth = 60;
     for (int i = 0; i < Convert::ToInt32(textBox5->Text) - 1; ++i)
     {
       dataGridView6->Rows[i]->HeaderCell->Value = "k_" + i.ToString();
       dataGridView7->Rows[i]->HeaderCell->Value = "q_" + (i + 1).ToString();
-      dataGridView6->Rows[i]->Cells[0]->Value = 0.05 + i * 0.05;
     }
+      dataGridView6->Rows[0]->Cells[0]->Value = "0,1";
+      dataGridView6->Rows[1]->Cells[0]->Value = "0,2";
+      dataGridView6->Rows[2]->Cells[0]->Value = "0,3";
+      dataGridView6->Rows[3]->Cells[0]->Value = "0,56";
     //^^^^^^^^^^^^^^^^^^^^^^^
   }
 
@@ -1127,7 +1110,11 @@ namespace SolidVariable {
     {
       if (textBox6->Text)
       {
-        myGirl->SetAlfa(Convert::ToDouble(textBox6->Text));
+        double alpa = Convert::ToDouble(textBox6->Text);
+        myGirl->SetAlfa(alpa);
+        double FR0 = myGirl->getFR0();
+        textBox7->Text = FR0.ToString();
+        textBox8->Text = (alpa > FR0) ? "true" : "false";
       }
       else
       {
@@ -1221,8 +1208,7 @@ namespace SolidVariable {
     dataGridView3->Rows[0]->Cells[7]->Value = (myGirl->getR()).ToString();
 
     //---------------
-    textBox6->Text = (D + 0.001).ToString();
-    checkBox6->Checked = true;
+    textBox6->Text = (D - 0.001).ToString();
   }
   private: System::Void updateTableBorder()
   {
@@ -1263,13 +1249,21 @@ namespace SolidVariable {
   private: System::Void updateTableQ()
   {
     int n = Convert::ToInt32(textBox5->Text) - 1;
-    dataGridView7->Rows[0]->Cells[0]->Value = myGirl->getDefen(Convert::ToDouble(dataGridView6->Rows[0]->Cells[0]->Value->ToString()), 0.0);
+    std::vector<double> q_j;
+    std::vector<double> k_i;
+
+    q_j.push_back(myGirl->getDefen(Convert::ToDouble(dataGridView6->Rows[0]->Cells[0]->Value->ToString()), 0.0));
+    dataGridView7->Rows[0]->Cells[0]->Value = q_j[0];
+    k_i.push_back(Convert::ToDouble(dataGridView6->Rows[0]->Cells[0]->Value->ToString()));
 
     for (int i = 1; i < n; ++i)
     {
-      dataGridView7->Rows[i]->Cells[0]->Value = myGirl->getDefen(Convert::ToDouble(dataGridView6->Rows[i]->Cells[0]->Value->ToString()),
-                                                                 Convert::ToDouble(dataGridView6->Rows[i - 1]->Cells[0]->Value->ToString()));
+      q_j.push_back(myGirl->getDefen(Convert::ToDouble(dataGridView6->Rows[i]->Cells[0]->Value->ToString()),
+                    Convert::ToDouble(dataGridView6->Rows[i - 1]->Cells[0]->Value->ToString())));
+      dataGridView7->Rows[i]->Cells[0]->Value = q_j[i];
+      k_i.push_back(Convert::ToDouble(dataGridView6->Rows[i]->Cells[0]->Value->ToString()));
     }
+    myGirl->SetGQ(q_j, k_i, q_j.size());
   }
 
   private: System::Void updateZedFun()
@@ -1285,17 +1279,18 @@ namespace SolidVariable {
     paneBoy->CurveList->Clear();
     ZedGraph::PointPairList^ listBoys = gcnew ZedGraph::PointPairList;
 
-    int n = Convert::ToInt32(textBox2->Text);
-    for (int i = 0; i < n; ++i)
+    int i = 0;
+    for (const auto &x : myGirl->getChanceMup())
     {
       listMain->Add(Convert::ToDouble(dataGridView2->Rows[i]->Cells[1]->Value->ToString()),
                     myGirl->getY(Convert::ToDouble(dataGridView2->Rows[i]->Cells[1]->Value->ToString())));
 
-      double Xx = Convert::ToDouble(dataGridView2->Rows[i]->Cells[1]->Value->ToString());
       int index = (Convert::ToInt32(dataGridView2->Rows[i]->Cells[0]->Value->ToString()) - 1);
+      double Xx = Convert::ToDouble(dataGridView2->Rows[i]->Cells[1]->Value->ToString());
       double Yx = Convert::ToDouble(dataGridView1->Rows[index]->Cells[0]->Value->ToString());
-      listSample->Add(Convert::ToDouble(dataGridView2->Rows[i]->Cells[1]->Value->ToString()), myGirl->getY(Xx, Yx));
+      listSample->Add(Convert::ToDouble(dataGridView2->Rows[i]->Cells[1]->Value->ToString()), x.first);
       listBoys->Add(i + 1, Convert::ToInt32(dataGridView2->Rows[i]->Cells[0]->Value->ToString()));
+      ++i;
     }
 
     paneFun->AddCurve("F(x)", listMain, Color::Red, ZedGraph::SymbolType::None);

@@ -10,6 +10,7 @@ public:
   PossibilityMeeting(const PossibilityMeeting& copy);
   ~PossibilityMeeting();
 
+  void SetGQ(std::vector<double> k, std::vector<double> q, int size);
   void SetCount(int countExpirements);
   void SetMidTime(std::vector<double> ins, int n, bool isUpdate = false);
   void SetNumberBorders(int N);
@@ -25,6 +26,8 @@ public:
   int getCount() const;
   double getE()  const;
   double getR()  const;
+  double getR_0();
+  double getFR0();
   double getMe() const;
   double getX()  const;
   double getS2() const;
@@ -37,10 +40,10 @@ public:
 
   std::multimap<double, int> getTimeMup() { return timeMap; }
   std::multimap<double, int> getChanceMup() { return chanceMup; }
+  double getTime(double ran, int k);
 
 private:
   void   getRand(bool isUpdate = false);
-  double getTime(double ran, int k);
   void   calculate();
 
 protected:
@@ -53,11 +56,21 @@ protected:
   int N;                                // Number of boyfriend
   int count;                            // Count of experiments
   int numberBorders;                    // Number of Gap Boundaries
+  double R_0;
+  double FR0;
   std::vector<double> borders;          // Values of Gap Boundaries
   std::vector<double> midTime;          // Arrays: middle value distribution
+  std::vector<double> k_i;          // Arrays: middle value distribution
+  std::vector<double> q_i;          // Arrays: middle value distribution
   std::multimap<double, int> firstBoys; // All boyfrends in first position in 'count' experiments
 
   std::multimap<double, int> timeMap;   // First time guys
   std::multimap<double, int> chanceMup; // Uniform distribution from 0 to 1
+  
+  //------------------------------------------------------------
+  std::vector<double> mupLambda;
+  std::vector<double> mathVariably;
+  std::multimap<double, double> mupX;
+  std::multimap<double, double> mupY;
 };
 
