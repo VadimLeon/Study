@@ -231,7 +231,6 @@ namespace overRelaxation {
       this->tabPage2->TabIndex = 1;
       this->tabPage2->Text = L"Методы решения СЛАУ";
       this->tabPage2->UseVisualStyleBackColor = true;
-      this->tabPage2->Click += gcnew System::EventHandler(this, &MyForm::tabPage2_Click);
       // 
       // label10
       // 
@@ -263,7 +262,6 @@ namespace overRelaxation {
       this->tabControl2->SelectedIndex = 0;
       this->tabControl2->Size = System::Drawing::Size(953, 331);
       this->tabControl2->TabIndex = 33;
-      this->tabControl2->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::tabControl2_SelectedIndexChanged);
       // 
       // tabPage1
       // 
@@ -785,7 +783,6 @@ namespace overRelaxation {
       this->tabControl1->SelectedIndex = 0;
       this->tabControl1->Size = System::Drawing::Size(1129, 466);
       this->tabControl1->TabIndex = 14;
-      this->tabControl1->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::tabControl1_SelectedIndexChanged);
       // 
       // MyForm
       // 
@@ -915,6 +912,8 @@ namespace overRelaxation {
         break;
 
       case 3:
+        checkBox1->Checked = true;
+        testCh.setRMax(Convert::ToInt32(textBox7->Text));
         testCh.setParameters(n, m, eps, countStep, a, b, c, d);
         testCh.solveDifferenceScheme(true);
         resetHedarsTableT();
@@ -978,6 +977,9 @@ namespace overRelaxation {
         break;
 
       case 3:
+        checkBox1->Checked = true;
+        mainCh1.setRMax(Convert::ToInt32(textBox7->Text));
+        mainCh2.setRMax(Convert::ToInt32(textBox7->Text));
         mainCh1.setParameters(n, m, eps, countStep, a, b, c, d);
         mainCh1.solveDifferenceScheme(false);
         mainCh2.setParameters(2 * n, 2 * m, eps, countStep, a, b, c, d);
@@ -1424,6 +1426,12 @@ namespace overRelaxation {
       textBox7->Enabled = false;
       checkBox1->Enabled = false;
     }
+    else if (comboBox1->SelectedIndex == 3)
+    {
+      textBox7->Text = "30";
+      textBox7->Enabled = true;
+      checkBox1->Enabled = true;
+    }
     else
     {
       textBox7->Text = "1";
@@ -1471,12 +1479,6 @@ namespace overRelaxation {
     {
       e->Handled = true;
     }
-  }
-  private: System::Void tabPage2_Click(System::Object^  sender, System::EventArgs^  e) {
-  }
-private: System::Void tabControl1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-  }
-private: System::Void tabControl2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
   }
 };
 }
