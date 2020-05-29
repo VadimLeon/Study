@@ -167,6 +167,7 @@
     </ClCompile>
     <ClCompile Include="NumericalMethodsBase.cpp" />
     <ClCompile Include="overRelax.cpp" />
+    <ClCompile Include="region.cpp" />
     <ClCompile Include="SimpleIteration.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +179,7 @@
     </ClInclude>
     <ClInclude Include="NumericalMethodsBase.h" />
     <ClInclude Include="overRelax.h" />
+    <ClInclude Include="region.h" />
     <ClInclude Include="SimpleIteration.h" />
   </ItemGroup>
   <ItemGroup>

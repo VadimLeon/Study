@@ -9,11 +9,11 @@ protected:
 
 public:
   NumericalMethodsBase();
-  NumericalMethodsBase(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega);
+  NumericalMethodsBase(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega = -1.0);
   NumericalMethodsBase(const NumericalMethodsBase& _instance);
   ~NumericalMethodsBase();
 
-  void setParameter(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega = 1.0);
+  void setParameter(int _xNumberStep, int _yNumberStep, double _eps, double _maxCountStep, double _xLeft, double _xRight, double _yLeft, double _yRight, double _omega = -1.0);
   void setH(double _h);
   void resetParameter();
 

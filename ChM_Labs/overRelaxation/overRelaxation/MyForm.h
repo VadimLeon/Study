@@ -5,9 +5,13 @@
 #include "SimpleIteration.h"
 #include "ChebishevMethod.h"
 #include "MinimumDiscrepancy.h"
+#include "region.h"
 
 namespace overRelaxation {
 
+  regioon testReg;
+  regioon mainReg1;
+  regioon mainReg2;
   MinimumDiscrepancy testMinD;
   MinimumDiscrepancy mainMinD1;
   MinimumDiscrepancy mainMinD2;
@@ -520,9 +524,9 @@ namespace overRelaxation {
       // comboBox1
       // 
       this->comboBox1->FormattingEnabled = true;
-      this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
+      this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(5) {
         L"Верхней релаксации", L"Простой итерации", L"Минимальных невязок",
-          L"С Чебышевскими параметрами"
+          L"С Чебышевскими параметрами", L"МВР Область"
       });
       this->comboBox1->Location = System::Drawing::Point(255, 18);
       this->comboBox1->Name = L"comboBox1";
@@ -785,8 +789,8 @@ namespace overRelaxation {
   {
     textBox1->Text = "1e-8";
     textBox2->Text = "500";
-    textBox11->Text = "5";
-    textBox10->Text = "5";
+    textBox11->Text = "10";
+    textBox10->Text = "10";
     testOver.setH(1.0 / Convert::ToDouble(textBox11->Text));
     testOver.setOmega(0.0, true);
     textBox7->Text = testOver.getOmega().ToString();
@@ -814,7 +818,7 @@ namespace overRelaxation {
     dataGridView6->ColumnHeadersVisible = false;
     checkBox1->Checked = true;
     radioButton1->Checked = true;
-    comboBox1->SelectedIndex = 2;
+    comboBox1->SelectedIndex = 0;
   }
 
   private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -878,6 +882,16 @@ namespace overRelaxation {
         textBox6->Text = (testCh.getMaxR(rMaxX, rMaxY)).ToString("E");
         break;
 
+      case 4:
+        testReg.setParameters(n, m, eps, countStep, a, b, c, d, omega);
+        testReg.solveDifferenceScheme(true);
+        resetHedarsTableT();
+        updateTableReg_t();
+        textBox3->Text = testReg.getCountIt().ToString();
+        textBox4->Text = testReg.getEps().ToString("E");
+        textBox6->Text = (testReg.getMaxR(rMaxX, rMaxY)).ToString("E");
+        break;
+
       default: break;
       }
     }
@@ -933,6 +947,18 @@ namespace overRelaxation {
         textBox6->Text = (mainCh1.getMaxR(mainCh2, rMaxX, rMaxY)).ToString("E");
         break;
 
+      case 4:
+        mainReg1.setParameters(n, m, eps, countStep, a, b, c, d, omega);
+        mainReg1.solveDifferenceScheme(false);
+        mainReg2.setParameters(2 * n, 2 * m, eps, countStep, a, b, c, d, omega);
+        mainReg2.solveDifferenceScheme(false);
+        resetHedarsTableM();
+        updateTableReg_m();
+        textBox3->Text = mainReg1.getCountIt().ToString();
+        textBox4->Text = mainReg1.getEps().ToString("E");
+        textBox6->Text = (mainReg1.getMaxR(mainReg2, rMaxX, rMaxY)).ToString("E");
+        break;
+
       default: break;
       }
     }
@@ -985,6 +1011,21 @@ namespace overRelaxation {
 
     case 2:
     case 3: break;
+    case 4:
+      h = 1.0 / Convert::ToDouble(textBox11->Text);
+
+      testReg.setH(h);
+      mainReg1.setH(h);
+      mainReg2.setH(h * 0.5);
+
+      testReg.setOmega(0.0, true);
+      mainReg1.setOmega(0.0, true);
+      mainReg2.setOmega(0.0, true);
+
+      omega = testReg.getOmega();
+
+      textBox7->Text = omega.ToString();
+      break;
     default: break;
     }
   }
@@ -1010,6 +1051,13 @@ namespace overRelaxation {
 
     case 2:
     case 3: break;
+    case 4:
+      omega = Convert::ToDouble(textBox7->Text);
+
+      testReg.setOmega(omega);
+      mainReg1.setOmega(omega);
+      mainReg2.setOmega(omega);
+      break;
     default: break;
     }
   }
@@ -1279,6 +1327,44 @@ namespace overRelaxation {
         dataGridView2->Rows[testMinD.getH() - j + 4]->Cells[i]->Value = testMinD.getV(i - 2, j - 2).ToString("E");
         dataGridView1->Rows[testMinD.getH() - j + 4]->Cells[i]->Value = testMinD.getU(i - 2, j - 2).ToString("E");
         dataGridView3->Rows[testMinD.getH() - j + 4]->Cells[i]->Value = (abs(testMinD.getU(i - 2, j - 2) - testMinD.getV(i - 2, j - 2))).ToString("E");
+      }
+    }
+  }
+  private: System::Void updateTableReg_m()
+  {
+    int rMaxX, rMaxY;
+    double _MaxR;
+    _MaxR = mainReg1.getMaxR(mainReg2, rMaxX, rMaxY);
+
+    for (int i = 2; i < mainReg1.getW() + 3; i++)
+    {
+      for (int j = 2; j < mainReg1.getH() + 3; j++)
+      {
+        dataGridView4->Rows[mainReg1.getH() - j + 4]->Cells[i]->Value = mainReg1.getV(i - 2, j - 2).ToString("E");
+        dataGridView6->Rows[mainReg1.getH() - j + 4]->Cells[i]->Value = (mainReg1.getR2(i - 2, j - 2)).ToString("E");
+      }
+    }
+    for (int i = 2; i < mainReg2.getW() + 3; i++)
+    {
+      for (int j = 2; j < mainReg2.getH() + 3; j++)
+      {
+        dataGridView5->Rows[mainReg2.getH() - j + 4]->Cells[i]->Value = mainReg2.getV(i - 2, j - 2).ToString("E");
+      }
+    }
+
+    textBox6->Text = _MaxR.ToString("E");
+    label6->Text = ("x: " + rMaxX.ToString());
+    label10->Text = ("y: " + rMaxY.ToString());
+  }
+  private: System::Void updateTableReg_t()
+  {
+    for (int i = 2; i < testReg.getW() + 3; i++)
+    {
+      for (int j = 2; j < testReg.getH() + 3; j++)
+      {
+        dataGridView2->Rows[testReg.getH() - j + 4]->Cells[i]->Value = testReg.getV(i - 2, j - 2).ToString("E");
+        dataGridView1->Rows[testReg.getH() - j + 4]->Cells[i]->Value = testReg.getU(i - 2, j - 2).ToString("E");
+        dataGridView3->Rows[testReg.getH() - j + 4]->Cells[i]->Value = (abs(testReg.getU(i - 2, j - 2) - testReg.getV(i - 2, j - 2))).ToString("E");
       }
     }
   }
