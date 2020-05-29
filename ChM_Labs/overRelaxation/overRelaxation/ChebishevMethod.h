@@ -37,6 +37,4 @@ protected:
 private:
   std::vector<std::vector<double> > newv;   // Iterative solution
   double h2, k2, a2, lambdaMin, lambdaMax;  // Parameters of the method
-  double normR;                             // max|v - u| from test
-  int _x, _y;
 };

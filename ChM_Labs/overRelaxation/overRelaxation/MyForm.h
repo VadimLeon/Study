@@ -1,14 +1,16 @@
 ﻿#pragma once
-#include <math.h>
-#include <iostream>
 #define _USE_MATH_DEFINES
 
 #include "overRelax.h"
 #include "SimpleIteration.h"
 #include "ChebishevMethod.h"
+#include "MinimumDiscrepancy.h"
 
 namespace overRelaxation {
 
+  MinimumDiscrepancy testMinD;
+  MinimumDiscrepancy mainMinD1;
+  MinimumDiscrepancy mainMinD2;
   ChebishevMethod testCh;
   ChebishevMethod mainCh1;
   ChebishevMethod mainCh2;
@@ -19,7 +21,7 @@ namespace overRelaxation {
   OverRelax mainOver1;
   OverRelax mainOver2;
   int n, m;
-  double omega = 1., h, k;
+  double omega = 1.0, h, k;
   bool isTests;
 
   using namespace System;
@@ -812,14 +814,14 @@ namespace overRelaxation {
     dataGridView6->ColumnHeadersVisible = false;
     checkBox1->Checked = true;
     radioButton1->Checked = true;
-    comboBox1->SelectedIndex = 3;
+    comboBox1->SelectedIndex = 2;
   }
 
   private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) {
-    double a = 0.;
-    double b = 1.;
-    double c = 0.;
-    double d = 1.;
+    double a = 0.0;
+    double b = 1.0;
+    double c = 0.0;
+    double d = 1.0;
     n = Convert::ToInt32(textBox10->Text);
     m = Convert::ToInt32(textBox11->Text);
     h = static_cast<double>(b - a) / static_cast<double>(n);
@@ -857,7 +859,13 @@ namespace overRelaxation {
         break;
 
       case 2:
-
+        testMinD.setParameters(n, m, eps, countStep, a, b, c, d);
+        testMinD.solveDifferenceScheme(true);
+        resetHedarsTableT();
+        updateTableMinD_t();
+        textBox3->Text = testMinD.getCountIt().ToString();
+        textBox4->Text = testMinD.getEps().ToString("E");
+        textBox6->Text = (testMinD.getMaxR(rMaxX, rMaxY)).ToString("E");
         break;
 
       case 3:
@@ -898,11 +906,19 @@ namespace overRelaxation {
         updateTableSit_m();
         textBox3->Text = mainSIt1.getCountIt().ToString();
         textBox4->Text = mainSIt1.getEps().ToString("E");
-        textBox6->Text = (mainSIt1.getMaxR(SimpleIteration(), rMaxX, rMaxY)).ToString("E");
+        textBox6->Text = (mainSIt1.getMaxRv(rMaxX, rMaxY)).ToString("E");
         break;
 
       case 2:
-
+        mainMinD1.setParameters(n, m, eps, countStep, a, b, c, d);
+        mainMinD1.solveDifferenceScheme(false);
+        mainMinD2.setParameters((2 * n), (2 * m), eps, countStep, a, b, c, d);
+        mainMinD2.solveDifferenceScheme(false);
+        resetHedarsTableM();
+        updateTableMinD_m();
+        textBox3->Text = mainMinD1.getCountIt().ToString();
+        textBox4->Text = mainMinD1.getEps().ToString("E");
+        textBox6->Text = (mainMinD1.getMaxR(mainMinD2, rMaxX, rMaxY)).ToString("E");
         break;
 
       case 3:
@@ -968,10 +984,7 @@ namespace overRelaxation {
       break;
 
     case 2:
-      break;
-
-    case 3:
-      break;
+    case 3: break;
     default: break;
     }
   }
@@ -996,10 +1009,7 @@ namespace overRelaxation {
       break;
 
     case 2:
-      break;
-
-    case 3:
-      break;
+    case 3: break;
     default: break;
     }
   }
@@ -1228,6 +1238,66 @@ namespace overRelaxation {
       }
     }
   }
+  private: System::Void updateTableMinD_m()
+  {
+    double tmpMaxR = 0., tmpR;
+    int rMaxX, rMaxY;
+
+    for (int i = 2; i < mainMinD1.getW() + 3; i++)
+    {
+      for (int j = 2; j < mainMinD1.getH() + 3; j++)
+      {
+        dataGridView4->Rows[mainMinD1.getH() - j + 4]->Cells[i]->Value = mainMinD1.getV(i - 2, j - 2).ToString("E");
+        tmpR = abs(mainMinD2.getV(2 * i - 4, 2 * j - 4) - mainMinD1.getV(i - 2, j - 2));
+        dataGridView6->Rows[mainMinD1.getH() - j + 4]->Cells[i]->Value = tmpR.ToString("E");
+        if (tmpR > tmpMaxR)
+        {
+          tmpMaxR = tmpR;
+          rMaxX = i - 2;
+          rMaxY = j - 2;
+        }
+      }
+    }
+    for (int i = 2; i < mainMinD2.getW() + 3; i++)
+    {
+      for (int j = 2; j < mainMinD2.getH() + 3; j++)
+      {
+        dataGridView5->Rows[mainMinD2.getH() - j + 4]->Cells[i]->Value = (mainMinD2.getV(i - 2, j - 2)).ToString("E");
+      }
+    }
+
+    textBox6->Text = tmpMaxR.ToString("E");
+    label6->Text = ("x: " + rMaxX.ToString());
+    label10->Text = ("y: " + rMaxY.ToString());
+  }
+  private: System::Void updateTableMinD_t()
+  {
+    for (int i = 2; i < testMinD.getW() + 3; i++)
+    {
+      for (int j = 2; j < testMinD.getH() + 3; j++)
+      {
+        dataGridView2->Rows[testMinD.getH() - j + 4]->Cells[i]->Value = testMinD.getV(i - 2, j - 2).ToString("E");
+        dataGridView1->Rows[testMinD.getH() - j + 4]->Cells[i]->Value = testMinD.getU(i - 2, j - 2).ToString("E");
+        dataGridView3->Rows[testMinD.getH() - j + 4]->Cells[i]->Value = (abs(testMinD.getU(i - 2, j - 2) - testMinD.getV(i - 2, j - 2))).ToString("E");
+      }
+    }
+  }
+
+  private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+  {
+    if (comboBox1->SelectedIndex == 3 || comboBox1->SelectedIndex == 2)
+    {
+      textBox7->Text = "-";
+      textBox7->Enabled = false;
+      checkBox1->Enabled = false;
+    }
+    else
+    {
+      textBox7->Text = "1";
+      textBox7->Enabled = true;
+      checkBox1->Enabled = true;
+    }
+  }
 
   private: System::Void textBox11_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e)
   {
@@ -1267,21 +1337,6 @@ namespace overRelaxation {
     if (!Char::IsDigit(number) && number != 8 && number != 44 && number != 45 && number != 46 && number != 101)
     {
       e->Handled = true;
-    }
-  }
-  private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
-  {
-    if (comboBox1->SelectedIndex == 3)
-    {
-      textBox7->Text = "-";
-      textBox7->Enabled = false;
-      checkBox1->Enabled = false;
-    }
-    else
-    {
-      textBox7->Text = "1";
-      textBox7->Enabled = true;
-      checkBox1->Enabled = true;
     }
   }
   };

@@ -1,7 +1,6 @@
 #define _USE_MATH_DEFINES
 #include "NumericalMethodsBase.h"
 #include "Methods.h"
-#include <math.h>
 
 void NumericalMethodsBase::updateSteps()
 {

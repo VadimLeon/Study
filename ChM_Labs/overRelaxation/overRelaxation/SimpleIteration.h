@@ -14,8 +14,8 @@ public:
   void setOmega(double _omega, bool isNorm = false);
   void set2Omega(double _omega, bool isNorm = false);
 
-  double getMaxR(int &x, int &y);
-  double getMaxR(const SimpleIteration& instance, int& x, int& y);
+  double getMaxR(int& x, int& y);
+  double getMaxRv(int& x, int& y);
 
 protected:
   void revertv();

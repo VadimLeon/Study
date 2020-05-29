@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChebishevMethod.cpp" />
+    <ClCompile Include="MinimumDiscrepancy.cpp" />
     <ClCompile Include="MyForm.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</CompileAsManaged>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
@@ -171,6 +172,7 @@
   <ItemGroup>
     <ClInclude Include="ChebishevMethod.h" />
     <ClInclude Include="Methods.h" />
+    <ClInclude Include="MinimumDiscrepancy.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

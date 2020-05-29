@@ -21,7 +21,6 @@ void ChebishevMethod::solveDifferenceScheme(bool isTest)
   // Seidel Implemetation
   do {
     maxEps = 0;
-    normR = 0;
 
     long double ltau = 2.0 / (lambdaMax + lambdaMin + (lambdaMax - lambdaMin) * cos(M_PI * (2.0 * K - 1) / (2.0 * K_MAX)));
 
