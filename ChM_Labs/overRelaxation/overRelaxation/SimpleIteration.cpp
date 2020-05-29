@@ -36,6 +36,7 @@ void SimpleIteration::solveDifferenceScheme(bool isTest)
   // Seidel Implemetation
   do {
     maxEps = 0.0;
+
     for (int j = 1; j < yNumberStep; ++j)
     {
       for (int i = 1; i < xNumberStep; ++i)

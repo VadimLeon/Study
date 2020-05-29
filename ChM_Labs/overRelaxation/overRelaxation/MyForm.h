@@ -962,7 +962,7 @@ namespace overRelaxation {
         updateTableSit_m();
         textBox3->Text = mainSIt1.getCountIt().ToString();
         textBox4->Text = mainSIt1.getEps().ToString("E");
-        textBox6->Text = (mainSIt1.getMaxRv(rMaxX, rMaxY)).ToString("E");
+        textBox6->Text = (mainSIt1.getMaxR(mainSIt2, rMaxX, rMaxY)).ToString("E");
         break;
 
       case 2:

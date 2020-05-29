@@ -229,6 +229,17 @@ void NumericalMethodsBase::initTest()
     u[xNumberStep][j] = mut(yRight, getY(j));
   }
 
+  // Interpolation around y
+  for (int j = 1; j < xNumberStep; ++j)
+  {
+    double step = std::abs(v[j][0] - v[j][yNumberStep]) / (double)yNumberStep;
+
+    for (int i = 1; i < yNumberStep; ++i)
+    {
+      v[j][i] = v[j][0] + step * (double)i;
+    }
+  }
+
   for (int j = 1; j < yNumberStep; ++j)
   {
     for (int i = 1; i < xNumberStep; ++i)
@@ -244,9 +255,21 @@ void NumericalMethodsBase::initMain()
     v[i][0] = mux(getX(i));
     v[i][yNumberStep] = mux(getX(i));
   }
+
   for (int j = 0; j < yNumberStep + 1; ++j) {
     v[0][j] = muy(getY(j));
     v[xNumberStep][j] = muy(getY(j));
+  }
+
+  // Interpolation around y
+  for (int j = 1; j < xNumberStep; ++j)
+  {
+    double step = std::abs(v[j][0] - v[j][yNumberStep]) / (double)yNumberStep;
+
+    for (int i = 1; i < yNumberStep; ++i)
+    {
+      v[j][i] = v[j][0] + step * (double)i;
+    }
   }
 
   for (int i = 0, j = 0; i < 2 * xNumberStep + 1 || j < 2 * yNumberStep + 1; ++i, ++j)
@@ -256,13 +279,15 @@ void NumericalMethodsBase::initMain()
     v2[0][j] = muy(0.5 * k);
     v2[2 * xNumberStep][j] = muy(0.5 * k);
   }
-  for (int j = 1; j < 2 * yNumberStep; ++j)
-  {
-    double steph = (v2[2 * xNumberStep][j] - v2[0][j]) / (2 * xNumberStep);
 
-    for (int i = 1; i < 2 * xNumberStep; i++)
+  // Interpolation around y
+  for (int j = 1; j < 2 * xNumberStep; ++j)
+  {
+    double step = std::abs(v2[j][0] - v2[j][2 * yNumberStep]) / (2.0 * (double)yNumberStep);
+
+    for (int i = 1; i < 2 * yNumberStep; ++i)
     {
-      v2[i][j] = v2[0][j] + steph * i;
+      v2[j][i] = v2[j][0] + step * (double)i;
     }
   }
 }
