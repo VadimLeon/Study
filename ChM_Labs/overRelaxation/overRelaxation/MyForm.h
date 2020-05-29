@@ -231,25 +231,31 @@ namespace overRelaxation {
       this->tabPage2->TabIndex = 1;
       this->tabPage2->Text = L"Методы решения СЛАУ";
       this->tabPage2->UseVisualStyleBackColor = true;
+      this->tabPage2->Click += gcnew System::EventHandler(this, &MyForm::tabPage2_Click);
       // 
       // label10
       // 
+      this->label10->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
       this->label10->AutoSize = true;
-      this->label10->Location = System::Drawing::Point(1041, 324);
+      this->label10->Location = System::Drawing::Point(1038, 324);
       this->label10->Name = L"label10";
       this->label10->Size = System::Drawing::Size(0, 13);
       this->label10->TabIndex = 35;
       // 
       // label6
       // 
+      this->label6->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
       this->label6->AutoSize = true;
-      this->label6->Location = System::Drawing::Point(980, 324);
+      this->label6->Location = System::Drawing::Point(977, 324);
       this->label6->Name = L"label6";
       this->label6->Size = System::Drawing::Size(0, 13);
       this->label6->TabIndex = 34;
       // 
       // tabControl2
       // 
+      this->tabControl2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->tabControl2->Controls->Add(this->tabPage1);
       this->tabControl2->Controls->Add(this->tabPage3);
       this->tabControl2->Location = System::Drawing::Point(9, 106);
@@ -257,6 +263,7 @@ namespace overRelaxation {
       this->tabControl2->SelectedIndex = 0;
       this->tabControl2->Size = System::Drawing::Size(953, 331);
       this->tabControl2->TabIndex = 33;
+      this->tabControl2->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::tabControl2_SelectedIndexChanged);
       // 
       // tabPage1
       // 
@@ -271,13 +278,16 @@ namespace overRelaxation {
       // 
       // tabControl3
       // 
+      this->tabControl3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->tabControl3->Controls->Add(this->tabPage4);
       this->tabControl3->Controls->Add(this->tabPage5);
       this->tabControl3->Controls->Add(this->tabPage6);
       this->tabControl3->Location = System::Drawing::Point(0, 0);
       this->tabControl3->Name = L"tabControl3";
       this->tabControl3->SelectedIndex = 0;
-      this->tabControl3->Size = System::Drawing::Size(949, 309);
+      this->tabControl3->Size = System::Drawing::Size(953, 314);
       this->tabControl3->TabIndex = 0;
       // 
       // tabPage4
@@ -286,7 +296,7 @@ namespace overRelaxation {
       this->tabPage4->Location = System::Drawing::Point(4, 22);
       this->tabPage4->Name = L"tabPage4";
       this->tabPage4->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage4->Size = System::Drawing::Size(941, 283);
+      this->tabPage4->Size = System::Drawing::Size(945, 288);
       this->tabPage4->TabIndex = 0;
       this->tabPage4->Text = L"v(x, y)";
       this->tabPage4->UseVisualStyleBackColor = true;
@@ -294,6 +304,9 @@ namespace overRelaxation {
       // dataGridView2
       // 
       this->dataGridView2->AllowUserToAddRows = false;
+      this->dataGridView2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->dataGridView2->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
       this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
       this->dataGridView2->Location = System::Drawing::Point(0, 0);
@@ -308,7 +321,7 @@ namespace overRelaxation {
       this->tabPage5->Location = System::Drawing::Point(4, 22);
       this->tabPage5->Name = L"tabPage5";
       this->tabPage5->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage5->Size = System::Drawing::Size(941, 283);
+      this->tabPage5->Size = System::Drawing::Size(945, 288);
       this->tabPage5->TabIndex = 1;
       this->tabPage5->Text = L"u(x, y)";
       this->tabPage5->UseVisualStyleBackColor = true;
@@ -316,6 +329,9 @@ namespace overRelaxation {
       // dataGridView1
       // 
       this->dataGridView1->AllowUserToAddRows = false;
+      this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->dataGridView1->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
       this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
       this->dataGridView1->Location = System::Drawing::Point(0, 0);
@@ -328,7 +344,7 @@ namespace overRelaxation {
       this->tabPage6->Controls->Add(this->dataGridView3);
       this->tabPage6->Location = System::Drawing::Point(4, 22);
       this->tabPage6->Name = L"tabPage6";
-      this->tabPage6->Size = System::Drawing::Size(941, 283);
+      this->tabPage6->Size = System::Drawing::Size(945, 288);
       this->tabPage6->TabIndex = 2;
       this->tabPage6->Text = L"R";
       this->tabPage6->UseVisualStyleBackColor = true;
@@ -336,6 +352,9 @@ namespace overRelaxation {
       // dataGridView3
       // 
       this->dataGridView3->AllowUserToAddRows = false;
+      this->dataGridView3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->dataGridView3->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
       this->dataGridView3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
       this->dataGridView3->Location = System::Drawing::Point(0, 0);
@@ -356,13 +375,16 @@ namespace overRelaxation {
       // 
       // tabControl4
       // 
+      this->tabControl4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->tabControl4->Controls->Add(this->tabPage7);
       this->tabControl4->Controls->Add(this->tabPage8);
       this->tabControl4->Controls->Add(this->tabPage9);
       this->tabControl4->Location = System::Drawing::Point(0, 0);
       this->tabControl4->Name = L"tabControl4";
       this->tabControl4->SelectedIndex = 0;
-      this->tabControl4->Size = System::Drawing::Size(953, 309);
+      this->tabControl4->Size = System::Drawing::Size(953, 307);
       this->tabControl4->TabIndex = 0;
       // 
       // tabPage7
@@ -371,7 +393,7 @@ namespace overRelaxation {
       this->tabPage7->Location = System::Drawing::Point(4, 22);
       this->tabPage7->Name = L"tabPage7";
       this->tabPage7->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage7->Size = System::Drawing::Size(945, 283);
+      this->tabPage7->Size = System::Drawing::Size(945, 281);
       this->tabPage7->TabIndex = 0;
       this->tabPage7->Text = L"v(x, y)";
       this->tabPage7->UseVisualStyleBackColor = true;
@@ -379,6 +401,9 @@ namespace overRelaxation {
       // dataGridView4
       // 
       this->dataGridView4->AllowUserToAddRows = false;
+      this->dataGridView4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->dataGridView4->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
       this->dataGridView4->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
       this->dataGridView4->Location = System::Drawing::Point(0, 0);
@@ -392,7 +417,7 @@ namespace overRelaxation {
       this->tabPage8->Location = System::Drawing::Point(4, 22);
       this->tabPage8->Name = L"tabPage8";
       this->tabPage8->Padding = System::Windows::Forms::Padding(3);
-      this->tabPage8->Size = System::Drawing::Size(945, 283);
+      this->tabPage8->Size = System::Drawing::Size(945, 281);
       this->tabPage8->TabIndex = 1;
       this->tabPage8->Text = L"v2(x, y)";
       this->tabPage8->UseVisualStyleBackColor = true;
@@ -400,6 +425,9 @@ namespace overRelaxation {
       // dataGridView5
       // 
       this->dataGridView5->AllowUserToAddRows = false;
+      this->dataGridView5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->dataGridView5->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
       this->dataGridView5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
       this->dataGridView5->Location = System::Drawing::Point(0, 0);
@@ -412,7 +440,7 @@ namespace overRelaxation {
       this->tabPage9->Controls->Add(this->dataGridView6);
       this->tabPage9->Location = System::Drawing::Point(4, 22);
       this->tabPage9->Name = L"tabPage9";
-      this->tabPage9->Size = System::Drawing::Size(945, 283);
+      this->tabPage9->Size = System::Drawing::Size(945, 281);
       this->tabPage9->TabIndex = 2;
       this->tabPage9->Text = L"R";
       this->tabPage9->UseVisualStyleBackColor = true;
@@ -420,6 +448,9 @@ namespace overRelaxation {
       // dataGridView6
       // 
       this->dataGridView6->AllowUserToAddRows = false;
+      this->dataGridView6->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->dataGridView6->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
       this->dataGridView6->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
       this->dataGridView6->Location = System::Drawing::Point(0, 0);
@@ -429,10 +460,11 @@ namespace overRelaxation {
       // 
       // label8
       // 
+      this->label8->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
       this->label8->AutoSize = true;
       this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
         static_cast<System::Byte>(204)));
-      this->label8->Location = System::Drawing::Point(986, 159);
+      this->label8->Location = System::Drawing::Point(983, 159);
       this->label8->Name = L"label8";
       this->label8->Size = System::Drawing::Size(124, 20);
       this->label8->TabIndex = 32;
@@ -440,8 +472,9 @@ namespace overRelaxation {
       // 
       // label7
       // 
+      this->label7->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
       this->label7->AutoSize = true;
-      this->label7->Location = System::Drawing::Point(978, 278);
+      this->label7->Location = System::Drawing::Point(975, 278);
       this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
       this->label7->Name = L"label7";
       this->label7->Size = System::Drawing::Size(114, 13);
@@ -450,7 +483,8 @@ namespace overRelaxation {
       // 
       // textBox6
       // 
-      this->textBox6->Location = System::Drawing::Point(979, 293);
+      this->textBox6->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+      this->textBox6->Location = System::Drawing::Point(976, 293);
       this->textBox6->Margin = System::Windows::Forms::Padding(2);
       this->textBox6->Name = L"textBox6";
       this->textBox6->Size = System::Drawing::Size(133, 20);
@@ -458,7 +492,8 @@ namespace overRelaxation {
       // 
       // textBox4
       // 
-      this->textBox4->Location = System::Drawing::Point(979, 255);
+      this->textBox4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+      this->textBox4->Location = System::Drawing::Point(976, 255);
       this->textBox4->Margin = System::Windows::Forms::Padding(2);
       this->textBox4->Name = L"textBox4";
       this->textBox4->Size = System::Drawing::Size(133, 20);
@@ -466,8 +501,9 @@ namespace overRelaxation {
       // 
       // label5
       // 
+      this->label5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
       this->label5->AutoSize = true;
-      this->label5->Location = System::Drawing::Point(976, 227);
+      this->label5->Location = System::Drawing::Point(973, 227);
       this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
       this->label5->Name = L"label5";
       this->label5->Size = System::Drawing::Size(95, 26);
@@ -476,8 +512,9 @@ namespace overRelaxation {
       // 
       // label4
       // 
+      this->label4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
       this->label4->AutoSize = true;
-      this->label4->Location = System::Drawing::Point(979, 190);
+      this->label4->Location = System::Drawing::Point(976, 190);
       this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
       this->label4->Name = L"label4";
       this->label4->Size = System::Drawing::Size(92, 13);
@@ -486,7 +523,8 @@ namespace overRelaxation {
       // 
       // textBox3
       // 
-      this->textBox3->Location = System::Drawing::Point(979, 205);
+      this->textBox3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+      this->textBox3->Location = System::Drawing::Point(976, 205);
       this->textBox3->Margin = System::Windows::Forms::Padding(2);
       this->textBox3->Name = L"textBox3";
       this->textBox3->Size = System::Drawing::Size(133, 20);
@@ -737,6 +775,9 @@ namespace overRelaxation {
       // 
       // tabControl1
       // 
+      this->tabControl1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+        | System::Windows::Forms::AnchorStyles::Left)
+        | System::Windows::Forms::AnchorStyles::Right));
       this->tabControl1->Controls->Add(this->tabPage2);
       this->tabControl1->Location = System::Drawing::Point(-1, 2);
       this->tabControl1->Margin = System::Windows::Forms::Padding(2);
@@ -744,14 +785,15 @@ namespace overRelaxation {
       this->tabControl1->SelectedIndex = 0;
       this->tabControl1->Size = System::Drawing::Size(1129, 466);
       this->tabControl1->TabIndex = 14;
+      this->tabControl1->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::tabControl1_SelectedIndexChanged);
       // 
       // MyForm
       // 
       this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
       this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-      this->ClientSize = System::Drawing::Size(1125, 465);
+      this->ClientSize = System::Drawing::Size(1126, 465);
       this->Controls->Add(this->tabControl1);
-      this->MaximumSize = System::Drawing::Size(1142, 505);
+      this->MaximumSize = System::Drawing::Size(1400, 850);
       this->MinimumSize = System::Drawing::Size(1140, 500);
       this->Name = L"MyForm";
       this->Text = L"Задача Дирихле";
@@ -1009,8 +1051,13 @@ namespace overRelaxation {
       textBox7->Text = omega.ToString();
       break;
 
-    case 2:
-    case 3: break;
+    case 2: break;
+    case 3:
+      testCh.setRMax(Convert::ToInt32(textBox7->Text));
+      mainCh1.setRMax(Convert::ToInt32(textBox7->Text));
+      mainCh2.setRMax(Convert::ToInt32(textBox7->Text));
+      break;
+
     case 4:
       h = 1.0 / Convert::ToDouble(textBox11->Text);
 
@@ -1371,7 +1418,7 @@ namespace overRelaxation {
 
   private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
   {
-    if (comboBox1->SelectedIndex == 3 || comboBox1->SelectedIndex == 2)
+    if (comboBox1->SelectedIndex == 2)
     {
       textBox7->Text = "-";
       textBox7->Enabled = false;
@@ -1425,5 +1472,11 @@ namespace overRelaxation {
       e->Handled = true;
     }
   }
-  };
+  private: System::Void tabPage2_Click(System::Object^  sender, System::EventArgs^  e) {
+  }
+private: System::Void tabControl1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+  }
+private: System::Void tabControl2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+  }
+};
 }

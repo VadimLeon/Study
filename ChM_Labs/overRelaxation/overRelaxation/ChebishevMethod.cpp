@@ -16,13 +16,13 @@ void ChebishevMethod::solveDifferenceScheme(bool isTest)
   lambdaMax -= sqr(cos(M_PI * k / 2.0)) * (4.0 * k2);
 
   int K = 0;
-  int K_MAX = 35;
+  //int K_MAX = 35;
 
   // Seidel Implemetation
   do {
     maxEps = 0;
 
-    long double ltau = 2.0 / (lambdaMax + lambdaMin + (lambdaMax - lambdaMin) * cos(M_PI * (2.0 * K - 1) / (2.0 * K_MAX)));
+    long double ltau = 2.0 / (lambdaMax + lambdaMin + (lambdaMax - lambdaMin) * cos(M_PI * (2.0 * K - 1) / (2.0 * R_MAX)));
 
     for (int j = 1; j < yNumberStep; ++j)
     {
@@ -33,11 +33,11 @@ void ChebishevMethod::solveDifferenceScheme(bool isTest)
                                muu(getX(i), getY(j));
         newv[i][j] *= -ltau;
         newv[i][j] += v[i][j];
-        double currEps = std::fabs(newv[i][j] - v[i][j]);
+        double currEps = std::abs(newv[i][j] - v[i][j]);
         if (currEps > maxEps) maxEps = currEps;
       }
     }
-    K = ++K % K_MAX;
+    K = ++K % R_MAX;
     revertv();
     ++countIteration;
   } while (maxEps >= eps && maxCountStep > countIteration);
@@ -106,4 +106,9 @@ double ChebishevMethod::getMaxR(const ChebishevMethod& instance, int & x, int & 
   }
 
   return maxR_;
+}
+
+void ChebishevMethod::setRMax(int r_max)
+{
+  R_MAX = r_max;
 }

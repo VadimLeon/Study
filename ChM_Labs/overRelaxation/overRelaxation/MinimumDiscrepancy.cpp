@@ -50,7 +50,7 @@ void MinimumDiscrepancy::solveDifferenceScheme(bool isTest)
       {
         double oldValue = v[i][j];
         double newValue = v[i][j] - tau * r[i][j];
-        double currEps = std::fabs(oldValue - newValue);
+        double currEps = std::abs(oldValue - newValue);
         if (currEps > maxEps) maxEps = currEps;
         v[i][j] = newValue;
       }
@@ -89,7 +89,7 @@ double MinimumDiscrepancy::getMaxR(const MinimumDiscrepancy& instance, int& x, i
   {
     for (int j = 1; j < yNumberStep; ++j)
     {
-      tmp = std::fabs(instance.v[2 * i][2 * j] - v[i][j]);
+      tmp = std::abs(instance.v[2 * i][2 * j] - v[i][j]);
       if (tmp > Rmax)
       {
         Rmax = tmp;

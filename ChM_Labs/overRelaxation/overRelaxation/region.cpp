@@ -24,7 +24,7 @@ void regioon::solveDifferenceScheme(bool isTest)
                             muu(getX(i), getY(j));
         v[i][j] *= omega / a2;
         v[i][j] += (1.0 - omega) * oldV;
-        currEps = std::fabs(oldV - v[i][j]);
+        currEps = std::abs(oldV - v[i][j]);
         if (currEps > maxEps) maxEps = currEps;
       }
     }
@@ -40,7 +40,7 @@ void regioon::solveDifferenceScheme(bool isTest)
                             muu(getX(i), getY(j));
         v[i][j] *= omega / a2;
         v[i][j] += (1.0 - omega) * oldV;
-        currEps = std::fabs(oldV - v[i][j]);
+        currEps = std::abs(oldV - v[i][j]);
         if (currEps > maxEps) maxEps = currEps;
       }
     }
@@ -56,7 +56,7 @@ void regioon::solveDifferenceScheme(bool isTest)
                             muu(getX(i), getY(j));
         v[i][j] *= omega / a2;
         v[i][j] += (1.0 - omega) * oldV;
-        currEps = std::fabs(oldV - v[i][j]);
+        currEps = std::abs(oldV - v[i][j]);
         if (currEps > maxEps) maxEps = currEps;
       }
     }
@@ -107,7 +107,7 @@ double regioon::getMaxR(const regioon& instance, int& x, int& y)
   {
     for (int i = minA + 1; i < maxA; ++i)
     {
-      tmp = r2[i][j] = std::fabs(instance.v[2 * i][2 * j] - v[i][j]);
+      tmp = r2[i][j] = std::abs(instance.v[2 * i][2 * j] - v[i][j]);
       if (tmp > Rmax) { Rmax = tmp; x = i; y = j; }
     }
   }
@@ -115,7 +115,7 @@ double regioon::getMaxR(const regioon& instance, int& x, int& y)
   {
     for (int i = 1; i < xNumberStep; ++i)
     {
-      tmp = r2[i][j] = std::fabs(instance.v[2 * i][2 * j] - v[i][j]);
+      tmp = r2[i][j] = std::abs(instance.v[2 * i][2 * j] - v[i][j]);
       if (tmp > Rmax) { Rmax = tmp; x = i; y = j; }
     }
   }
@@ -123,7 +123,7 @@ double regioon::getMaxR(const regioon& instance, int& x, int& y)
   {
     for (int i = minA + 1; i < xNumberStep; ++i)
     {
-      tmp = r2[i][j] = std::fabs(instance.v[2 * i][2 * j] - v[i][j]);
+      tmp = r2[i][j] = std::abs(instance.v[2 * i][2 * j] - v[i][j]);
       if (tmp > Rmax) { Rmax = tmp; x = i; y = j; }
     }
   }
@@ -139,7 +139,7 @@ double regioon::getMaxR(int& x, int& y)
   {
     for (int i = minA + 1; i < maxA; ++i)
     {
-      tmp = std::fabs(u[i][j] - v[i][j]);
+      tmp = std::abs(u[i][j] - v[i][j]);
       if (tmp > Rmax) { Rmax = tmp; x = i; y = j; }
     }
   }
@@ -147,7 +147,7 @@ double regioon::getMaxR(int& x, int& y)
   {
     for (int i = 1; i < xNumberStep; ++i)
     {
-      tmp = std::fabs(u[i][j] - v[i][j]);
+      tmp = std::abs(u[i][j] - v[i][j]);
       if (tmp > Rmax) { Rmax = tmp; x = i; y = j; }
     }
   }
@@ -155,7 +155,7 @@ double regioon::getMaxR(int& x, int& y)
   {
     for (int i = minA + 1; i < xNumberStep; ++i)
     {
-      tmp = std::fabs(u[i][j] - v[i][j]);
+      tmp = std::abs(u[i][j] - v[i][j]);
       if (tmp > Rmax) { Rmax = tmp; x = i; y = j; }
     }
   }

@@ -147,7 +147,7 @@ double NumericalMethodsBase::getMaxR(int &x, int &y)
   {
     for (int j = 0; j < yNumberStep; ++j)
     {
-      tmp = std::fabs(u[i][j] - v[i][j]);
+      tmp = std::abs(u[i][j] - v[i][j]);
       if (tmp > Rmax)
       {
         Rmax = tmp;
@@ -247,17 +247,6 @@ void NumericalMethodsBase::initMain()
   for (int j = 0; j < yNumberStep + 1; ++j) {
     v[0][j] = muy(getY(j));
     v[xNumberStep][j] = muy(getY(j));
-  }
-
-  // Interpolation along y
-  for (int j = 1; j < yNumberStep; ++j)
-  {
-    double steph = (v[xNumberStep][j] - v[0][j]) / xNumberStep;
-
-    for (int i = 1; i < xNumberStep; i++)
-    {
-      v[i][j] = v[0][j] + steph * i;
-    }
   }
 
   for (int i = 0, j = 0; i < 2 * xNumberStep + 1 || j < 2 * yNumberStep + 1; ++i, ++j)

@@ -17,6 +17,8 @@ public:
   double getMaxR(int& x, int& y);
   double getMaxRv(int& x, int& y);
 
+  double getMaxR(const SimpleIteration & ins, int & x, int & y);
+
 protected:
   void revertv();
   void resetParameters();

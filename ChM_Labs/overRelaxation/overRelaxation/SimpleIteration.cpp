@@ -45,7 +45,7 @@ void SimpleIteration::solveDifferenceScheme(bool isTest)
                                muu(getX(i), getY(j));
         newv[i][j] *= omega;
         newv[i][j] += v[i][j];
-        double currEps = std::fabs(newv[i][j] - v[i][j]);
+        double currEps = std::abs(newv[i][j] - v[i][j]);
         if (currEps > maxEps) maxEps = currEps;
       }
     }
@@ -73,7 +73,28 @@ double SimpleIteration::getMaxRv(int& x, int& y)
   {
     for (int j = 1; j < yNumberStep; ++j)
     {
-      tmp = std::fabs(v2[2 * i][2 * j] - v[i][j]);
+      tmp = std::abs(v2[2 * i][2 * j] - v[i][j]);
+      if (tmp > Rmax)
+      {
+        Rmax = tmp;
+        x = i;
+        y = j;
+      }
+    }
+  }
+
+  return Rmax;
+}
+
+double SimpleIteration::getMaxR(const SimpleIteration& ins,int& x, int& y)
+{
+  double Rmax = 0., tmp;
+
+  for (int i = 1; i < xNumberStep; ++i)
+  {
+    for (int j = 1; j < yNumberStep; ++j)
+    {
+      tmp = std::abs(ins.v[2 * i][2 * j] - v[i][j]);
       if (tmp > Rmax)
       {
         Rmax = tmp;

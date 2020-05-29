@@ -25,7 +25,7 @@ void OverRelax::solveDifferenceScheme(bool isTest)
                             muu(getX(i), getY(j));
         v[i][j] *= omega / a2;
         v[i][j] += (1.0 - omega) * oldV;
-        double currEps = std::fabs(oldV - v[i][j]);
+        double currEps = std::abs(oldV - v[i][j]);
         if (currEps > maxEps) maxEps = currEps;
       }
     }
@@ -59,7 +59,7 @@ double OverRelax::getMaxR(const OverRelax& instance, int& x, int& y)
   {
     for (int j = 1; j < yNumberStep; ++j)
     {
-      tmp = std::fabs(instance.v[2 * i][2 * j] - v[i][j]);
+      tmp = std::abs(instance.v[2 * i][2 * j] - v[i][j]);
       if (tmp > Rmax)
       {
         Rmax = tmp;

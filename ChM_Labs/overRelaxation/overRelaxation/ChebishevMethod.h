@@ -31,10 +31,13 @@ public:
   double getMaxR(int &x, int &y);
   double getMaxR(const ChebishevMethod& instance, int& x, int& y);
 
+  void setRMax(int r_max);
+
 protected:
   void revertv();
 
 private:
   std::vector<std::vector<double> > newv;   // Iterative solution
   double h2, k2, a2, lambdaMin, lambdaMax;  // Parameters of the method
+  int R_MAX;
 };
