@@ -2,3 +2,4 @@
 
   - Numerical methods
   - Probability theory
+  - Bioinformatics
