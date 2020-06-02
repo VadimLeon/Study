@@ -203,7 +203,7 @@ void regioon::testInitial()
   for (int i = maxB + 1; i < yNumberStep; ++i)
   {//x[0] & x[n] - vertical
     v[minA][i] = u[minA][i] = mut(minA * h, getY(i));
-    v[xNumberStep][i] = u[maxA][i] = mut(xRight, getY(i));
+    v[xNumberStep][i] = u[xNumberStep][i] = mut(xRight, getY(i));
   }
 
   // Init u
@@ -255,9 +255,6 @@ void regioon::mainInitial()
     v[minA][i] = muy(getY(i));
     v[xNumberStep][i] = muy(getY(i));
   }
-
-
-
 }
 
 // Constructors
