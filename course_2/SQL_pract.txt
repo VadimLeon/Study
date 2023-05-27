@@ -1,0 +1,290 @@
+
+https://paiza.io/en/projects/new?language=mysql
+
+use sakila;
+
+show tables;
+
+select * from actor;
+
+select * from city;
+
+select * from country;
+
+select * from film;
+
+select country.country, city.city from city, country where city.country_id = country.country_id;
+
+select country.country, city.city from country inner join city where city.country_id = country.country_id;
+
+select country.country_id, country.country from country where country_id not in(select distinct country_id from city);
+
+select country.country_id, country.country from country where country_id <> all(select distinct country_id from city);
+
+select country.country, count(city.city) as count_city from city inner join country where city.country_id = country.country_id group by country;
+
+select country.country, count(city.city) as count_city from city inner join country where city.country_id = country.country_id group by country having count_city > 5;
+
+select country.country, count(city.city) as count_city from city inner join country where city.country_id = country.country_id and country like "a%" group by country having count_city > 2;
+
+select country, (select count(*) from city where country.country_id = city.country_id) as count from country;
+
+
+
+use sakila;
+select * from film;
+
+select * from actor;
+
+select * from film_actor;
+
+select actor_id from film_actor group by actor_id having count(*) > 10;
+
+select actor.first_name, actor.last_name from actor where actor_id in (select actor_id from film_actor group by actor_id having count(*) > 10);
+
+select film.title from film_actor inner join film  where film_actor.film_id = film.film_id group by film.film_id;
+
+
+
+use sakila;
+
+create table otdel(id int primary key auto_increment, name varchar(50));
+
+select * from otdel;
+
+select * from employer;
+
+show tables;
+insert into otdel(name) values('A10'),('A13'),('A14'),('C17'),('D04'),('F12');
+
+create table employer(id int unique not null auto_increment, name text, id_ot int, cach int, foreign key(id_ot) references otdel(id));
+
+insert into employer(name, id_ot, cach) values('Petrov', 1, 200), ('Ivanov', 1, 300), ('Kozlov', 1, 150), ('Bob', 2, 50), ('Jack', 2, 1000), ('Anna', 3, 350), ('Irina', 3, 300), ('Abs', 4, 1000), ('Xxx', 4, 1500), ('Xyz', 4, 1400);
+
+select * from otdel where otdel.id not in (select id_ot from employer);
+
+select * from otdel where not otdel.id = any (select id_ot from employer);
+
+select * from otdel where otdel.id <> all (select id_ot from employer);
+
+select * from otdel where not exists(select id_ot from employer where otdel.id = employer.id_ot);
+
+select * from otdel left join employer on otdel.id = employer.id_ot;
+
+select otdel.id, otdel.name from otdel left join employer on otdel.id = employer.id_ot where employer.id_ot is null;
+
+select otdel.id, otdel.name, employer.name from otdel inner join employer on otdel.id = employer.id_ot where employer.id_ot = otdel.id;
+
+
+
+
+https://paiza.io/projects/Hg6Lzi9NbeVjZaHNKtgPAQ#!
+create table Dep(id integer primary key auto_increment, name varchar(50));
+insert into Dep (name) values('D10'), ('A10'), ('B10'), ('C10'), ('E10'), ('F10');
+select * from Dep;
+create table Employee(id integer primary key auto_increment, name varchar(50),  cash  integer,  id_Dep integer,  foreign key (id_Dep) references Dep(id) );
+insert into Employee(name, cash, id_Dep) values('Bob', 200, 1), ('Jack', 300, 1),  ('Lisa', 300, 1), 
+('Anna', 400, 2), ('Mike', 230, 2), ('John', 400, 2), ('Ivan', 430, 2),
+('Inna', 500, 3), ('Sasha', 200, 3),
+('Ira', 500, 4), ('Jessika', 1200, 4), ('Aaron', 1100, 4), 
+('Natasha', 600, 5), ('Alex', 450, 5);
+select '' ;
+
+
+use sakila;
+
+drop table Orders;
+drop table Employee;
+drop table Dep;
+
+
+create table Dep(id integer primary key auto_increment, name varchar(50));
+
+insert into Dep (name) values('D10'), ('A10'), ('B10'), ('C10'), ('E10'), ('F10'), ('G10');
+
+create table Employee(id integer primary key auto_increment, name varchar(50),  cash  integer,  id_Dep integer,  foreign key (id_Dep) references Dep(id) );
+
+insert into Employee(name, cash, id_Dep) values('Bob', 200, 1), ('Jack', 300, 1),  ('Lisa', 300, 1), 
+('Anna', 400, 2), ('Mike', 230, 2), ('John', 400, 2), ('Ivan', 430, 2),
+('Inna', 500, 3), ('Sasha', 200, 3),
+('Ira', 500, 4), ('Jessika', 1200, 4), ('Aaron', 1100, 4), 
+('Natasha', 600, 5), ('Alex', 450, 5), ('David', 1200, 4), ('Mr.Bond', 390, 7);
+
+
+create table Orders(id integer primary key auto_increment, name varchar(50), id_Emp integer,  foreign key (id_Emp) references Employee(id), summa integer, discount boolean, order_date date not null );
+
+insert into Orders(name, id_Emp, summa, discount, order_date) values('Iphone', 1, 200, true, '2018/01/10'), ('Sony', 2, 250, true, '2018/01/10'), ('Sony', 1, 260, false, '2018/01/16'), ('Sumsung', 4, 400, true, '2018/02/04'), 
+('Ipad', 3, 220, false, '2018/02/11'), ('Apple', 5, 310, true, '2018/02/20'), ('Nokia', 2, 150, false, '2018/02/20'), ('HTC', 5, 400, true, '2018/02/26'), 
+('Alcatel', 6, 290, false, '2018/02/20'), ('Acer', 7, 350, false, '2018/03/01'), ('Asus', 8, 560, false, '2018/03/10'), 
+('Cubot', 7, 430, true, '2018/03/20'), ('Geotel', 9, 230, false, '2018/04/11'),
+('HP', 8, 330, true, '2018/04/11'), ('Philips', 10, 1200, true, '2018/04/16'), ('Toshiba', 12, 400, true, '2018/04/16'); 
+
+select * from Dep;
+select * from Employee;
+select * from Orders;
+
+select *from Orders LIMIT 2;
+select * from Orders order by order_date desc limit 1;
+select* from Orders Where order_date = ( select order_date from Orders order by order_date);
+
+select * from Orders where order_date = (select max(order_date) from Orders);
+
+select * from Orders where order_date = (select max(order_date) from Orders 
+where order_date <> (select max(order_date) from Orders));
+
+select order_date, count(*) as counter, sum(summa) as summa from Orders group by order_date having order_date = (select max(order_date) from Orders where order_date <> (select max(order_date) from Orders) );
+select * from Employee;
+select * from Dep where Dep.id not in (select id_Dep from Employee);
+
+select * from Dep where not exists (select id_Dep from Employee where Dep.id = id_Dep);
+
+select * from Dep where Dep.id <> all (select id_Dep from Employee);
+
+select * from Dep left join Employee on Dep.id = Employee.id_Dep;
+
+select Dep.id, Dep.name from Dep left join Employee on Dep.id = Employee.id_Dep where Employee.id_Dep is null;
+
+select Dep.name as Dep, Employee.name from Dep inner join Employee on Dep.id = Employee.id_Dep;
+
+select avg(cash) from Employee;
+
+select name from Employee where cash > (select avg(cash) from Employee);
+
+select Dep.name, count(Employee.name) as count from Employee inner join Dep where Dep.id = id_Dep group by Employee.id_Dep;
+
+select Dep.name, Rezult.count from Dep inner join (select id_Dep, count(Employee.name) as count from Employee inner join Dep where Dep.id = id_Dep group by Employee.id_Dep) as Rezult where Dep.id = Rezult.id_Dep;
+
+
+
+use sakila;
+
+drop table Orders;
+
+drop table Employee;
+
+drop table Dep;
+
+
+
+
+
+insert into Dep (name) values('D10'), ('A10'), ('B10'), ('C10'), ('E10'), ('F10');
+
+
+
+insert into Employee(name, cash, id_Dep) values('Bob', 200, 1), ('Jack', 300, 1),  ('Lisa', 300, 1), 
+('Anna', 400, 2), ('Mike', 230, 2), ('John', 400, 2), ('Ivan', 430, 2),
+('Inna', 500, 3), ('Sasha', 200, 3),
+('Ira', 500, 4), ('Jessika', 1200, 4), ('Aaron', 1100, 4), 
+('Natasha', 600, 5), ('Alex', 450, 5), ('David', 1200, 4);
+
+
+
+
+
+insert into Orders(name, id_Emp, summa, discount) values('Iphone', 1, 200, true), ('Sony', 2, 250, true), ('Sony', 1, 260, false), ('Sumsung', 4, 400, true), ('Ipad', 3, 220, false),
+('Apple', 5, 310, true), ('Nokia', 2, 150, false), ('HTC', 5, 400, true), ('Alcatel', 6, 290, false), ('Acer', 7, 350, false), ('Asus', 8, 560, false), ('Cubot', 7, 430, true), ('Geotel', 9, 230, false),
+('HP', 8, 330, true), ('Philips', 10, 1200, true); 
+
+
+select *from Orders;
+
+select *from Employee;
+select *from Dep;
+
+select name from Employee where exists(select id_Emp from Orders where id_Emp=Employee.id);
+select Employee.name from Orders right join Employee on (Employee.id=Orders.id_Emp) where Orders.id IS NULL;
+
+
+
+
+select name from Dep where id IN (select id_Dep from Employee where cash =(select max(C) from (select id_Dep AS D, max(cash) AS C from Employee group by id_Dep) AS Result)); 
+
+
+select name from Employee where id IN (select id_Emp from Orders group by id_Emp having AVG(summa) > (select cash from Employee where id_Emp = Employee.id));
+
+
+
+create table Dep(id integer primary key auto_increment, name varchar(50));
+
+insert into Dep (name) values('D10'), ('A10'), ('B10'), ('C10'), ('E10'), ('F10'), ('G10');
+
+create table Employee(id integer primary key auto_increment, name varchar(50),  cash  integer,  id_Dep integer,  foreign key (id_Dep) references Dep(id) );
+
+insert into Employee(name, cash, id_Dep) values('Bob', 200, 1), ('Jack', 300, 1),  ('Lisa', 300, 1), 
+('Anna', 400, 2), ('Mike', 230, 2), ('John', 400, 2), ('Ivan', 430, 2),
+('Inna', 500, 3), ('Sasha', 200, 3),
+('Ira', 500, 4), ('Jessika', 1200, 4), ('Aaron', 1100, 4), 
+('Natasha', 600, 5), ('Alex', 450, 5), ('David', 1200, 4), ('Mr.Bond', 390, 7);
+
+
+create table Orders(id integer primary key auto_increment, name varchar(50), id_Emp integer,  foreign key (id_Emp) references Employee(id), summa integer, discount boolean, order_date date not null );
+
+insert into Orders(name, id_Emp, summa, discount, order_date) values('Iphone', 1, 200, true, '2018/01/10'), ('Sony', 2, 250, true, '2018/01/10'), ('Sony', 1, 260, false, '2018/01/16'), ('Sumsung', 4, 400, true, '2018/02/04'), 
+('Ipad', 3, 220, false, '2018/02/11'), ('Apple', 5, 310, true, '2018/02/20'), ('Nokia', 2, 150, false, '2018/02/20'), ('HTC', 5, 400, true, '2018/02/26'), 
+('Alcatel', 6, 290, false, '2018/02/20'), ('Acer', 7, 350, false, '2018/03/01'), ('Asus', 8, 560, false, '2018/03/10'), 
+('Cubot', 7, 430, true, '2018/03/20'), ('Geotel', 9, 230, false, '2018/04/11'),
+('HP', 8, 330, true, '2018/04/11'), ('Philips', 10, 1200, true, '2018/04/16'), ('Toshiba', 12, 400, true, '2018/04/16'),
+('Xeon', 2, 150, true, '2018/02/10'), ('Iphone', 2, 1000, true, '2018/05/20') ; 
+
+select* FROM Dep;
+
+select* FROM Employee;
+
+select* FROM Orders;
+
+/*
+select * from Orders order by 1 DESC  limit 0 , 2;
+select * from Orders order by 1 DESC  limit 3 , 2;
+select * from Orders order by order_date DESC  limit  2;
+  select  WEEK( NOW() );
+   select NOW();
+ 
+*/
+
+
+/*--
+1. Показать информацию о самом последнем сделанном заказе (один заказ).
+   (Название товара + сумма + дата) 
+   Показать информацию обо всех последних сделанных заказах 
+                (заказы сделаны в один день).
+   (Название товара + сумма + дата)
+2.  1. Показать информацию обо всех предпоследних заказах (Название товара + сумма + дата)
+    2. Показать информацию о препдоследнем и первом заказе.
+       Дата Кол-во покупок Общая сумма
+
+3. Вывести сотрудников сделавших хотя бы один заказ. (EXISTS)
+4. Вывести сотрудников не сделавших ни одного заказа. (Right Join)
+5. Показать отдел с самой высокой получаемой зарплатой сотрудником. (Group by +  Временная таблица)
+6. Показать отделы чьи сотрудники сделали 3 и более заказа. (INNER JOIN + Group by + Having)
+7. Вывести сотрудников чья средняя сумма заказа превышает их зарплату в отделе. (равна зарплате, меньше зарплаты)
+8. Вывести сотрудников чья суммарная стоимость всех его сделанных заказов превышает среднюю зарплату сотрудников его отдела. (равна зарплате, меньше зарплаты)
+9. Вывести названия департаментов с минимальным числом работающих сотрудников. 
+10. Имя сотрудника - Количество товаров купленных сотрудником - Скидка.     (Таблица из трех колонок)
+   Имя сотрудника - Количество товаров купленных сотрудником - Без скидки.
+11. Среди всех сотрудников получающих зарплату более 230 показать информацию о количестве сделанных заказов.
+    (БЕЗ Group by / Join / Having. ИСПОЛЬЗОВАТЬ ТОЛЬКО ДИНАМИЧЕСКИЕ ПОДЗАПРОСЫ)
+    Имя сотрудника Кол-во заказов
+12. Выбрать имена департаментов чьими сотрудниками не было сделано ни одного заказа,
+    отобразить название департамента и количество работающих в нем сотрудников.
+    (Использование вложенных динамических подзапросов - без Group by/Having)
+13. Показать информацию о препдоследнем (предпоследняя дата покупки) сделанном заказе покупателя с именем Jack.
+    Имя , зарплата, дата, общаю сумма, количество сделанных покупок   (Group be + Having + Order by + LIMIT + Временные таблицы) 
+14. Отобразить в одну строку информацию о количестве сотрудников работающих
+в департаменте A10 и общем количестве заказов сделанных сотрудниками из этого отдела.
+    A10 | Кол-во сотрудников | Количество заказов
+15. Отобразить пары департаментов чьими сотрудниками было сделано одинаковое кол-во заказов.
+    (Представления VIEW)
+ --*/
+
+select 'A10', (select count(*) from Employee where id_Dep=(select id from Dep where name = 'A10')), 
+(select count(*) from Orders, (select Employee.id as s from Employee, (select Dep.id as d from Dep where name ='A10')as res where Employee.id_Dep=d)as q where id_Emp=s);
+
+select 'A10', (select count(*) from Employee where id_Dep=(select id from Dep where name = 'A10')), 
+(select count(*) from Orders where id_Emp in (select id from Employee where id_Dep=(select id from Dep where name = 'A10')))
+
+
+
+select name, cash, r.order_date, r.c,r.s from Employee
+inner join 
+(select id_Emp,order_date, count(*) c,sum(summa) s from Orders group by order_date, id_Emp having id_Emp = (select id from Employee where name = 'Jack')order by order_date desc limit 1,1) r on Employee.id=r.id_Emp;

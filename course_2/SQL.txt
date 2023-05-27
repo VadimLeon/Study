@@ -1,0 +1,258 @@
+use sakila;
+
+select* from actor;
+
+select* from film;
+
+select* from film_actor;
+
+
+
+select first_name, last_name from actor where actor_id in (select actor_id from film_actor group by actor_id having count(*)>40);
+
+select first_name, last_name, title, description from (film inner join film_actor on (film.film_id=film_actor.film_id) inner join actor on (actor.actor_id=film_actor.actor_id)); 
+
+
+
+
+
+create table otdel(id int primary key auto_increment, name varchar(50));
+
+insert into otdel(name) values('A34'),('F12'),('N23'),('K321'),('G12'),('N10'),('A10'),('M16'),('N06');
+
+
+create table employer(id int unique not NULL auto_increment, name text, id_ot int, cash int, foreign key(id_ot) references otdel(id));
+
+insert into employer(name, id_ot, cash) values('Petrov',1,200),('Ivanov',1,300),('Kozlov',1,150),('Bob',2,50),('Jake',2,1000),('Anna',3,350),('Irina',3,500),('Monika',4,1000),('Kappa',4,1500),('Jon',4,2000);
+
+
+select* from otdel;
+select* from employer;
+
+select* from otdel where otdel.id not in (select id_ot from employer);
+
+select* from otdel where not (otdel.id = any (select id_ot from employer));
+
+
+select* from otdel where otdel.id <> all(select id_ot from employer); 
+
+
+select* from otdel where not exists(select id_ot from employer where otdel.id=id_ot);
+
+
+
+select otdel.id ,otdel.name as name_ot from otdel left join employer on (otdel.id=employer.id_ot) where employer.id is null; 
+
+select  employer.name, otdel.name as name_ot from otdel INNER join employer on (otdel.id=employer.id_ot);
+
+
+
+
+
+
+create table Dep(id integer primary key auto_increment, name varchar(50));
+
+insert into Dep (name) values('D10'), ('A10'), ('B10'), ('C10'), ('E10'), ('F10');
+
+select * from Dep;
+
+
+create table Employee(id integer primary key auto_increment, name varchar(50),  cash  integer,  id_Dep integer,  foreign key (id_Dep) references Dep(id) );
+
+
+insert into Employee(name, cash, id_Dep) values('Bob', 200, 1), ('Jack', 300, 1),  ('Lisa', 300, 1), 
+('Anna', 400, 2), ('Mike', 230, 2), ('John', 400, 2), ('Ivan', 430, 2),
+('Inna', 500, 3), ('Sasha', 200, 3),
+('Ira', 500, 4), ('Jessika', 1200, 4), ('Aaron', 1100, 4), 
+('Natasha', 600, 5), ('Alex', 450, 5);
+
+
+
+
+select '' ;
+
+select * from Employee;
+
+
+
+
+select name from Dep where not id in (select id_Dep from Employee);
+
+select name from Dep where not exists (select id_Dep from Employee where Dep.id=id_Dep);
+
+select name from Dep where id <> all (select id_Dep from Employee);
+
+select Dep.name as name from Dep left join Employee on (Dep.id=Employee.id_Dep) where Employee.id is null;
+
+
+select Dep.name as Dep, Employee.name as name from Dep inner join Employee on (Dep.id=Employee.id_Dep);
+
+select avg(cash) from Employee;
+
+
+select name from Employee were cash>(select avg(cash) from Employee);
+
+
+
+select Dep.id, count(*) from Dep, Employee where Dep.id=id_Dep  group by Dep.id;
+
+
+select Dep.name, result.people from Dep inner join (select Dep.id as id, count(*) as people from Dep, Employee where Dep.id=id_Dep group by Dep.id) as result on (Dep.id=Result.id);
+
+
+select Dep.name, result.people from Dep left join (select Dep.id as id, count(*) as people from Dep, Employee where Dep.id=id_Dep group by Dep.id) as result on (Dep.id=Result.id);
+
+
+drop table Orders;
+
+drop table Employee;
+
+drop table Dep;
+
+
+create table Dep(id integer primary key auto_increment, name varchar(50));
+
+insert into Dep (name) values('D10'), ('A10'), ('B10'), ('C10'), ('E10'), ('F10');
+
+create table Employee(id integer primary key auto_increment, name varchar(50),  cash  integer,  id_Dep integer,  foreign key (id_Dep) references Dep(id) );
+
+insert into Employee(name, cash, id_Dep) values('Bob', 200, 1), ('Jack', 300, 1),  ('Lisa', 300, 1), 
+('Anna', 400, 2), ('Mike', 230, 2), ('John', 400, 2), ('Ivan', 430, 2),
+('Inna', 500, 3), ('Sasha', 200, 3),
+('Ira', 500, 4), ('Jessika', 1200, 4), ('Aaron', 1100, 4), 
+('Natasha', 600, 5), ('Alex', 450, 5), ('David', 1200, 4);
+
+
+create table Orders(id integer primary key auto_increment, name varchar(50), id_Emp integer,  foreign key (id_Emp) references Employee(id), summa integer, discount boolean);
+
+insert into Orders(name, id_Emp, summa, discount) values('Iphone', 1, 200, true), ('Sony', 2, 250, true), ('Sony', 1, 260, false), ('Sumsung', 4, 400, true), ('Ipad', 3, 220, false),
+('Apple', 5, 310, true), ('Nokia', 2, 150, false), ('HTC', 5, 400, true), ('Alcatel', 6, 290, false), ('Acer', 7, 350, false), ('Asus', 8, 560, false), ('Cubot', 7, 430, true), ('Geotel', 9, 230, false),
+('HP', 8, 330, true), ('Philips', 10, 1200, true); 
+select name from Employee where exists(select id_Emp from Orders where Employee.id=id_Emp);
+
+
+select* from Employee right join Orders on (Orders.id_Emp=Employee.id);
+
+select Employee.name from  Orders right join Employee on (Employee.id=Orders.id_Emp) where Orders.id is Null;
+
+select Dep.name from Dep, Employee  where (Employee.cash=(select max(cash) from Employee)) and (Employee.id_Dep=Dep.id);
+
+select id_Dep as D, max(Employee.cash) as M from Dep, Employee group by id_Dep;
+
+
+select name from Dep where id in (SELECT Dep.id from Employee,Dep  where  cash=(select max(M) from (select id_Dep as D, max(Employee.cash) as M from Dep, Employee group by id_Dep) as Result) and (Dep.id=id_Dep));
+
+Select count(*) from  (select id_Dep  from Orders inner join Employee on (id_Emp=Employee.id)) as result group by Dep_id;
+
+ 
+ (select ide,avg(smm) from (select Employee.name as ide, summa as smm from Employee inner join Orders on (Employee.id=id_Emp)) as result group by ide);
+ 
+ select Employee.name from Employee,(select ide,avg(smm) as avgs from (select Employee.id as ide, summa as smm from Employee inner join Orders on (Employee.id=id_Emp)) as result group by ide) as res where (Employee.id=ide) and (cash<avgs);
+ 
+
+
+select name from Employee where exists(select id_Emp from Orders where Employee.id=id_Emp);
+
+
+
+select* from Employee right join Orders on (Orders.id_Emp=Employee.id);
+
+select Employee.name from  Orders right join Employee on (Employee.id=Orders.id_Emp) where Orders.id is Null;
+
+select Dep.name from Dep, Employee  where (Employee.cash=(select max(cash) from Employee)) and (Employee.id_Dep=Dep.id);
+
+select id_Dep as D, max(Employee.cash) as M from Dep, Employee group by id_Dep;
+
+
+select name from Dep where id in (SELECT Dep.id from Employee,Dep  where  cash=(select max(M) from (select id_Dep as D, max(Employee.cash) as M from Dep, Employee group by id_Dep) as Result) and (Dep.id=id_Dep));
+
+Select count(*) from  (select id_Dep  from Orders inner join Employee on (id_Emp=Employee.id)) as result group by Dep_id;
+
+ 
+ (select ide,avg(smm) from (select Employee.name as ide, summa as smm from Employee inner join Orders on (Employee.id=id_Emp)) as result group by ide);
+ 
+ select Employee.name from Employee,(select ide,avg(smm) as avgs from (select Employee.id as ide, summa as smm from Employee inner join Orders on (Employee.id=id_Emp)) as result group by ide) as res where (Employee.id=ide) and (cash<avgs);
+
+
+
+select name from Employee where exists(select id_Emp from Orders where Employee.id=id_Emp);
+
+
+
+select* from Employee right join Orders on (Orders.id_Emp=Employee.id);
+
+
+select Employee.name from  Orders right join Employee on (Employee.id=Orders.id_Emp) where Orders.id is Null;
+
+
+select Dep.name from Dep, Employee  where (Employee.cash=(select max(cash) from Employee)) and (Employee.id_Dep=Dep.id);
+
+
+select id_Dep as D, max(Employee.cash) as M from Dep, Employee group by id_Dep;
+
+
+select name from Dep where id in (SELECT Dep.id from Employee,Dep  where  cash=(select max(M) from (select id_Dep as D, max(Employee.cash) as M from Dep, Employee group by id_Dep) as Result) and (Dep.id=id_Dep));
+
+Select count(*) from  (select id_Dep from Orders inner join Employee on (id_Emp=Employee.id)) as result group by id_Dep;
+
+ 
+ (select ide,avg(smm) from (select Employee.name as ide, summa as smm from Employee inner join Orders on (Employee.id=id_Emp)) as result group by ide);
+ 
+ select Employee.name from Employee,(select ide,avg(smm) as avgs from (select Employee.id as ide, summa as smm from Employee inner join Orders on (Employee.id=id_Emp)) as result group by ide) as res where (Employee.id=ide) and (cash<avgs);
+ 
+ select Dep.name from Dep, (select id_Dep as idD, count(*) as Col from Employee group by id_Dep) as SumDep where (Dep.id=idD);
+ 
+ 
+ select id_Dep as idD, count(*) as Col from Employee group by id_Dep;
+
+
+
+
+
+select* from Employee;
+select* from Orders;
+
+select* from Dep;
+
+
+
+select NOW();
+select  WEEK( NOW() );
+
+select* from Orders limit 2;
+
+select* from Orders limit 5,4;
+
+
+
+select name, summa, order_date from Orders order by order_date DESC limit  2;
+
+
+select* from (select name, summa, order_date from Orders order by order_date DESC limit  2) as res limit 1;
+
+
+
+select name, summa, order_date from Orders, (select max(order_date) as M from Orders) as rs where order_date=M;
+
+
+
+select name, summa, order_date from Orders  where order_date= (select max(order_date) as M from Orders);
+
+
+select name, summa, order_date from Orders  where order_date = (select max(order_date) as M from Orders where order_date<>(select max(order_date) as M from Orders));
+
+
+select sum(summa) as Sum, count(*) as Col, order_date as Date from Orders group by order_date having order_date = (select max(order_date) from Orders where order_date<>(select max(order_date) from Orders));
+
+
+
+select name from Employee where exists (select id_Emp from Orders where Employee.id=id_Emp);
+
+
+
+select Employee.name from  Orders right join Employee on (Employee.id=Orders.id_Emp) where Orders.id is Null; 
+
+
+
+select name from Dep where id in (select Dep.id from Employee,Dep  where  cash=(select max(M) from (select id_Dep as D, max(Employee.cash) as M from Dep, Employee group by id_Dep) as Result) and (Dep.id=id_Dep));
+ 
